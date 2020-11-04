@@ -43,7 +43,7 @@ if [ -f ~/.tel/.installed ]; then #set update var if finished installation was d
 	if [ "$user_reponse" != 'y' ] && [ "$user_reponse" != 'Y' ]; then
 		exit 0
 	fi
-
+fi
 log "Installing required packages.."
 log "This may take a while..."
 logf "pkg install"
