@@ -75,7 +75,7 @@ else
 fi
 
 if [ ! -f "$HOME/.tel/.installed" ]; then
-	pkg install wget unzip coreutils -y 2>&1 || (error 'failed to download required setup utils' && exit 1)
+	pkg install wget unzip coreutils git -y 2>&1 || (error 'failed to download required setup utils' && exit 1)
 fi
 
 cd ~/../usr/ || (error 'fatal error path does not exist: ~/../usr/' && exit 1)
