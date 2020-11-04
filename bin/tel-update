@@ -90,5 +90,4 @@ mv bootstrap-changes/bin/* ~/../usr/bin/
 rm -rf bootstrap-changes
 chmod +x ~/../usr/bin/tel-setup
 chmod +x ~/../usr/bin/tel-applist
-chmod +x ~/../usr/tel/setup.sh
 #./tel/setup.sh || error 'experienced error whilst running setup'
