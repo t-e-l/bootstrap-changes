@@ -11,11 +11,19 @@ chargeicon=""
 dischargeicon=""
 #THERMICON=$(echo $'\ufa0e')
 #HEALTHICON=$(echo $'\uf7df')    
-homedir = os.path.expanduser("~")
-battery_file = homedir + "/.tel/data/.batt"
-os.system("pkill -f 'BatteryStatus'")
+#homedir = os.path.expanduser("~")
+#os.system("pkill -f 'BatteryStatus'")
+
+def get_batt_api():
+    battery = subprocess.run(["termux-battery-status"], capture_output=True, universal_newlines=True, timeout=9)
+    return battery
+
 try:
-    battery = json.loads(subprocess.check_output(["termux-battery-status"], universal_newlines=True, timeout=5)) 
+    api_returned = get_batt_api()
+    while api_returned.returncode != 0: 
+        api_returned = get_batt_api()
+    battery = json.loads(api_returned.stdout)
+
 
     if battery['current'] < 0: #remove negative symbol
         current = -(int(battery["current"]))
@@ -64,11 +72,11 @@ try:
             warning = term.red + "  " + term.normal
             print(battery_str + warning)
         else:
-            with open(battery_file, 'w+') as out_file:
-                out_file.write(battery_str + "\n")
+#            with open(battery_file, 'w+') as out_file:
+#                out_file.write(battery_str + "\n")
             print(battery_str)
 except:
-    #print(dischargeicon + " loading data")
-    with open(battery_file, 'r+') as in_file:
-        print(in_file.read())
+    print(dischargeicon + " loading data...")
+#    with open(battery_file, 'r+') as in_file:
+#        print(in_file.read())
 exit()
