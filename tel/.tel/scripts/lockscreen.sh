@@ -13,7 +13,6 @@ if [ ! -z "$notifs_running" ] ; then
 	pkill -f 'python get_notifications.py'
 else
 	notifswasrunning='false'
-
 fi
 
 if [ ! -z "$powerline_running" ] ; then
@@ -21,7 +20,6 @@ if [ ! -z "$powerline_running" ] ; then
 	pkill -f 'powerline-daemon'
 else
 	powerlinewasrunning='false'
-
 fi
 if [ ! -z "$running" ] ; then
 	wasrunning='true'
@@ -40,7 +38,6 @@ if [ ! -z "$running" ] ; then
 	done
 else
 	wasrunning='false'
-
 fi
 
 
