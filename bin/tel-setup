@@ -47,7 +47,7 @@ fi
 log "Installing required packages.."
 log "This may take a while..."
 logf "pkg install"
-catch "$(pkg install fzf sl cowsay openssh tree bc fd curl wget nano tmux zsh neofetch git make figlet ncurses-utils termux-api sed util-linux -y 2>&1)"
+catch "$(pkg install fzf cowsay openssh tree bc fd curl wget nano tmux zsh neofetch git make figlet ncurses-utils termux-api sed util-linux -y 2>&1)"
 
 log "Installing python"
 logf "python"
@@ -61,7 +61,7 @@ rm -f get-pip.py
 
 log "Installing python packages"
 logf "pip install"
-catch "$(pip install --user blessed lolcat powerline-status 2>&1)" #removed psutil
+catch "$(pip install --user blessed lolcat powerline-status 2>&1)" 
 logf "Finished packages download and installation"
 
 #other termux tools are listed in these files, idk if its necessary to maintain them
@@ -70,6 +70,7 @@ logf "Finished packages download and installation"
 
 #create required directories
 #todo: optimize this
+# no longer required?
 mkdir -p ~/.termux
 mkdir -p ~/.tel
 mkdir -p ~/.config
@@ -86,32 +87,18 @@ chsh -s zsh #set zsh default shell
 catch "$(git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions 2>&1)"
 catch "$(git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting 2>&1)"
 sed -i 's/robbyrussell/avit/g' ~/.zshrc
-sed -i 's/plugins=(git)/plugins=(git catimg fancy-ctrl-z zsh-syntax-highlighting)/g' ~/.zshrc #fzf maybe needed here
+sed -i 's/plugins=(git)/plugins=(git catimg fancy-ctrl-z zsh-syntax-highlighting zsh-autosuggestions)/g' ~/.zshrc #fzf maybe needed here
 
 # setup zsh history (share between windows)
 echo -e "\n# ZSH HISTORY #\nHISTSIZE=40000\nSAVEHIST=20000\nHISTFILE=~/.zsh_history\nsetopt INC_APPEND_HISTORY\nsetopt SHARE_HISTORY\n" >> ~/.zshrc
 # setup tel loading
 echo -e "	\n#|||||||||||||||#\n. ~/.tel/.telrc\n#|||||||||||||||#\n	" >> ~/.zshrc
 
-log "Installing TEL..." #todo: optimize this
+log "Installing TEL..." 
 logf "tel data"
-
-#cp -rf ~/../usr/tel/termux-file-editor ~/bin
-#cp -rf ~/../usr/tel/termux-url-opener ~/bin
 
 # put thingies in actual location
 cp -rf ~/../usr/tel/. ~/
-#rm -rf ~/setup.sh	
-#cp -rTf ~/../usr/tel/.tel ~/.tel
-#cp -rTf ~/../usr/tel/.termux ~/.termux
-#cp -rf ~/../usr/tel/.config ~/
-#cp -rf ~/../usr/tel/.nano ~/
-#cp -rf ~/../usr/tel/.aliases ~/
-#cp -rf ~/../usr/tel/.envvar ~/
-#cp -rf ~/../usr/tel/.tmux.conf ~/
-#cp -rf ~/../usr/tel/.zlogin ~/
-#cp -rf ~/../usr/tel/.nanorc ~/
-
 
 log "Updating permissions..."
 logf "permissions"
@@ -140,4 +127,4 @@ sleep 3
 tel-restart
 error 'Restart cannot be performed automatically when app is not active'
 error 'Please run the command "tel-restart" manually'
-exit 0
+exit 1
