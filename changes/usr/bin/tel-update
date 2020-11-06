@@ -84,7 +84,7 @@ fi
 
 if [ $branch == 'dev' ] ; then 
 	cd ~/.. || (error 'fatal error path does not exist: ~/../usr/' && exit 1)
-	git clone --depth 1 https://github.com/t-e-l/bootstrap-changes 
+	git clone https://github.com/t-e-l/bootstrap-changes 
 else	
 	cd ~/.. || (error 'fatal error path does not exist: ~/../usr/' && exit 1)
 	wget https://github.com/t-e-l/bootstrap-changes/raw/$branch/changes.zip 2>&1 || (error "failed to download update from $branch" && exit 1)
