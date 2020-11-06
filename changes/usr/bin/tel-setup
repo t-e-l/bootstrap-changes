@@ -38,14 +38,15 @@ logf "apt-get upgrade"
 apt-get update -y && apt-get upgrade -y && logf "finished updating Termux packages" #print to screen as hotfix
 if [ -f ~/.tel/.installed ]; then #set update var if finished installation was detected
     logf ".installed exists"
-    error "You should not run tel-setup again. This will replace all TEL files. Are you sure?(y/N)"
+    error "TEL has already been setup! This will replace all TEL files. Are you sure?(y/N)"
 	read -r user_reponse
 	if [ "$user_reponse" != 'y' ] && [ "$user_reponse" != 'Y' ]; then
 		exit 0
 	fi
 fi
-log "Installing required packages.."
-log "This may take a while..."
+log "Fetching required resources"
+log "This may take a while.."
+log "Installing packages"
 logf "pkg install"
 catch "$(pkg install fzf cowsay openssh tree bc fd curl wget nano tmux zsh neofetch git make figlet ncurses-utils termux-api sed util-linux -y 2>&1)"
 
@@ -91,13 +92,14 @@ sed -i 's/plugins=(git)/plugins=(git catimg fancy-ctrl-z zsh-syntax-highlighting
 
 # setup zsh history (share between windows)
 echo -e "\n# ZSH HISTORY #\nHISTSIZE=40000\nSAVEHIST=20000\nHISTFILE=~/.zsh_history\nsetopt INC_APPEND_HISTORY\nsetopt SHARE_HISTORY\n" >> ~/.zshrc
-# setup tel loading
+
+# setup TEL loading
 echo -e "	\n#|||||||||||||||#\n. ~/.tel/.telrc\n#|||||||||||||||#\n	" >> ~/.zshrc
 
 log "Installing TEL..." 
 logf "tel data"
 
-# put thingies in actual location
+# put things in actual location
 cp -rf ~/../usr/tel/. ~/
 
 log "Updating permissions..."
