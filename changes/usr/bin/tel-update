@@ -78,15 +78,19 @@ if [ ! -f "$HOME/.tel/.installed" ]; then
 	pkg install wget unzip coreutils git -y 2>&1 || (error 'failed to download required setup utils' && exit 1)
 fi
 
-cd ~/.. || (error 'fatal error path does not exist: ~/../usr/' && exit 1)
 
 [[ "$remove_tel_data" == "true" ]] && rm_tel_data
 [[ "$remove_user_data" == "true" ]] && rm_user_data
 
-#git clone https://github.com/t-e-l/bootstrap-changes
-wget https://github.com/t-e-l/bootstrap-changes/raw/$branch/changes.zip 2>&1 || (error "failed to download update from $branch" && exit 1)
-unzip -o changes.zip 2>&1
-rm -rf changes.zip
+if [ $branch == 'dev' ] ; then 
+	cd ~/.. || (error 'fatal error path does not exist: ~/../usr/' && exit 1)
+	git clone --depth 1 https://github.com/t-e-l/bootstrap-changes 
+else	
+	cd ~/.. || (error 'fatal error path does not exist: ~/../usr/' && exit 1)
+	wget https://github.com/t-e-l/bootstrap-changes/raw/$branch/changes.zip 2>&1 || (error "failed to download update from $branch" && exit 1)
+	unzip -o changes.zip 2>&1
+	rm -rf changes.zip
+fi
 #mv bootstrap-changes/bin/* ~/../usr/bin/ 
 #rm -rf bootstrap-changes
 
