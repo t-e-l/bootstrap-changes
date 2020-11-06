@@ -34,7 +34,7 @@ remove_tel_data='false'
 remove_user_data='false'
 
 if [ "$1" == '-h' ] || [ "$1" == '--help' ] ; then
-	echo 'usage: tel-update [OPTION]
+	echo 'usage: tel-setup [OPTION]
 	--help 		display this help info
 	--update	get latest release updates
 	--reset 	setup release version (destructive)
