@@ -90,13 +90,12 @@ catch "$(git clone --depth=1 https://github.com/zsh-users/zsh-syntax-highlightin
 #git clone https://github.com/zsh-users/zsh-syntax-highlighting.git
 #sed -i 's/robbyrussell/avit/g' ~/.zshrc
 #sed -i 's/plugins=(git)/plugins=(git catimg fancy-ctrl-z zsh-syntax-highlighting)/g' ~/.zshrc #fzf maybe needed here
-
-echo -e "\nsource ~/.tel/prompt/powerlevel10k.zsh-theme\n" >> ~/.zshrc
+#plugins and prompts are sourced in telrc
+#echo -e "\nsource ~/.tel/prompt/powerlevel10k.zsh-theme\n" >> ~/.zshrc
 # setup zsh history (share between windows)
 echo -e "\n# ZSH HISTORY #\nHISTSIZE=40000\nSAVEHIST=20000\nHISTFILE=~/.zsh_history\nsetopt INC_APPEND_HISTORY\nsetopt SHARE_HISTORY\n" >> ~/.zshrc
 # setup tel loading
 echo -e "	\n#|||||||||||||||#\n. ~/.tel/.telrc\n#|||||||||||||||#\n	" >> ~/.zshrc
-echo "source ~/.tel/shell/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh" >> ~/.zshrc
 
 log "Installing TEL..." #todo: optimize this
 logf "tel data"
