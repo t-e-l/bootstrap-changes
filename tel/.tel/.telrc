@@ -28,10 +28,10 @@ export FZF_BASE=$HOME/../usr/bin/fzf
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh # load fzf bindings
 
 # Shell Prompt Customisations
-POWERLINE_BASH_CONTINUATION=1
-POWERLINE_BASH_SELECT=1
-powerline-daemon -q
-. $PY_SITE_PKGS/powerline/bindings/zsh/powerline.zsh
+#POWERLINE_BASH_CONTINUATION=1
+#POWERLINE_BASH_SELECT=1
+#powerline-daemon -q
+#. $PY_SITE_PKGS/powerline/bindings/zsh/powerline.zsh
 
 
 

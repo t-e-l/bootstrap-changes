@@ -76,22 +76,27 @@ mkdir -p ~/.config
 mkdir -p ~/bin
 
 # # # # ZSH setup # # #
-log "Installing ohmyzsh"
-logf "ohmyzsh"
-sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" "" --unattended  > /dev/null 2>&1 && logf "finished installing OhMyZsh"
+#
+log "Installing shell plugins"
+#logf "ohmyzsh"
+#sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" "" --unattended  > /dev/null 2>&1 && logf "finished installing OhMyZsh"
 chsh -s zsh #set zsh default shell
 
 #install zsh plugins
 #disabled because interferences with suggestion bar
-catch "$(git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions 2>&1)"
-catch "$(git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting 2>&1)"
-sed -i 's/robbyrussell/avit/g' ~/.zshrc
-sed -i 's/plugins=(git)/plugins=(git catimg fancy-ctrl-z zsh-syntax-highlighting)/g' ~/.zshrc #fzf maybe needed here
+#catch "$(git clone --depth=1 https://github.com/zsh-users/zsh-autosuggestions ~/.tel/shell/plugins/zsh-autosuggestions 2>&1)"
+catch "$(git clone --depth=1 https://github.com/romkatv/powerlevel10k.git ~/.tel/shell/prompt 2>&1)"
+catch "$(git clone --depth=1 https://github.com/zsh-users/zsh-syntax-highlighting.git ~/.tel/shell/plugins/zsh-syntax-highlighting 2>&1)"
+#git clone https://github.com/zsh-users/zsh-syntax-highlighting.git
+#sed -i 's/robbyrussell/avit/g' ~/.zshrc
+#sed -i 's/plugins=(git)/plugins=(git catimg fancy-ctrl-z zsh-syntax-highlighting)/g' ~/.zshrc #fzf maybe needed here
 
+echo -e "\nsource ~/.tel/prompt/powerlevel10k.zsh-theme\n" >> ~/.zshrc
 # setup zsh history (share between windows)
 echo -e "\n# ZSH HISTORY #\nHISTSIZE=40000\nSAVEHIST=20000\nHISTFILE=~/.zsh_history\nsetopt INC_APPEND_HISTORY\nsetopt SHARE_HISTORY\n" >> ~/.zshrc
 # setup tel loading
 echo -e "	\n#|||||||||||||||#\n. ~/.tel/.telrc\n#|||||||||||||||#\n	" >> ~/.zshrc
+echo "source ~/.tel/shell/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh" >> ~/.zshrc
 
 log "Installing TEL..." #todo: optimize this
 logf "tel data"
