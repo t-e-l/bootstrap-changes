@@ -1,5 +1,5 @@
-#!/data/data/com.termux/files/usr/bin/bash
-# Handles TEL's configs 
+#!/usr/bin/env bash
+# Called to load all TEL configs/vars into the environment
 
 # Version Info
 #. ~/.tel/.version

@@ -8,22 +8,23 @@
   #   # #  # #
   
 # Shell Prompt: (Must be first)
-
-# Use python powerline?
-#POWERLINE_BASH_CONTINUATION=1
-#POWERLINE_BASH_SELECT=1
-#powerline-daemon -q
-#. $PY_SITE_PKGS/powerline/bindings/zsh/powerline.zsh
-
-# Use p10k?
-POWERLEVEL9K_DISABLE_CONFIGURATION_WIZARD=true
-. ~/.tel/shell/prompt/powerlevel10k.zsh-theme
-. ~/.p10k.zsh
+if [ ! -f ~/.p10k.zsh ] ; then
+	# Use python powerline?
+	POWERLINE_BASH_CONTINUATION=1
+	POWERLINE_BASH_SELECT=1
+	powerline-daemon -q
+	. $PY_SITE_PKGS/powerline/bindings/zsh/powerline.zsh
+else
+	# Use p10k?
+	POWERLEVEL9K_DISABLE_CONFIGURATION_WIZARD=true
+	. ~/.tel/shell/prompt/powerlevel10k.zsh-theme
+	. ~/.p10k.zsh
+fi
 
 # Throw some source
+. ~/.tel/scripts/readconfigs.sh 	# get user settings
 . ~/.tel/.tel_aliases 			# load default aliases
 . ~/.envvar 				# load default env
-. ~/.tel/scripts/readconfigs.sh 	# get user settings
 . ~/.aliases 				# load user aliases
 [[ -f ~/storage/shared/tel/tel_personal.sh ]] && . ~/storage/shared/tel/tel_personal.sh # add aliases / functions here that will never get overwritten
 
@@ -33,10 +34,11 @@ export PY_SITE_PKGS="$(python -m site --user-site)" #only works in python 3.9+ o
 
 # ZSH Customisations
 set -K # disables ! events in zsh to allow for bangs in tel-search, eg 's !!wiki mycelium'
-PROMPT_EOL_MARK='' # appended to partial lines in zsh
+PROMPT_EOL_MARK='' # appended to partial lines in zsh, default is %
 
 # ZSH Plugins
 source ~/.tel/shell/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+source ~/.tel/shell/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
 
 # FZF Customisations
 export FZF_DEFAULT_COMMAND='fd --type f --hidden --follow --exclude .git' # allow finding of dot files
@@ -44,4 +46,9 @@ export FZF_BASE=$HOME/../usr/bin/fzf
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh # load fzf bindings
 
 
-
+# Preferred terminal behaviour for local and remote sessions, note xterm behaves better with alacritty and kitty terminal
+if [[ -n $SSH_CONNECTION ]]; then
+  export TERM=xterm-256color
+fi
+#export TERM=xterm-256color
+export TERMINFO='~/../usr/share/terminfo/'
