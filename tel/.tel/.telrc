@@ -16,6 +16,7 @@
 #. $PY_SITE_PKGS/powerline/bindings/zsh/powerline.zsh
 
 # Use p10k?
+POWERLEVEL9K_DISABLE_CONFIGURATION_WIZARD=true
 . ~/.tel/shell/prompt/powerlevel10k.zsh-theme
 
 # Throw some source
