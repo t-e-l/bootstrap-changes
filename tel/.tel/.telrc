@@ -18,6 +18,7 @@
 # Use p10k?
 POWERLEVEL9K_DISABLE_CONFIGURATION_WIZARD=true
 . ~/.tel/shell/prompt/powerlevel10k.zsh-theme
+. ~/.p10k.zsh
 
 # Throw some source
 . ~/.tel/.tel_aliases 			# load default aliases
