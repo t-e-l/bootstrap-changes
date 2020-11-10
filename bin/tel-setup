@@ -85,6 +85,7 @@ chsh -s zsh #set zsh default shell
 #install zsh plugins
 #disabled because interferences with suggestion bar
 #catch "$(git clone --depth=1 https://github.com/zsh-users/zsh-autosuggestions ~/.tel/shell/plugins/zsh-autosuggestions 2>&1)"
+rm -rf ~/.tel/shell
 catch "$(git clone --depth=1 https://github.com/romkatv/powerlevel10k.git ~/.tel/shell/prompt 2>&1)"
 catch "$(git clone --depth=1 https://github.com/zsh-users/zsh-syntax-highlighting.git ~/.tel/shell/plugins/zsh-syntax-highlighting 2>&1)"
 #git clone https://github.com/zsh-users/zsh-syntax-highlighting.git
