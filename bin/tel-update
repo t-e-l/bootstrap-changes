@@ -85,10 +85,10 @@ git clone https://github.com/t-e-l/bootstrap-changes
 [[ "$remove_tel_data" == "true" ]] && rm_tel_data
 [[ "$remove_user_data" == "true" ]] && rm_user_data
 #unzip -o changes.zip 2>&1
-cp -rf bootstrap-changes/bin/* ~/../usr/bin/
+cp -rf bootstrap-changes/bin/ ~/../usr/bin/
 #:cp -rf --copy-contents bootstrap-changes/tel/ ~/
-cp -rf --copy-contents bootstrap-changes/tel/.??* ~/
-cp -rf bootstrap-changes/etc/* ~/../usr/etc/
+cp -rf bootstrap-changes/tel/.??* ~/
+cp -rf bootstrap-changes/etc/ ~/../usr/etc/
 
 rm -rf bootstrap-changes
 chmod +x ~/../usr/bin/*
