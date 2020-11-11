@@ -95,11 +95,14 @@ echo -e "\n# ZSH HISTORY #\nHISTSIZE=40000\nSAVEHIST=20000\nHISTFILE=~/.zsh_hist
 
 # setup tel loading
 echo -e "	\n#|||||||||||||||#\n. ~/.tel/.telrc\n#|||||||||||||||#\n	" >> ~/.zshrc
-log "Installing TEL..." #todo: optimize this
+
+
+log "Fetching latest TEL files" #todo: optimize this
+~/.tel/bin/tel-update
+log "Installing TEL" #todo: optimize this
 logf "tel data"
 
 # put thingies in actual location - now done with update
-~/.tel/bin/tel-update
 #cp -rf ~/../usr/tel/. ~/
 #rm -rf ~/setup.sh	
 #cp -rTf ~/../usr/tel/.tel ~/.tel
