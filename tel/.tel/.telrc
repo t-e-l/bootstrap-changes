@@ -45,10 +45,18 @@ export FZF_DEFAULT_COMMAND='fd --type f --hidden --follow --exclude .git' # allo
 export FZF_BASE=$HOME/../usr/bin/fzf
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh # load fzf bindings
 
-
+# Terminal customistations
 # Preferred terminal behaviour for local and remote sessions, note xterm behaves better with alacritty and kitty terminal
 if [[ -n $SSH_CONNECTION ]]; then
   export TERM=xterm-256color
 fi
 #export TERM=xterm-256color
 export TERMINFO='~/../usr/share/terminfo/'
+
+# ZSH History
+HISTSIZE=40000
+SAVEHIST=20000
+HISTFILE=~/.zsh_history
+setopt INC_APPEND_HISTORY
+setopt SHARE_HISTORY
+
