@@ -44,7 +44,6 @@ if [ -f ~/.tel/.installed ]; then #set update var if finished installation was d
 		exit 0
 	fi
 fi
-~/.tel/bin/tel-update
 log "Installing required packages.."
 log "This may take a while..."
 logf "pkg install"
@@ -99,7 +98,8 @@ echo -e "	\n#|||||||||||||||#\n. ~/.tel/.telrc\n#|||||||||||||||#\n	" >> ~/.zshr
 log "Installing TEL..." #todo: optimize this
 logf "tel data"
 
-# put thingies in actual location
+# put thingies in actual location - now done with update
+~/.tel/bin/tel-update
 #cp -rf ~/../usr/tel/. ~/
 #rm -rf ~/setup.sh	
 #cp -rTf ~/../usr/tel/.tel ~/.tel
