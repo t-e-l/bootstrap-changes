@@ -88,7 +88,7 @@ git clone https://github.com/t-e-l/bootstrap-changes
 shopt -u dotglob # (include dotfiles in cp -r)
 cp -rfv bootstrap-changes/bin/* ~/../usr/bin/
 #:cp -rf --copy-contents bootstrap-changes/tel/ ~/
-cp -rfv bootstrap-changes/tel/.??* ~/
+cp -rfv bootstrap-changes/tel/* ~/
 cp -rfv bootstrap-changes/etc/* ~/../usr/etc/
 
 rm -rf bootstrap-changes
