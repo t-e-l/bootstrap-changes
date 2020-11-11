@@ -71,7 +71,7 @@ logf "Finished packages download and installation"
 #create required directories
 #todo: optimize this
 mkdir -p ~/.termux
-#mkdir -p ~/.tel
+mkdir -p ~/.tel
 mkdir -p ~/.config
 mkdir -p ~/bin
 
