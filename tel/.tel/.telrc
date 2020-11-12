@@ -7,10 +7,6 @@
   #   #    #
   #   # #  # #
 
-# Bindkeys
-bindkey '^[[A' history-substring-search-up
-bindkey '^[[B' history-substring-search-down
-
  
 # Shell Prompt: (Must be first)
 if [ ! -f ~/.p10k.zsh ] ; then #fallback to python prompt if file not exist
@@ -44,6 +40,15 @@ PROMPT_EOL_MARK='' # appended to partial lines in zsh, default is %
 source ~/.tel/shell/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh # must be first
 source ~/.tel/shell/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
 source ~/.tel/shell/plugins/zsh-history-substring-search/zsh-history-substring-search.zsh
+
+# ZSH widgets
+zle -N history-substring-search-up
+zle -N history-substring-search-down
+
+# Bindkeys
+bindkey '^[[A' history-substring-search-up
+bindkey '^[[B' history-substring-search-down
+
 
 # FZF Customisations
 export FZF_DEFAULT_COMMAND='fd --type f --hidden --follow --exclude .git' # allow finding of dot files
