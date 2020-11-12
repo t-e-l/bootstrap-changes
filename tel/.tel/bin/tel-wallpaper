@@ -30,6 +30,7 @@ open_url(){
 if [ -z $1 ] ; then
 	cd $wallpaper_folder
 	selected_file=$(ls $wallpaper_folder | fzf -e --cycle --color=16 --prompt=" Pick a file to set as your wallpaper:" --select-1)
+	options='-f'
 else
 	case "$1" in
 		-f) #use file
