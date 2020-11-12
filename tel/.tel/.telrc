@@ -24,7 +24,6 @@ fi
 # Throw some source
 . ~/.tel/scripts/readconfigs.sh 	# get user settings
 . ~/.tel/.tel_aliases 			# load default aliases
-. ~/.envvar 				# load default env
 . ~/.aliases 				# load user aliases
 [[ -f ~/storage/shared/tel/tel_personal.sh ]] && . ~/storage/shared/tel/tel_personal.sh # add aliases / functions here that will never get overwritten
 
