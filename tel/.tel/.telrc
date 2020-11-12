@@ -8,7 +8,7 @@
   #   # #  # #
   
 # Shell Prompt: (Must be first)
-if [ ! -f ~/.p10k.zsh ] ; then
+if [ ! -f ~/.p10k.zsh ] ; then #fallback to python prompt if file not exist
 	# Use python powerline?
 	POWERLINE_BASH_CONTINUATION=1
 	POWERLINE_BASH_SELECT=1
