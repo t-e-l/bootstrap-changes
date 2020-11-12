@@ -36,8 +36,13 @@ set -K # disables ! events in zsh to allow for bangs in tel-search, eg 's !!wiki
 PROMPT_EOL_MARK='' # appended to partial lines in zsh, default is %
 
 # ZSH Plugins
-source ~/.tel/shell/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+source ~/.tel/shell/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh # must be first
 source ~/.tel/shell/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
+source ~/.tel/shell/plugins/zsh-history-substring-search/zsh-history-substring-search.zsh
+
+# Bindkeys
+bindkey '^[[A' history-substring-search-up
+bindkey '^[[B' history-substring-search-down
 
 # FZF Customisations
 export FZF_DEFAULT_COMMAND='fd --type f --hidden --follow --exclude .git' # allow finding of dot files
@@ -58,4 +63,5 @@ SAVEHIST=20000
 HISTFILE=~/.zsh_history
 setopt INC_APPEND_HISTORY
 setopt SHARE_HISTORY
+setopt HIST_IGNORE_ALL_DUPS
 
