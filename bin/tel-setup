@@ -102,7 +102,7 @@ echo -e "	\n#|||||||||||||||#\n. ~/.tel/.telrc\n#|||||||||||||||#\n	" >> ~/.zshr
 
 
 log "Fetching latest TEL files" #todo: optimize this
-~/.tel/bin/tel-update
+~/../usr/bin/tel-update
 log "Installing TEL" #todo: optimize this
 logf "tel data"
 
