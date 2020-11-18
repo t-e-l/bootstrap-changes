@@ -29,7 +29,7 @@ alias tron="ssh sshtron.zachlatta.com"
 alias starwars="telnet towel.blinkenlights.nl"
 alias matrix="cmatrix"
 alias tel-fetch="neofetch --source ~/.tel/data/asciiart.txt"
-alias randomfact=$(wget randomfunfacts.com -O - 2>/dev/null | grep <strong> | sed "s;^.*<i>(.*\)</i>.*$;\1;")
+alias randomfact='wget randomfunfacts.com -O - 2>/dev/null | grep <strong> | sed "s;^.*<i>(.*\)</i>.*$;\1;"'
 
 # APPS
 alias cam="app camera"
