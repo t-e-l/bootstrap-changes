@@ -3,9 +3,7 @@
 
 if [ "$USE_TMUX" == 'true' ] ; then # user config choice
 	if [ -z $TMUX ] ; then # tmux not running
-		tmux -f ~/.tel/.tel_tmux.conf new-session -n "$NAME" -s "TEL" '~/.tel/scripts/startup.sh ; $SHELL' 
-	else # tmux is running
-		tmux has-session -t "TEL"
+		tmux has-session -t "TEL" > /dev/null 2>&1
 		if [ $? != 0 ]; then # start main TEL session if not already running
 			tmux -f ~/.tel/.tel_tmux.conf new-session -n "$NAME" -s "TEL" '~/.tel/scripts/startup.sh ; $SHELL' 
 		else # start unique tmux session for each Termux session
