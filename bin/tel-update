@@ -89,8 +89,8 @@ if [ ! -f "$HOME/.tel/.installed" ]; then
 fi
 
 cd ~/../usr/ || (error 'fatal error path does not exist: ~/../usr/' && exit 1)
-[[ -f bootstrap-changes ]] && rm -rf bootstrap-changes
-git clone --depth=1 https://github.com/t-e-l/bootstrap-changes || (echo 'Failed to get update, please try again' ; exit 1)
+rm -rf bootstrap-changes
+git clone --depth=1 https://github.com/t-e-l/bootstrap-changes || (error 'Failed to download update, please check connection and try again' ; exit 1)
 #wget https://github.com/t-e-l/tel/raw/$branch/bootstrap/changes.zip 2>&1 || (error "failed to download update from $branch" && exit 1)
 [[ "$remove_tel_data" == "true" ]] && rm_tel_data
 [[ "$remove_user_data" == "true" ]] && rm_user_data
