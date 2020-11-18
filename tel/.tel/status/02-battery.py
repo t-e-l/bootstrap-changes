@@ -65,5 +65,6 @@ try:
         else:
             print(battery_str)
 except:
-    print(dischargeicon + " loading data")
+    pass
+    #print(dischargeicon + " loading data")
 exit()

@@ -37,6 +37,7 @@ try:
         if latest:
             print(notificationsicon + latest)
         else:
-            print(notificationsicon + " No new notifications")
+            print(notificationsicon + " no new notifications")
 except:
-    print('except')
+    pass
+    #print('except')
