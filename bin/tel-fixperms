@@ -28,13 +28,13 @@ error() {
 
 log "Updating permissions..."
 # script locations
-[[ -d ~/.tel/extras ]] && catch(chmod +x ~/.tel/extras/*)
-[[ -d ~/.tel/status ]] && catch(chmod +x ~/.tel/status/*)
-[[ -d ~/.tel/scripts ]] && catch(chmod +x ~/.tel/scripts/*)
-[[ -d ~/.tel/scripts/status_manager ]] && catch(chmod +x ~/.tel/scripts/status_manager/*)
-[[ -d ~/.tel/tutorials ]] && catch(chmod +x ~/.tel/tutorials/*)
+[[ -d ~/.tel/extras ]] && chmod +x ~/.tel/extras/*
+[[ -d ~/.tel/status ]] && chmod +x ~/.tel/status/*
+[[ -d ~/.tel/scripts ]] && chmod +x ~/.tel/scripts/*
+[[ -d ~/.tel/scripts/status_manager ]] && chmod +x ~/.tel/scripts/status_manager/*
+[[ -d ~/.tel/tutorials ]] && chmod +x ~/.tel/tutorials/*
 
 # bin locations 
-[[ -d ~/.tel/tutorials ]] && catch(chmod +x ~/../usr/bin/*)
-[[ -d ~/.tel/tutorials ]] && catch(chmod +x ~/.tel/bin/*)
-[[ -d ~/.tel/tutorials ]] && catch(chmod +x ~/bin/*) # scripts that receive files and urls shared to TEL
+[[ -d ~/.tel/tutorials ]] && chmod +x ~/../usr/bin/*
+[[ -d ~/.tel/tutorials ]] && chmod +x ~/.tel/bin/*
+[[ -d ~/.tel/tutorials ]] && chmod +x ~/bin/* # scripts that receive files and urls shared to TEL
