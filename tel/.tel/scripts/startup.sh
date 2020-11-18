@@ -40,9 +40,12 @@ if [ "$STARTUP_ANIMATION_ENABLED" == "true" ] ; then
 fi
 
 if [ "$STATUS_WINDOW_ENABLED" == "true" ] ; then
-	echo -n 'launching status manager                    ' $'\r'
-	nohup ~/.tel/scripts/status_manager/toggle_ui.sh > /dev/null 2>&1 &
-	echo -ne "launched status manager ${CHECK_MARK}      " $'\r'
+	running=$(pgrep -f status_manager.py)
+	if [ -z "$running" ] ; then
+		echo -n 'launching status manager                    ' $'\r'
+		nohup ~/.tel/scripts/status_manager/toggle_ui.sh > /dev/null 2>&1 &
+		echo -ne "launched status manager ${CHECK_MARK}      " $'\r'
+	fi
 fi
 
 echo -ne "Ready!      ${CHECK_MARK}                " $'\r'
