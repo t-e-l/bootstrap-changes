@@ -29,7 +29,6 @@ alias tron="ssh sshtron.zachlatta.com"
 alias starwars="telnet towel.blinkenlights.nl"
 alias matrix="cmatrix"
 alias tel-fetch="neofetch --source ~/.tel/data/asciiart.txt"
-alias randomfact='wget randomfunfacts.com -O - 2>/dev/null | grep <strong> | sed "s;^.*<i>(.*\)</i>.*$;\1;"'
 
 # APPS
 alias cam="app camera"
@@ -44,3 +43,7 @@ alias fdroid="app fdroid"
 # Functions
 cd() { if [ -z "$1" ]; then command cd; else if [ -f "$1" ]; then command cd $(dirname "$1"); else command cd "$1"; fi; fi }
 
+randomfact() { wget randomfunfacts.com -O - 2>/dev/null | grep <strong> | sed "s;^.*<i>(.*\)</i>.*$;\1;" }
+
+autoload cd
+autoload randomfact
