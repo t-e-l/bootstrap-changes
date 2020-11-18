@@ -100,7 +100,8 @@ git clone --depth=1 https://github.com/t-e-l/bootstrap-changes || (error 'Failed
 [[ "$remove_tel_data" == "true" ]] && rm_tel_data
 [[ "$remove_user_data" == "true" ]] && rm_user_data
 #unzip -o changes.zip 2>&1
-shopt -u dotglob # (include dotfiles in cp -r)
+shopt -u dotglob
+# (include dotfiles in cp -r)
 cp -rf bootstrap-changes/bin/* ~/../usr/bin
 #:cp -rf --copy-contents bootstrap-changes/tel/ ~/
 cp -rf bootstrap-changes/tel/.??* ~/
