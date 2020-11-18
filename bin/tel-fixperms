@@ -20,10 +20,10 @@ logf(){
         echo "[$(date '+%Y-%m-%d %H:%M:%S')]: ${1}" >> ~/.log.tel
 }
 log() {
-	printf "\033[0;%sm%s\033[0m\033[0;%sm%s\033[0m\n" "${WHITE}" "[PERMISSIONS]: " "${GREEN}" "${1}"
+	printf "\033[0;%sm%s\033[0m\033[0;%sm%s\033[0m\n" "${WHITE}" "[TEL]: " "${GREEN}" "${1}"
 }
 error() {
-	printf "\033[0;%sm%s\033[0m\033[0;%sm%s\033[0m\n" "${WHITE}" "[PERMISSIONS]: " "${RED}" "${1}"
+	printf "\033[0;%sm%s\033[0m\033[0;%sm%s\033[0m\n" "${WHITE}" "[TEL]: " "${RED}" "${1}"
 }
 
 log "Updating permissions..."
@@ -35,6 +35,6 @@ log "Updating permissions..."
 [[ -d ~/.tel/tutorials ]] && chmod +x ~/.tel/tutorials/*
 
 # bin locations 
-[[ -d ~/.tel/tutorials ]] && chmod +x ~/../usr/bin/*
-[[ -d ~/.tel/tutorials ]] && chmod +x ~/.tel/bin/*
-[[ -d ~/.tel/tutorials ]] && chmod +x ~/bin/* # scripts that receive files and urls shared to TEL
+[[ -d ~/../usr/bin ]] && chmod +x ~/../usr/bin/*
+[[ -d ~/.tel/bin ]] && chmod +x ~/.tel/bin/*
+[[ -d ~/bin ]] && chmod +x ~/bin/* # scripts that receive files and urls shared to TEL
