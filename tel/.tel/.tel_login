@@ -1,3 +1,6 @@
+# # # TEL login file # # # 
+# liable to be overwritten with updates
+
 if [ "$USE_TMUX" == 'true' ] ; then # user config choice
 	if [ -z $TMUX ] ; then # tmux not running
 		tmux -f ~/.tel/.tel_tmux.conf new-session -n "$NAME" -s "TEL" '~/.tel/scripts/startup.sh ; $SHELL' 
@@ -10,4 +13,6 @@ if [ "$USE_TMUX" == 'true' ] ; then # user config choice
 			tmux new-session -s "TEL$session_number" 
 		fi
 	fi
+else # User disabled tmux startup 
+	~/.tel/scripts/startup.sh
 fi
