@@ -94,6 +94,7 @@ mv -f bootstrap-changes/etc/motd_finished bootstrap-changes/etc/motd
 cp -rf bootstrap-changes/etc/* ~/../usr/etc
 
 rm -rf bootstrap-changes
+chmod +x ~/../usr/bin/tel-fixperms
 ~/../usr/bin/tel-fixperms
 #chmod +x ~/../usr/bin/*
 #chmod +x ~/.tel/bin/*
