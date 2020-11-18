@@ -33,17 +33,22 @@ error() {
 	printf "\033[0;%sm%s\033[0m\033[0;%sm%s\033[0m\n" "${WHITE}" "[TEL]: " "${RED}" "${1}"
 }
 
-log "Updating Termux packages..."
-logf "apt-get upgrade"
-apt-get update -y && apt-get upgrade -y && logf "finished updating Termux packages" #print to screen as hotfix
 if [ -f ~/.tel/.installed ]; then #set update var if finished installation was detected
-    logf ".installed exists"
-    error "You should not run tel-setup again. This will replace all TEL files. Are you sure?(y/N)"
+	logf ".installed exists"
+	error "TEL appears to already be installed. Continuing will replace all TEL files, you may also lose TEL user data. It is recommended to take a backup if you wish to continue. (command: tel-backup)"
+   
+	error "Are you sure you want to continue? (y/N)"
 	read -r user_reponse
 	if [ "$user_reponse" != 'y' ] && [ "$user_reponse" != 'Y' ]; then
+		error 'User exited the setup'
 		exit 0
 	fi
 fi
+
+log "Updating Termux packages..."
+logf "apt-get upgrade"
+apt-get update -y && apt-get upgrade -y && logf "finished updating Termux packages" #print to screen as hotfix
+
 log "Installing required packages.."
 log "This may take a while..."
 logf "pkg install"
@@ -55,9 +60,7 @@ catch "$(pkg install python -y 2>&1)"
 
 log "Installing python package manager"
 logf "pip"
-catch "$(curl https://bootstrap.pypa.io/get-pip.py -o get-pip.py 2>&1)"
-catch "$(python get-pip.py 2>&1)"
-rm -f get-pip.py
+which -a pip | grep -q '[n]ot found' && catch "$(curl https://bootstrap.pypa.io/get-pip.py -o get-pip.py 2>&1)" && catch "$(python get-pip.py 2>&1)" && rm -f get-pip.py #skip reinstalling if pip exists
 
 log "Installing python packages"
 logf "pip install"
@@ -117,16 +120,17 @@ logf "tel data"
 #cp -rf ~/../usr/tel/.nanorc ~/
 
 
-log "Updating permissions..."
-logf "permissions"
-chmod +x ~/.tel/extras/*
-chmod +x ~/.tel/status/*
-chmod +x ~/.tel/scripts/*
-chmod +x ~/.tel/scripts/status_manager/*
-chmod +x ~/.tel/tutorials/*
-chmod +x ~/.tel/bin/*
-chmod +x ~/bin/* # scripts that receive files and urls shared to TEL
-chmod +x ~/../usr/bin/*
+#~/../usr/bin/tel-fixperms # now handles all permission changes after update / setup # ( ran by update)
+#log "Updating permissions..."
+#logf "permissions"
+#chmod +x ~/.tel/extras/*
+#chmod +x ~/.tel/status/*
+#chmod +x ~/.tel/scripts/*
+#chmod +x ~/.tel/scripts/status_manager/*
+#chmod +x ~/.tel/tutorials/*
+#chmod +x ~/.tel/bin/*
+#chmod +x ~/bin/* # scripts that receive files and urls shared to TEL
+#chmod +x ~/../usr/bin/*
 
 if [ -f "$HOME/../usr/etc/motd_finished" ]; then
 	mv ~/../usr/etc/motd_finished ~/../usr/etc/motd #set final motd

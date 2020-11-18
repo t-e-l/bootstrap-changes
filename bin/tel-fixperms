@@ -1,0 +1,40 @@
+#!/usr/bin/env bash
+#should be executed after each setup and update
+
+#set colors
+WHITE=${1:-"38;5;07"}
+GREEN=${1:-"38;5;02"}
+RED=${1:-"38;5;01"}
+
+catch(){
+if [ $?  -ne 0 ]
+then
+        logf "${1}"
+        error "${1}"
+        exit 0
+fi
+}
+
+
+logf(){
+        echo "[$(date '+%Y-%m-%d %H:%M:%S')]: ${1}" >> ~/.log.tel
+}
+log() {
+	printf "\033[0;%sm%s\033[0m\033[0;%sm%s\033[0m\n" "${WHITE}" "[PERMISSIONS]: " "${GREEN}" "${1}"
+}
+error() {
+	printf "\033[0;%sm%s\033[0m\033[0;%sm%s\033[0m\n" "${WHITE}" "[PERMISSIONS]: " "${RED}" "${1}"
+}
+
+log "Updating permissions..."
+# script locations
+[[ -d ~/.tel/extras ]] && catch(chmod +x ~/.tel/extras/*)
+[[ -d ~/.tel/status ]] && catch(chmod +x ~/.tel/status/*)
+[[ -d ~/.tel/scripts ]] && catch(chmod +x ~/.tel/scripts/*)
+[[ -d ~/.tel/scripts/status_manager ]] && catch(chmod +x ~/.tel/scripts/status_manager/*)
+[[ -d ~/.tel/tutorials ]] && catch(chmod +x ~/.tel/tutorials/*)
+
+# bin locations 
+[[ -d ~/.tel/tutorials ]] && catch(chmod +x ~/../usr/bin/*)
+[[ -d ~/.tel/tutorials ]] && catch(chmod +x ~/.tel/bin/*)
+[[ -d ~/.tel/tutorials ]] && catch(chmod +x ~/bin/*) # scripts that receive files and urls shared to TEL

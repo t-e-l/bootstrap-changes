@@ -94,7 +94,8 @@ mv -f bootstrap-changes/etc/motd_finished bootstrap-changes/etc/motd
 cp -rf bootstrap-changes/etc/* ~/../usr/etc
 
 rm -rf bootstrap-changes
-chmod +x ~/../usr/bin/*
+~/../usr/bin/tel-fixperms
+#chmod +x ~/../usr/bin/*
 #chmod +x ~/.tel/bin/*
 echo 'Update finished'
 #./tel/setup.sh || error 'experienced error whilst running setup'
