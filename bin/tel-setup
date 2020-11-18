@@ -17,7 +17,6 @@ logf() {
 	echo "[$(date '+%Y-%m-%d %H:%M:%S')]: ${1}" >> ~/.log.tel
 }
 warn() {
-	printf "\033[38;2;255;165;0m%s\033[m\n" "Hello world"
 	printf "\033[0;%sm%s\033[0m\033[0;%sm%s\033[0m\n" "${YELLOW}" "[TEL]: " "${WHITE}" "${1}"
 }
 error() {
