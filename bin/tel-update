@@ -3,7 +3,7 @@
 WHITE=${1:-"38;5;07"}
 GREEN=${1:-"38;5;02"}
 RED=${1:-"38;5;01"}
-ORANGE=${1:-"38;2;225;165"}
+YELLOW=${1:-"38;2;93"}
 
 log() {
 	printf "\033[0;%sm%s\033[0m\033[0;%sm%s\033[0m\n" "${GREEN}" "[TEL]: " "${WHITE}" "${1}"
@@ -13,14 +13,14 @@ logf() {
 	echo "[$(date '+%Y-%m-%d %H:%M:%S')]: ${1}" >> ~/.log.tel
 }
 warn() {
-	printf "\033[0;%sm%s\033[0m\033[0;%sm%s\033[0m\n" "${ORANGE}" "[TEL]: " "${WHITE}" "${1}"
+	printf "\033[0;%sm%s\033[0m\033[0;%sm%s\033[0m\n" "${YELLOW}" "[TEL]: " "${WHITE}" "${1}"
 }
 error() {
 	printf "\033[0;%sm%s\033[0m\033[0;%sm%s\033[0m\n" "${RED}" "[TEL]: " "${WHITE}" "${1}"
 }
 rm_tel_data(){
-	printf "\033[0;%sm%s\033[0m\033[0;%sm%s\033[0m\n" "${ORANGE}" "[TEL]: " "${WHITE}" " ! Warning ! this action will remove all TEL data from your device"
-	printf "\033[0;%sm%s\033[0m\033[0;%sm%s\033[0m\n" "${ORANGE}" "[TEL]: " "${WHITE}" "Are you sure you wish to continue? Y/N"
+	printf "\033[0;%sm%s\033[0m\033[0;%sm%s\033[0m\n" "${YELLOW}" "[TEL]: " "${WHITE}" " ! Warning ! this action will remove all TEL data from your device"
+	printf "\033[0;%sm%s\033[0m\033[0;%sm%s\033[0m\n" "${YELLOW}" "[TEL]: " "${WHITE}" "Are you sure you wish to continue? Y/N"
 	read -r user_reponse
 	if [ "$user_reponse" != 'y' ] && [ "$user_reponse" != 'Y' ]; then
 		error "User cancelled setup..." ; sleep 1 ; exit 1
