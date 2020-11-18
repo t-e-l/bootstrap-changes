@@ -1,15 +1,25 @@
 #!/usr/bin/env bash
+log() {
+	printf "\033[0;%sm%s\033[0m\033[0;%sm%s\033[0m\n" "${GREEN}" "[TEL]: " "${WHITE}" "${1}"
+
+}
+logf() {
+	echo "[$(date '+%Y-%m-%d %H:%M:%S')]: ${1}" >> ~/.log.tel
+}
+warn() {
+	printf "\033[0;%sm%s\033[0m\033[0;%sm%s\033[0m\n" "${RED}" "[TEL]: " "${WHITE}" "${1}"
+}
 error() {
-	printf "\033[0;%sm%s\033[0m\033[0;%sm%s\033[0m\n" "${WHITE}" "[TEL]: " "${RED}" "${1}"
+	printf "\033[0;%sm%s\033[0m\033[0;%sm%s\033[0m\n" "${RED}" "[TEL]: " "${WHITE}" "${1}"
 }
 rm_tel_data(){
-	printf "\033[0;%sm%s\033[0m\033[0;%sm%s\033[0m\n" "${WHITE}" "[TEL]: " "${ORANGE}" " ! Warning ! this action will remove all TEL data from your device"
-	printf "\033[0;%sm%s\033[0m\033[0;%sm%s\033[0m\n" "${WHITE}" "[TEL]: " "${ORANGE}" "Are you sure you wish to continue? Y/N"
+	printf "\033[0;%sm%s\033[0m\033[0;%sm%s\033[0m\n" "${ORANGE}" "[TEL]: " "${WHITE}" " ! Warning ! this action will remove all TEL data from your device"
+	printf "\033[0;%sm%s\033[0m\033[0;%sm%s\033[0m\n" "${ORANGE}" "[TEL]: " "${WHITE}" "Are you sure you wish to continue? Y/N"
 	read -r user_reponse
 	if [ "$user_reponse" != 'y' ] && [ "$user_reponse" != 'Y' ]; then
 		error "User cancelled setup..." ; sleep 1 ; exit 1
 	fi
-	printf "\033[0;%sm%s\033[0m\033[0;%sm%s\033[0m\n" "${WHITE}" "[TEL]: " "${GREEN}" "Wiping data..."
+	log "Wiping data..."
 	rm -rf ~/.tel
 	rm -rf ~/.oh-my-zsh
 	rm -f ~/.zshrc
@@ -19,7 +29,7 @@ rm_tel_data(){
 	rm -f ~/../usr/etc/motd
 }
 rm_user_data(){
-	printf "\033[0;%sm%s\033[0m\033[0;%sm%s\033[0m\n" "${WHITE}" "[TEL]: " "${ORANGE}" "Removing user data..."
+	warn "Removing user data..."
 	rm -rf ~/.oh-my-zsh
 	rm -f ~/.zshrc
 	rm -f ~/.zlogin
@@ -43,26 +53,26 @@ if [ "$1" == '-h' ] || [ "$1" == '--help' ] ; then
 	--extras	extra scripts'
 	exit 0
 elif [ "$1" == '--update' ] ; then
-	printf "\033[0;%sm%s\033[0m\033[0;%sm%s\033[0m\n" "${WHITE}" "[TEL]: " "${GREEN}" "Getting updates"
+	log "Getting updates"
 	branch='master'
 elif [ "$1" == '--dev' ] ; then
-	printf "\033[0;%sm%s\033[0m\033[0;%sm%s\033[0m\n" "${WHITE}" "[TEL]: " "${GREEN}" "Getting developer version"
+	log "Getting developer version"
 	remove_tel_data='true'
 	branch='dev'
 elif [ "$1" == '--custom' ] ; then
-	printf "\033[0;%sm%s\033[0m\033[0;%sm%s\033[0m\n" "${WHITE}" "[TEL]: " "${GREEN}" "Which branch do you want to setup? e.g: staging"
+	log "Which branch do you want to setup? e.g: staging"
 	read -r branch
 	remove_tel_data='true'
-	printf "\033[0;%sm%s\033[0m\033[0;%sm%s\033[0m\n" "${WHITE}" "[TEL]: " "${GREEN}" "Getting $branch"
+	log "Getting $branch"
 elif [ "$1" == '--reset' ] ; then
-	printf "\033[0;%sm%s\033[0m\033[0;%sm%s\033[0m\n" "${WHITE}" "[TEL]: " "${GREEN}" "Resetting & getting latest version"
+	log "Resetting & getting latest version"
 	remove_tel_data='true'
 	branch='master'
 elif [ "$1" == '--extras' ] ; then
 	if [ ! -f "$HOME/.tel/.installed" ]; then
 		error 'Extras can only be installed after TEL has been setup'
 	fi
-	printf "\033[0;%sm%s\033[0m\033[0;%sm%s\033[0m\n" "${WHITE}" "[TEL]: " "${GREEN}" "launching extras installer..."
+	log "launching extras installer..."
 	~/.tel/extras/setup.sh
 	exit 0
 elif [ -n "$1" ] ; then #user picked non option
@@ -70,7 +80,7 @@ elif [ -n "$1" ] ; then #user picked non option
 	error "try 'tel-setup --help' to see availible options"
 	exit 1
 else
-	printf "\033[0;%sm%s\033[0m\033[0;%sm%s\033[0m\n" "${WHITE}" "[TEL]: " "${GREEN}" "Getting updates"
+	log "Getting updates"
 	branch='master'
 fi
 
@@ -79,7 +89,6 @@ if [ ! -f "$HOME/.tel/.installed" ]; then
 fi
 
 cd ~/../usr/ || (error 'fatal error path does not exist: ~/../usr/' && exit 1)
-
 [[ -f bootstrap-changes ]] && rm -rf bootstrap-changes
 git clone --depth=1 https://github.com/t-e-l/bootstrap-changes || (echo 'Failed to get update, please try again' ; exit 1)
 #wget https://github.com/t-e-l/tel/raw/$branch/bootstrap/changes.zip 2>&1 || (error "failed to download update from $branch" && exit 1)
@@ -93,11 +102,11 @@ cp -rf bootstrap-changes/tel/.??* ~/
 cp -rf bootstrap-changes/tel/bin/* ~/bin
 mv -f bootstrap-changes/etc/motd_finished bootstrap-changes/etc/motd
 cp -rf bootstrap-changes/etc/* ~/../usr/etc
-
 rm -rf bootstrap-changes
+
 chmod +x ~/../usr/bin/tel-fixperms
 ~/../usr/bin/tel-fixperms
 #chmod +x ~/../usr/bin/*
 #chmod +x ~/.tel/bin/*
-echo 'Update finished'
+log 'Update finished'
 #./tel/setup.sh || error 'experienced error whilst running setup'
