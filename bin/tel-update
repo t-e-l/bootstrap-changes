@@ -27,7 +27,7 @@ rm_tel_data(){
 	fi
 	log "Wiping data..."
 	rm -rf ~/.tel
-	rm -rf ~/.oh-my-zsh
+#	rm -rf ~/.oh-my-zsh
 	rm -f ~/.zshrc
 	rm -f ~/.zlogin # these will be all be overwritten by a full install of setup after .installed flag is removed anyway
 	rm -f ~/.aliases
@@ -53,6 +53,7 @@ if [ "$1" == '-h' ] || [ "$1" == '--help' ] ; then
 	echo 'usage: tel-setup [OPTION]
 	--help 		display this help info
 	--update	get latest release updates
+	--setup		ran by tel-setup (destructive)
 	--reset 	setup release version (destructive)
 	--dev 		setup developer version (destructive)
 	--custom	setup custom version (destructive)
@@ -61,6 +62,9 @@ if [ "$1" == '-h' ] || [ "$1" == '--help' ] ; then
 elif [ "$1" == '--update' ] ; then
 	log "Getting updates"
 	branch='master'
+elif [ "$1" == '--setup' ] ; then
+	branch='master'
+	remove_tel_data='true'
 elif [ "$1" == '--dev' ] ; then
 	log "Getting developer version"
 	remove_tel_data='true'
