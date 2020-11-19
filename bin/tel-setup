@@ -90,8 +90,13 @@ log "Installing shell plugins"
 #sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" "" --unattended  > /dev/null 2>&1 && logf "finished installing OhMyZsh"
 chsh -s zsh #set zsh default shell
 
+log "Fetching latest TEL files" #todo: optimize this
+~/../usr/bin/tel-update --setup #switch deletes existing .tel files
+log "Installing TEL" #todo: optimize this
+logf "tel data"
+
 # install zsh plugins manually (sourced by ~/.tel/.telrc)
-rm -rf ~/.tel/shell
+#rm -rf ~/.tel/shell
 catch "$(git clone --depth=1 https://github.com/romkatv/gitstatus.git ~/.tel/shell/prompt/gitstatus 2>&1)"
 catch "$(git clone --depth=1 https://github.com/romkatv/powerlevel10k.git ~/.tel/shell/prompt 2>&1)"
 catch "$(git clone --depth=1 https://github.com/zsh-users/zsh-syntax-highlighting.git ~/.tel/shell/plugins/zsh-syntax-highlighting 2>&1)"
@@ -107,10 +112,6 @@ catch "$(git clone --depth=1 https://github.com/zsh-users/zsh-history-substring-
 echo -e "	\n#|||||||||||||||#\n. ~/.tel/.telrc\n#|||||||||||||||#\n	" >> ~/.zshrc
 
 
-log "Fetching latest TEL files" #todo: optimize this
-~/../usr/bin/tel-update --setup #switch deletes existing .tel files
-log "Installing TEL" #todo: optimize this
-logf "tel data"
 
 # put thingies in actual location - now done with update
 #cp -rf ~/../usr/tel/. ~/
