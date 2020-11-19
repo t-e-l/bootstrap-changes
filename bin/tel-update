@@ -107,7 +107,7 @@ cp -rf bootstrap-changes/bin/* ~/../usr/bin
 #:cp -rf --copy-contents bootstrap-changes/tel/ ~/
 cp -rf bootstrap-changes/tel/.??* ~/
 cp -rf bootstrap-changes/tel/bin/* ~/bin
-mv -f bootstrap-changes/etc/motd_finished bootstrap-changes/etc/motd
+#mv -f bootstrap-changes/etc/motd_finished bootstrap-changes/etc/motd
 cp -rf bootstrap-changes/etc/* ~/../usr/etc
 rm -rf bootstrap-changes
 
