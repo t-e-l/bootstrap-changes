@@ -19,12 +19,12 @@ error() {
 	printf "\033[0;%sm%s\033[0m\033[0;%sm%s\033[0m\n" "${RED}" "[TEL]: " "${WHITE}" "${1}"
 }
 rm_tel_data(){
-	printf "\033[0;%sm%s\033[0m\033[0;%sm%s\033[0m\n" "${YELLOW}" "[TEL]: " "${WHITE}" " ! Warning ! this action will remove all TEL data from your device"
-	printf "\033[0;%sm%s\033[0m\033[0;%sm%s\033[0m\n" "${YELLOW}" "[TEL]: " "${WHITE}" "Are you sure you wish to continue? Y/N"
-	read -r user_reponse
-	if [ "$user_reponse" != 'y' ] && [ "$user_reponse" != 'Y' ]; then
+#	printf "\033[0;%sm%s\033[0m\033[0;%sm%s\033[0m\n" "${YELLOW}" "[TEL]: " "${WHITE}" " ! Warning ! this action will remove all TEL data from your device"
+#	printf "\033[0;%sm%s\033[0m\033[0;%sm%s\033[0m\n" "${YELLOW}" "[TEL]: " "${WHITE}" "Are you sure you wish to continue? Y/N"
+#	read -r user_reponse
+#	if [ "$user_reponse" != 'y' ] && [ "$user_reponse" != 'Y' ]; then
 		error "User cancelled setup..." ; sleep 1 ; exit 1
-	fi
+#	fi
 	log "Wiping data..."
 	rm -rf ~/.tel
 #	rm -rf ~/.oh-my-zsh
