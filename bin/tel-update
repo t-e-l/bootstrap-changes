@@ -25,14 +25,14 @@ rm_tel_data(){
 #	if [ "$user_reponse" != 'y' ] && [ "$user_reponse" != 'Y' ]; then
 		error "User cancelled setup..." ; sleep 1 ; exit 1
 #	fi
-	log "Wiping data..."
+#	log "Wiping data..."
 	rm -rf ~/.tel
 #	rm -rf ~/.oh-my-zsh
-	rm -f ~/.zshrc
-	rm -f ~/.zlogin # these will be all be overwritten by a full install of setup after .installed flag is removed anyway
-	rm -f ~/.aliases
-	rm -f ~/.envvar
-	rm -f ~/../usr/etc/motd
+#	rm -f ~/.zshrc
+#	rm -f ~/.zlogin # these will be all be overwritten by a full install of setup after .installed flag is removed anyway
+#	rm -f ~/.aliases
+#	rm -f ~/.envvar
+#	rm -f ~/../usr/etc/motd
 }
 rm_user_data(){
 	warn "Removing user data..."
