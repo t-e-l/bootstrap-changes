@@ -60,15 +60,15 @@ logf "pkg install"
 catch "$(pkg install fzf sl cowsay openssh tree bc fd curl wget nano tmux zsh neofetch git make figlet ncurses-utils termux-api sed util-linux -y 2>&1)"
 
 log "Installing python"
-logf "python"
+logf "python install"
 catch "$(pkg install python -y 2>&1)" 
 
 log "Installing python package manager"
-logf "pip"
+logf "pip install"
 which -a pip | grep -q '[n]ot found' && catch "$(curl https://bootstrap.pypa.io/get-pip.py -o get-pip.py 2>&1)" && catch "$(python get-pip.py 2>&1)" && rm -f get-pip.py #skip reinstalling if pip exists
 
 log "Installing python packages"
-logf "pip install"
+logf "pip pkgs install"
 catch "$(pip install --user blessed lolcat powerline-status 2>&1)" #removed psutil
 logf "Finished packages download and installation"
 
@@ -96,7 +96,7 @@ log "Installing TEL" #todo: optimize this
 logf "tel data"
 
 # install zsh plugins manually (sourced by ~/.tel/.telrc)
-#rm -rf ~/.tel/shell
+rm -rf ~/.tel/shell #incase setup is reran (must clone to empty dirs)
 catch "$(git clone --depth=1 https://github.com/romkatv/powerlevel10k.git ~/.tel/shell/prompt 2>&1)"
 #catch "$(git clone --depth=1 https://github.com/romkatv/gitstatus.git ~/.tel/shell/prompt/gitstatus 2>&1)"
 catch "$(~/.tel/shell/prompt/gitstatus/install 2>&1)"
