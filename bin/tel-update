@@ -23,7 +23,7 @@ rm_tel_data(){
 #	printf "\033[0;%sm%s\033[0m\033[0;%sm%s\033[0m\n" "${YELLOW}" "[TEL]: " "${WHITE}" "Are you sure you wish to continue? Y/N"
 #	read -r user_reponse
 #	if [ "$user_reponse" != 'y' ] && [ "$user_reponse" != 'Y' ]; then
-		error "User cancelled setup..." ; sleep 1 ; exit 1
+#		error "User cancelled setup..." ; sleep 1 ; exit 1
 #	fi
 #	log "Wiping data..."
 	rm -rf ~/.tel
@@ -98,12 +98,14 @@ if [ ! -f "$HOME/.tel/.installed" ]; then
 	pkg install wget unzip coreutils git -y 2>&1 || (error 'failed to download required setup utils' && exit 1)
 fi
 
-cd ~/../usr/ || (error 'fatal error path does not exist: ~/../usr/' && exit 1)
-rm -rf bootstrap-changes
-git clone --depth=1 https://github.com/t-e-l/bootstrap-changes || (error 'Failed to download update, please check connection and try again' ; exit 1)
-#wget https://github.com/t-e-l/tel/raw/$branch/bootstrap/changes.zip 2>&1 || (error "failed to download update from $branch" && exit 1)
 [[ "$remove_tel_data" == "true" ]] && rm_tel_data
 [[ "$remove_user_data" == "true" ]] && rm_user_data
+
+
+cd ~/../usr/ || (error 'fatal error path does not exist: ~/../usr/' && exit 1)
+rm -rf bootstrap-changes #incase last run failed with partial download 
+git clone --depth=1 https://github.com/t-e-l/bootstrap-changes || (error 'Failed to download update, please check connection and try again' ; exit 1)
+#wget https://github.com/t-e-l/tel/raw/$branch/bootstrap/changes.zip 2>&1 || (error "failed to download update from $branch" && exit 1)
 #unzip -o changes.zip 2>&1
 shopt -u dotglob
 # (include dotfiles in cp -r)
