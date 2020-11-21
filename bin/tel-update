@@ -73,4 +73,4 @@ rm -rf ~/../usr/etc/motd > /dev/null 2>&1
 
 # PERMISSIONS
 [[ "$update_permissions" == "true" ]] && fix_permissions
-log 'Finished updating changes'
+log 'Finished installing changes'
