@@ -4,6 +4,14 @@
 
 source ~/../usr/bin/tel-helpers 
 
+if [ -z "$1" ]; then
+	update_args="--setup"
+else
+	update_args="$1"
+fi
+$1=''
+
+
 UPDATE=false
 
 
@@ -54,11 +62,6 @@ log "Installing shell plugins"
 chsh -s zsh #set zsh default shell
 
 log "Fetching latest TEL files" #todo: optimize this
-if [ -z "$1" ]; then
-	update_args="--setup"
-else
-	update_args="$1"
-fi
 
 # Get updates!
 ~/../usr/bin/tel-update $update_args 
