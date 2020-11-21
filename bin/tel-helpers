@@ -1,0 +1,101 @@
+#!/usr/bin/env bash
+#
+# Sourced for TEL operations
+
+WHITE=${1:-"38;5;07"} # relative term color value
+GREEN=${1:-"38;2;0;255;0"} # absolute rgb values
+ORANGE=${1:-"38;2;255;146;0"}
+RED=${1:-"38;2;255;0;0"}
+
+log() {
+	printf "\033[0;%sm%s\033[0m\033[0;%sm%s\033[0m\n" "${GREEN}" "[TEL]: " "${WHITE}" "${1}"
+
+}
+logf() {
+	echo "[$(date '+%Y-%m-%d %H:%M:%S')]: ${1}" >> ~/.log.tel
+}
+warn() {
+	printf "\033[0;%sm%s\033[0m\033[0;%sm%s\033[0m\n" "${ORANGE}" "[TEL]: " "${WHITE}" "${1}"
+}
+error() {
+	printf "\033[0;%sm%s\033[0m\033[0;%sm%s\033[0m\n" "${RED}" "[TEL]: " "${WHITE}" "${1}"
+}
+
+catch(){
+if [ $?  -ne 0 ] ; then
+        logf "${1}"
+        error "${1}"
+	error "please try again"
+        exit 0
+else
+	logf "done"
+fi
+}
+
+fix_permissions(){
+	log "Updating permissions..."
+	# script locations
+	[[ -d ~/.tel/extras ]] && chmod +x ~/.tel/extras/*
+	[[ -d ~/.tel/status ]] && chmod +x ~/.tel/status/*
+	[[ -d ~/.tel/scripts ]] && chmod +x ~/.tel/scripts/*
+	[[ -d ~/.tel/scripts/status_manager ]] && chmod +x ~/.tel/scripts/status_manager/*
+	[[ -d ~/.tel/tutorials ]] && chmod +x ~/.tel/tutorials/*
+	# bin locations 
+	[[ -d ~/../usr/bin ]] && chmod +x ~/../usr/bin/*
+	[[ -d ~/.tel/bin ]] && chmod +x ~/.tel/bin/*
+	[[ -d ~/bin ]] && chmod +x ~/bin/* # scripts that receive files and urls shared to TEL
+}
+
+remove_data_no_prompt(){
+	log "Wiping data..."
+	rm -rf ~/.tel
+	rm -rf ~/.config
+	rm -rf ~/.nano
+	rm -rf ~/.termux
+	rm -rf ~/.wallpapers
+	rm -rf ~/bin
+	rm -rf ~/.nanorc
+	rm -rf ~/.aliases
+	rm -rf ~/.tmux.conf
+	rm -rf ~/.p10k.zsh
+	rm -rf ~/.zlogin
+	rm -rf ~/.zshrc
+	rm -rf ~/.zsh_history
+	rm -rf ~/.log.tel
+	rm -rf ~/.app_names
+	rm -rf ~/.apps
+	rm -rf ~/.bash_history
+	rm -rf ~/../usr/etc/motd
+	rm -rf ~/../usr/bootstrap-changes #incase of partial download
+}
+
+remove_data_prompt(){
+	warn "This action will remove all TEL data from your device"
+	warn "Are you sure you wish to continue? y/N"
+	read -r user_reponse
+	if [ "$user_reponse" != 'y' ] && [ "$user_reponse" != 'Y' ]; then
+		error "User cancelled setup..." ; sleep 1 ; return 1
+	fi
+	log "Wiping data..."
+	rm -rf ~/.tel
+	rm -rf ~/.config
+	rm -rf ~/.nano
+	rm -rf ~/.termux
+	rm -rf ~/.wallpapers
+	rm -rf ~/bin
+	rm -rf ~/.nanorc
+	rm -rf ~/.aliases
+	rm -rf ~/.tmux.conf
+	rm -rf ~/.p10k.zsh
+	rm -rf ~/.zlogin
+	rm -rf ~/.zshrc
+	rm -rf ~/.zsh_history
+	rm -rf ~/.log.tel
+	rm -rf ~/.app_names
+	rm -rf ~/.apps
+	rm -rf ~/.bash_history
+	rm -rf ~/../usr/etc/motd
+	rm -rf ~/../usr/bootstrap-changes
+}
+
+

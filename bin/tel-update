@@ -1,58 +1,14 @@
 #!/usr/bin/env bash
+# TEL updater
+source ~/../usr/bin/tel-helpers
 
-WHITE=${1:-"38;5;07"}
-GREEN=${1:-"38;2;0;255;0"}
-RED=${1:-"38;2;255;0;0"}
-YELLOW=${1:-"38;2;255;146;0"}
-
-log() {
-	printf "\033[0;%sm%s\033[0m\033[0;%sm%s\033[0m\n" "${GREEN}" "[TEL]: " "${WHITE}" "${1}"
-
-}
-logf() {
-	echo "[$(date '+%Y-%m-%d %H:%M:%S')]: ${1}" >> ~/.log.tel
-}
-warn() {
-	printf "\033[0;%sm%s\033[0m\033[0;%sm%s\033[0m\n" "${YELLOW}" "[TEL]: " "${WHITE}" "${1}"
-}
-error() {
-	printf "\033[0;%sm%s\033[0m\033[0;%sm%s\033[0m\n" "${RED}" "[TEL]: " "${WHITE}" "${1}"
-}
-rm_tel_data(){
-#	printf "\033[0;%sm%s\033[0m\033[0;%sm%s\033[0m\n" "${YELLOW}" "[TEL]: " "${WHITE}" " ! Warning ! this action will remove all TEL data from your device"
-#	printf "\033[0;%sm%s\033[0m\033[0;%sm%s\033[0m\n" "${YELLOW}" "[TEL]: " "${WHITE}" "Are you sure you wish to continue? Y/N"
-#	read -r user_reponse
-#	if [ "$user_reponse" != 'y' ] && [ "$user_reponse" != 'Y' ]; then
-#		error "User cancelled setup..." ; sleep 1 ; exit 1
-#	fi
-#	log "Wiping data..."
-	rm -rf ~/.tel
-#	rm -rf ~/.oh-my-zsh
-#	rm -f ~/.zshrc
-#	rm -f ~/.zlogin # these will be all be overwritten by a full install of setup after .installed flag is removed anyway
-#	rm -f ~/.aliases
-#	rm -f ~/.envvar
-#	rm -f ~/../usr/etc/motd
-}
-rm_user_data(){
-	warn "Removing user data..."
-	rm -rf ~/.oh-my-zsh
-	rm -f ~/.zshrc
-	rm -f ~/.zlogin
-	rm -f ~/.aliases
-	rm -f ~/.envvar
-	rm -rf ~/.tel/configs
-	rm -rf ~/.tel/data
-	rm -rf ~/.config
-	rm -f ~/../usr/etc/motd
-}
-remove_tel_data='false'
-remove_user_data='false'
+update_permissions="true"
+remove_data='false'
 
 if [ "$1" == '-h' ] || [ "$1" == '--help' ] ; then
 	echo 'usage: tel-setup [OPTION]
 	--help 		display this help info
-	--update	get latest release updates
+	--update	get latest release updates (default)
 	--setup		ran by tel-setup (destructive)
 	--reset 	setup release version (destructive)
 	--dev 		setup developer version (destructive)
@@ -63,20 +19,22 @@ elif [ "$1" == '--update' ] ; then
 	log "Getting updates"
 	branch='master'
 elif [ "$1" == '--setup' ] ; then
+	log "Getting latest release changes"
 	branch='master'
-	remove_tel_data='true'
+	update_permissions='false'
+	remove_data='true'
 elif [ "$1" == '--dev' ] ; then
-	log "Getting developer version"
-	remove_tel_data='true'
+	log "Getting latest dev changes"
 	branch='dev'
+	remove_data='true'
 elif [ "$1" == '--custom' ] ; then
 	log "Which branch do you want to setup? e.g: staging"
 	read -r branch
-	remove_tel_data='true'
-	log "Getting $branch"
+	remove_data='true'
+	log "Getting $branch changes"
 elif [ "$1" == '--reset' ] ; then
 	log "Resetting & getting latest version"
-	remove_tel_data='true'
+	remove_data='true'
 	branch='master'
 elif [ "$1" == '--extras' ] ; then
 	if [ ! -f "$HOME/.tel/.installed" ]; then
@@ -90,7 +48,7 @@ elif [ -n "$1" ] ; then #user picked non option
 	error "try 'tel-setup --help' to see availible options"
 	exit 1
 else
-	log "Getting updates"
+	log "Getting latest release changes"
 	branch='master'
 fi
 
@@ -98,26 +56,21 @@ if [ ! -f "$HOME/.tel/.installed" ]; then
 	pkg install wget unzip coreutils git -y 2>&1 || (error 'failed to download required setup utils' && exit 1)
 fi
 
-[[ "$remove_tel_data" == "true" ]] && rm_tel_data
-[[ "$remove_user_data" == "true" ]] && rm_user_data
+[[ "$remove_data" == "true" ]] && reset_to_fresh_setup_no_prompt
 
 
 cd ~/../usr/ || (error 'fatal error path does not exist: ~/../usr/' && exit 1)
 rm -rf bootstrap-changes #incase last run failed with partial download 
-git clone --depth=1 https://github.com/t-e-l/bootstrap-changes || (error 'Failed to download update, please check connection and try again' ; exit 1)
-#wget https://github.com/t-e-l/tel/raw/$branch/bootstrap/changes.zip 2>&1 || (error "failed to download update from $branch" && exit 1)
-#unzip -o changes.zip 2>&1
+git clone -b $branch --depth=1 https://github.com/t-e-l/bootstrap-changes || (error 'Failed to download update, please check connection and try again' ; exit 1)
 shopt -u dotglob
 # (include dotfiles in cp -r)
 cp -rf bootstrap-changes/bin/* ~/../usr/bin
-#:cp -rf --copy-contents bootstrap-changes/tel/ ~/
 cp -rf bootstrap-changes/tel/.??* ~/
 cp -rf bootstrap-changes/tel/bin/* ~/bin
-#mv -f bootstrap-changes/etc/motd_finished bootstrap-changes/etc/motd
 cp -rf bootstrap-changes/etc/* ~/../usr/etc
+rm -rf ~/../usr/etc/motd
 rm -rf bootstrap-changes
 
 # PERMISSIONS
-chmod +x ~/../usr/bin/tel-fixperms
-~/../usr/bin/tel-fixperms
-log 'Update finished'
+[[ "$update_permissions" == "true" ]] && fix_permissions
+log 'TEL updated'
