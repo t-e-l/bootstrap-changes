@@ -4,8 +4,8 @@ source ~/../usr/bin/tel-helpers
 
 update_permissions="true"
 remove_data='false'
-
-if [ "$1" == '-h' ] || [ "$1" == '--help' ] ; then
+user_option=$1
+if [ "$user_option" == '-h' ] || [ "$user_option" == '--help' ] ; then
 	echo 'usage: tel-setup [OPTION]
 	--help 		display this help info
 	--update	get latest release updates (default)
@@ -15,35 +15,35 @@ if [ "$1" == '-h' ] || [ "$1" == '--help' ] ; then
 	--custom	setup from custom branch (destructive)
 	--extras	run extras installer'
 	exit 0
-elif [ "$1" == '--update' ] ; then
+elif [ "$user_option" == '--update' ] ; then
 	log "Getting updates"
 	branch='master'
-elif [ "$1" == '--setup' ] ; then
+elif [ "$user_option" == '--setup' ] ; then
 	log "Getting latest release changes"
 	branch='master'
 	update_permissions='false'
 #	remove_data='true'
-elif [ "$1" == '--dev' ] ; then
+elif [ "$user_option" == '--dev' ] ; then
 	log "Getting latest dev changes"
 	branch='dev'
 	remove_data='true'
-elif [ "$1" == '--custom' ] ; then
+elif [ "$user_option" == '--custom' ] ; then
 	log "Which branch do you want to setup? e.g: staging"
 	read -r branch
 	remove_data='true'
 	log "Getting $branch changes"
-elif [ "$1" == '--reset' ] ; then
+elif [ "$user_option" == '--reset' ] ; then
 	log "Resetting & getting latest release changes"
 	remove_data='true'
 	branch='master'
-elif [ "$1" == '--extras' ] ; then
+elif [ "$user_option" == '--extras' ] ; then
 	if [ ! -f "$HOME/.tel/.installed" ]; then
 		error 'Extras can only be installed after TEL has been setup'
 	fi
 	log "launching extras installer..."
 	~/.tel/extras/setup.sh
 	exit 0
-elif [ -n "$1" ] ; then #user picked non option
+elif [ -n "$user_option" ] ; then #user picked non option
 	error "Unrecognised input option..."
 	error "try 'tel-setup --help' to see availible options"
 	exit 1
