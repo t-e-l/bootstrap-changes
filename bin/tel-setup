@@ -9,7 +9,6 @@ if [ -z "$1" ]; then
 else
 	update_args="$1"
 fi
-$1=''
 
 
 UPDATE=false
