@@ -10,10 +10,10 @@ if [ "$1" == '-h' ] || [ "$1" == '--help' ] ; then
 	--help 		display this help info
 	--update	get latest release updates (default)
 	--setup		ran by tel-setup (destructive)
-	--reset 	setup release version (destructive)
+	--reset 	setup fresh release version (destructive)
 	--dev 		setup developer version (destructive)
-	--custom	setup custom version (destructive)
-	--extras	extra scripts'
+	--custom	setup from custom branch (destructive)
+	--extras	run extras installer'
 	exit 0
 elif [ "$1" == '--update' ] ; then
 	log "Getting updates"
@@ -22,7 +22,7 @@ elif [ "$1" == '--setup' ] ; then
 	log "Getting latest release changes"
 	branch='master'
 	update_permissions='false'
-	remove_data='true'
+#	remove_data='true'
 elif [ "$1" == '--dev' ] ; then
 	log "Getting latest dev changes"
 	branch='dev'
@@ -33,7 +33,7 @@ elif [ "$1" == '--custom' ] ; then
 	remove_data='true'
 	log "Getting $branch changes"
 elif [ "$1" == '--reset' ] ; then
-	log "Resetting & getting latest version"
+	log "Resetting & getting latest release changes"
 	remove_data='true'
 	branch='master'
 elif [ "$1" == '--extras' ] ; then
@@ -56,11 +56,11 @@ if [ ! -f "$HOME/.tel/.installed" ]; then
 	pkg install wget unzip coreutils git -y 2>&1 || (error 'failed to download required setup utils' && exit 1)
 fi
 
-[[ "$remove_data" == "true" ]] && reset_to_fresh_setup_no_prompt
+[[ "$remove_data" == "true" ]] && remove_data_no_prompt
 
 
 cd ~/../usr/ || (error 'fatal error path does not exist: ~/../usr/' && exit 1)
-rm -rf bootstrap-changes #incase last run failed with partial download 
+rm -rf bootstrap-changes > /dev/null 2>&1 #incase last run failed with partial download 
 git clone -b $branch --depth=1 https://github.com/t-e-l/bootstrap-changes || (error 'Failed to download update, please check connection and try again' ; exit 1)
 shopt -u dotglob
 # (include dotfiles in cp -r)
@@ -68,9 +68,9 @@ cp -rf bootstrap-changes/bin/* ~/../usr/bin
 cp -rf bootstrap-changes/tel/.??* ~/
 cp -rf bootstrap-changes/tel/bin/* ~/bin
 cp -rf bootstrap-changes/etc/* ~/../usr/etc
-rm -rf ~/../usr/etc/motd
 rm -rf bootstrap-changes
+rm -rf ~/../usr/etc/motd > /dev/null 2>&1
 
 # PERMISSIONS
 [[ "$update_permissions" == "true" ]] && fix_permissions
-log 'TEL updated'
+log 'Finished updating changes'

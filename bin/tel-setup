@@ -19,8 +19,6 @@ if [ -f ~/.tel/.installed ]; then #set update var if finished installation was d
 	fi
 fi
 
-remove_data_no_prompt
-
 log "Updating Termux packages..."
 logf "apt-get upgrade"
 apt-get update -y && apt-get upgrade -y && logf "finished updating Termux packages" #print to screen as hotfix
