@@ -4,7 +4,7 @@ source ~/../usr/bin/tel-helpers
 
 update_permissions="true"
 remove_data='false'
-user_option=$1
+user_option="$1"
 if [ "$user_option" == '-h' ] || [ "$user_option" == '--help' ] ; then
 	echo 'usage: tel-setup [OPTION]
 	--help 		display this help info
