@@ -1,9 +1,16 @@
 #!/usr/bin/env bash
-#todo send dp to bc so handles floats automatically
-if [ -z $1 ] ; then
+# an extremely simple wrapper for casual use of linux package - bc 
+if [ "$1" == "-h" ] || [ "$1" == "--help" ] ; then
+	echo -e "Usage: tel-calculator [options] [calculation]
+	tel-calculator -h	= show this help menu
+	tel-calculator 5*5	= return answer and exit
+	tel-calculator		= prompt user for calculation to perform"
+	exit 0
+fi
+if [ -z "$1" ] ; then
 	printf  "\e[38;5;2m Calculate\e[m: "
 	read input
-	echo "$input" | bc
+	echo "scale=2; $input" | bc
 else
-	echo "$@" | bc
+	echo "scale=2; $@" | bc
 fi

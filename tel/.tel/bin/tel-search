@@ -15,14 +15,12 @@ function rand_searx_instance () {
 		n=$(( $n + 1 ))
 		lines_searx_urls+=($line)
 	done < $instance_urls_file
-	#searx_selection=$((1 + RANDOM % $n))
 	searx_selection=$((RANDOM % $n))
-#	echo "num is: $searx_selection selection is : ${lines_searx_urls[$searx_selection]}" #DEBUG
 	searx_url=${lines_searx_urls[$searx_selection]}
 }
 
 if [ "$1" == "-h" ] ; then
-	echo -e "${BOLD}${RED}Usage: tel-search [options] [search term] ${NC}${NORMAL}
+	echo -e "Usage: tel-search [options] [search term]
 	tel-search			= interactive search prompt
 	tel-search -h			= show this help menu
 	tel-search -yt Monkeys		= search in youtube app for Monkeys
