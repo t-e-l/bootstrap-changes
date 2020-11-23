@@ -2,8 +2,9 @@
 # an extremely simple wrapper for casual use of linux package - bc 
 if [ "$1" == "-h" ] || [ "$1" == "--help" ] ; then
 	echo -e "Usage: tel-calculator [options] [calculation]
+	accepted operations: + - / * ^ 
 	tel-calculator -h	= show this help menu
-	tel-calculator 5*5	= return answer and exit
+	tel-calculator '5 * 5'	= return answer and exit
 	tel-calculator		= prompt user for calculation to perform"
 	exit 0
 fi
