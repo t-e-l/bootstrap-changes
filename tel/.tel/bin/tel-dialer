@@ -26,8 +26,10 @@ show_help() {
                 "call [OPTIONS] [PATTERN]"\
                 "__________________________"\
                 "OPTIONS"\
-                "  -h   Display this help"\
-                "  -u   Update contact list"
+		"  -a 'name' 'number'	Add a new contact"\
+		"  -d			Display my number"\
+                "  -h   		Display this help"\
+                "  -u   		Update contact list"
         exit 0
 }
 
@@ -55,13 +57,31 @@ update_contacts() {
     rm ~/.temp
 }
 
+add_contact(){
+	if [ $# -gt 1 ] ; then
+		printf  "\e[38;5;2m Dialer\e[m: \e[38;5;1mAdding a new contact: %s\n\e[m"
+		echo 'Please type the contacts name'
+		read add_contact_name
+		echo 'Please type the contacts number'
+		read add_contact_number
+	else
+		add_contact_name=$2
+		add_contact_number=$3
+	fi
+		am start -a android.intent.action.INSERT -t vnd.android.cursor.dir/contact -e name $add_contact_name -e phone $add_contact_number
+	printf  "\e[38;5;2m Dialer\e[m: \e[38;5;1mAdded $add_contact_name to contacts%s\n\e[m"
+	update_contacts
+	exit 0
+}
+
 
 main() {
     
-    # display_help
-    [[ "$1" == "-h" ]] && {
-        show_help
-    }
+	if [ "$1" == "-h" ] || [ "$1" == "--help" ] ; then
+        	show_help 
+	elif [ "$1" == "-a" ] || [ "$1" == "--add" ] ; then
+		add_contact
+	fi
 
     [[ ! -a "$contactsfile" || "$1" == '-u' ]] && {
     	printf  "\e[38;5;2m Dialer\e[m: \e[38;5;1mGenerating contacts list...%s\n\e[m"
