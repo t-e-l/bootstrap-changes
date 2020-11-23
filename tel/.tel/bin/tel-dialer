@@ -68,7 +68,7 @@ add_contact(){
 		add_contact_name=$2
 		add_contact_number=$3
 	fi
-		am start -a android.intent.action.INSERT -t vnd.android.cursor.dir/contact -e name $add_contact_name -e phone $add_contact_number
+		am start -a android.intent.action.INSERT -t vnd.android.cursor.dir/contact -e name $add_contact_name -e phone $add_contact_number > /dev/null 2>&1
 	printf  "\e[38;5;2m Dialer\e[m: \e[38;5;1mAdded $add_contact_name to contacts%s\n\e[m"
 	update_contacts
 	exit 0
