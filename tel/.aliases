@@ -12,7 +12,7 @@ alias pg='ping -c 3 8.8.8.8' # quick connection check
 alias battery='~/.tel/status/*battery.py'
 alias storage='~/.tel/status/*storage.py'
 alias network='~/.tel/status/*network.py'
-alias cpu='~/.tel/status/*cpu_mem.py'
+alias cpu='~/.tel/status/*cpu_mem.sh'
 
 # Device specific
 alias x='exit'
