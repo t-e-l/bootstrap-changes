@@ -58,11 +58,11 @@ update_contacts() {
 }
 
 add_contact(){
-	if [ $# -gt 1 ] ; then
+	if [ $# -lt 2 ] ; then
 		printf  "\e[38;5;2m Dialer\e[m: \e[38;5;1mAdding a new contact: %s\n\e[m"
-		echo 'Please type the contacts name'
+		echo 'Contact name:'
 		read add_contact_name
-		echo 'Please type the contacts number'
+		echo 'Contact number:'
 		read add_contact_number
 	else
 		add_contact_name=$2
