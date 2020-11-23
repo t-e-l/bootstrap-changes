@@ -9,6 +9,10 @@ alias tel-wiki="tel-open -u https://https://github.com/t-e-l/tel/wiki/FAQ"
 alias l='ls -lah'
 alias lst='ls -R | grep ":$" | sed -e '"'"'s/:$//'"'"' -e '"'"'s/[^-][^\/]*\//--/g'"'"' -e '"'"'s/^/ /'"'"' -e '"'"'s/-/|/'"'"''
 alias pg='ping -c 3 8.8.8.8' # quick connection check
+alias battery='~/.tel/status/*battery.py'
+alias storage='~/.tel/status/*storage.py'
+alias network='~/.tel/status/*network.py'
+alias cpu='~/.tel/status/*cpu_mem.py'
 
 # Device specific
 alias x='exit'
