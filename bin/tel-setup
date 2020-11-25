@@ -73,7 +73,8 @@ logf "tel data"
 rm -rf ~/.tel/shell #incase setup is reran (must clone to empty dirs)
 catch "$(git clone --depth=1 https://github.com/romkatv/powerlevel10k.git ~/.tel/shell/prompt 2>&1)"
 catch "$(~/.tel/shell/prompt/gitstatus/install 2>&1)"
-catch "$(git clone --depth=1 https://github.com/zsh-users/zsh-syntax-highlighting.git ~/.oh-my-zsh/plugins/zsh-sytax-highlighting 2>&1)"
+catch "$(git clone --depth=1 https://github.com/zsh-users/zsh-syntax-highlighting.git ~/.oh-my-zsh/plugins/zsh-syntax-highlighting 2>&1)"
+catch "$(git clone --depth=1 https://github.com/zsh-users/zsh-completions ~/.oh-my-zsh/plugins/zsh-completions 2>&1)"
 catch "$(git clone --depth=1 https://github.com/zsh-users/zsh-autosuggestions ~/.oh-my-zsh/plugins/zsh-autosuggestions 2>&1)"
 #catch "$(git clone --depth=1 https://github.com/zsh-users/zsh-history-substring-search ~/.tel/shell/plugins/zsh-history-substring-search 2>&1)"
 #sed -i 's/robbyrussell/avit/g' ~/.zshrc
@@ -84,7 +85,7 @@ echo -e "	\n#|||||||||||||||#\n. ~/.tel/.telrc\n#|||||||||||||||#\n	" >> ~/.zshr
 
 if [ -f "$HOME/../usr/etc/motd_finished" ]; then
 	#mv ~/../usr/etc/motd_finished ~/../usr/etc/motd #set final motd
-	rm ~/../usr/etc/motd
+	rm -rf ~/../usr/etc/motd
 fi
 
 fix_permissions
