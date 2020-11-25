@@ -55,9 +55,10 @@ mkdir -p ~/.config
 mkdir -p ~/bin
 
 # # # # ZSH setup # # #
-log "Installing shell plugins"
+log "Installing OMZ + shell plugins"
+rm -rf ~/.oh-my-zsh #incase setup is reran (must clone to empty dirs)
 #logf "ohmyzsh"
-#sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" "" --unattended  > /dev/null 2>&1 && logf "finished installing OhMyZsh"
+sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" "" --unattended  > /dev/null 2>&1 && logf "finished installing OhMyZsh"
 chsh -s zsh #set zsh default shell
 
 log "Fetching latest TEL files" #todo: optimize this
@@ -72,11 +73,11 @@ logf "tel data"
 rm -rf ~/.tel/shell #incase setup is reran (must clone to empty dirs)
 catch "$(git clone --depth=1 https://github.com/romkatv/powerlevel10k.git ~/.tel/shell/prompt 2>&1)"
 catch "$(~/.tel/shell/prompt/gitstatus/install 2>&1)"
-catch "$(git clone --depth=1 https://github.com/zsh-users/zsh-syntax-highlighting.git ~/.tel/shell/plugins/zsh-syntax-highlighting 2>&1)"
-catch "$(git clone --depth=1 https://github.com/zsh-users/zsh-autosuggestions ~/.tel/shell/plugins/zsh-autosuggestions 2>&1)"
-catch "$(git clone --depth=1 https://github.com/zsh-users/zsh-history-substring-search ~/.tel/shell/plugins/zsh-history-substring-search 2>&1)"
+catch "$(git clone --depth=1 https://github.com/zsh-users/zsh-syntax-highlighting.git ~/.oh-my-zsh 2>&1)"
+catch "$(git clone --depth=1 https://github.com/zsh-users/zsh-autosuggestions ~/.oh-my-zsh 2>&1)"
+#catch "$(git clone --depth=1 https://github.com/zsh-users/zsh-history-substring-search ~/.tel/shell/plugins/zsh-history-substring-search 2>&1)"
 #sed -i 's/robbyrussell/avit/g' ~/.zshrc
-#sed -i 's/plugins=(git)/plugins=(git catimg fancy-ctrl-z zsh-syntax-highlighting)/g' ~/.zshrc #fzf maybe needed here
+sed -i 's/plugins=(git)/plugins=(git catimg fancy-ctrl-z zsh-syntax-highlighting zsh-autosuggestions zsh-completions)/g' ~/.zshrc #fzf maybe needed here
 
 # setup tel loading
 echo -e "	\n#|||||||||||||||#\n. ~/.tel/.telrc\n#|||||||||||||||#\n	" >> ~/.zshrc

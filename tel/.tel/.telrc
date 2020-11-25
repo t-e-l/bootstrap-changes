@@ -37,18 +37,18 @@ set -K # disables ! events in zsh to allow for bangs in tel-search, eg 's !!wiki
 PROMPT_EOL_MARK='' # appended to partial lines in zsh, default is %
 
 # ZSH widgets
-zle -N history-substring-search-up
-zle -N history-substring-search-down
+#zle -N history-substring-search-up
+#zle -N history-substring-search-down
 
 
 # ZSH Plugins
-source ~/.tel/shell/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh # must be first
-source ~/.tel/shell/plugins/zsh-history-substring-search/zsh-history-substring-search.zsh
-source ~/.tel/shell/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
+#source ~/.tel/shell/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh # must be first
+#source ~/.tel/shell/plugins/zsh-history-substring-search/zsh-history-substring-search.zsh
+#source ~/.tel/shell/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
 
 # Bindkeys
-bindkey '^[[A' history-substring-search-up
-bindkey '^[[B' history-substring-search-down
+#bindkey '^[[A' history-substring-search-up
+#bindkey '^[[B' history-substring-search-down
 
 
 # FZF Customisations
@@ -58,7 +58,7 @@ export FZF_BASE=$HOME/../usr/bin/fzf
 
 # Terminal customistations
 # Preferred terminal behaviour for local and remote sessions, note xterm behaves better with alacritty and kitty terminal
-if [[ -n $SSH_CONNECTION ]]; then
+if [ -n $SSH_CONNECTION ]; then
   export TERM=xterm-256color
 fi
 #export TERM=xterm-256color
