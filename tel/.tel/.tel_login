@@ -1,7 +1,7 @@
 # # # TEL login file # # # 
 # liable to be overwritten with updates
 if [ "$USE_WAL" == 'true' ] ; then
-	wal -R -q
+	wal -R -q -e
 	(cat ~/.cache/wal/sequences &)
 fi
 if [ "$USE_TMUX" == 'true' ] ; then # user config choice

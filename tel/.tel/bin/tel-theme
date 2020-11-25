@@ -59,7 +59,7 @@ if [ -z $selected_file ] ; then
 else
 	curr_dir=$(pwd)
 	printf "\e[38;5;2m Theme\e[m%s Applying: $selected_file: "
-	wal -i $selected_file -n
+	wal -i $selected_file -n -q -s -t -e
 	termux-wallpaper $options "$selected_file" || echo "Couldn't find $selected_file"
 	printf "\e[38;5;2m Theme\e[m%s Restarting... "
 	tel-restart
