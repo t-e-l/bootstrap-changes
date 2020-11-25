@@ -1,6 +1,8 @@
 # # # TEL login file # # # 
 # liable to be overwritten with updates
-
+if [ "$USE_WAL" == 'true' ] ; then
+	wal -R
+fi
 if [ "$USE_TMUX" == 'true' ] ; then # user config choice
 	if [ -z $TMUX ] ; then # tmux not running
 		tmux has-session -t "TEL" > /dev/null 2>&1

@@ -17,6 +17,7 @@ export STARTUP_ANIMATION_ENABLED=false  #show the animation on startup? user can
 export MOTD_HINTS=false #swap motd for a version that supplies a tel usage hint each startup, false restores old user motd [true/false]
 export SSH_SERVER=false #this needs to be configured before being set to true, search for termux openssh. If you don't know what this is, leave as 'false'! It has BIG security implications and is only recommended for advanced users who use ssh daily. [true/false]
 export USE_TMUX=true # TEL starts up with tmux env (allow key shortcuts and split windows etc) [true/false]
+export USE_WAL=true # Terminal colors are supplied at startup automatically [true/false]
 
 # Powersaver # - see status.sh for further tweaks to save battery
 export POWER_SAVER_ACTIVE=false #prevents various processes using battery whilst tel is inactive [true/false]

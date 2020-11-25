@@ -45,7 +45,7 @@ which -a pip | grep -q '[n]ot found' && catch "$(curl https://bootstrap.pypa.io/
 
 log "Installing python packages"
 logf "pip pkgs install"
-catch "$(pip install --user blessed lolcat powerline-status 2>&1)" #removed psutil
+catch "$(pip install --user blessed pywal lolcat powerline-status 2>&1)" #removed psutil
 logf "Finished packages download and installation"
 
 #create required directories
