@@ -27,10 +27,12 @@ error() {
 
 apt-get update -y #get latest pkg list 
 cd ~/.tel/extras
+
 # VIM SETUP
-echo 'Would you like to install VIM editor? y/n'
+echo 'Would you like to install VIM editor? y/N'
 read userinput
 if [ $userinput == Y ] || [ $userinput == y ]  ; then
+rm -rf setup-vim
 catch "$(git clone https://github.com/sealedjoy/setup-vim 2>&1)"
 cd setup-vim
 chmod +x setup.sh
@@ -39,14 +41,14 @@ cd .. && rm -rf setup-vim
 fi
 
 # GAMES setup
-log 'Would you like to install cli games?'
-log 'includes: tetris, pacman, sudoku, snake, dungeon crawler, solitaire'
+log 'Would you like to install cli games? y/N'
+#log 'includes: tetris, pacman, sudoku, snake, dungeon crawler, solitaire'
 read userinput
 if [ $userinput == Y ] || [ $userinput == y ]  ; then
 catch "$(apt-get install vitetris nudoku nsnake nethack tty-solitaire myman -y 2>&1)"
 fi
 
-echo 'Would you like to install cmatrix?'
+echo 'Would you like to install cmatrix? y/N'
 read userinput
 if [ $userinput == Y ] || [ $userinput == y ]  ; then
 catch "$(apt-get install cmatrix -y 2>&1)"
