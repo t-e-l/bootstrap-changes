@@ -25,6 +25,8 @@ alias dialer="tel-dialer"
 alias td="tel-todo"
 alias todo="tel-todo"
 alias notes="tel-todo"
+alias theme="tel-theme"
+alias wallpaper"tel-wallpaper"
 alias help="tel-help"
 alias tutorial="tel-tutorial"
 alias calc="tel-calculator"
@@ -38,4 +40,3 @@ alias u='tel-open -u'
 alias bookmarks="tel-open -u"
 alias y="~/.tel/scripts/youtube.sh" # launch or search
 alias yt="~/.tel/scripts/youtube.sh"
-alias wallpaper="~/.tel/bin/tel-wallpaper"
