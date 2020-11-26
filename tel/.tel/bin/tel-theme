@@ -12,18 +12,12 @@ show_help(){
             "  -h   display this help message"\
             "  -f ~/mywallpaper.jpg  use supplied file"
 }
-open_url(){
-   	if [ -n "$global_url" ]; then
-		url=$global_url
-	else
-		url=$(cat $bookmarks_file | fzf -e --cycle --color=16 --prompt=" Pick a URL to open with an android app:")
-	fi
-	if [ ! -z $url ] ; then
-	termux-open-url $url
-	printf "\e[38;5;2m Opening\e[m%s URL: $url" 
-	else
-		exit 1
-	fi
+create_theme(){
+	mkdir ~/../../cache/tel-theme
+	cd ~/../../cache/tel-theme
+	cp ~/.tel/configs/theme.conf .
+	cp ~/.tel/configs/theme.conf .
+
 }
 
 
@@ -33,6 +27,12 @@ if [ -z $1 ] ; then
 	options='-f'
 else
 	case "$1" in
+		--create-theme)
+		create_theme
+	#	options=$1
+	#	selected_file=$2
+		exit 0
+		;;
 		-f) #use file
 		options=$1
 		selected_file=$2
