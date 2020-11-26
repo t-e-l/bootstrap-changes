@@ -64,7 +64,7 @@ logf "ohmyzsh"
 catch "$(git clone https://github.com/ohmyzsh/ohmyzsh.git ~/.oh-my-zsh 2>&1)"
 cp -f ~/.zshrc ~/.zshrc.bak
 cp ~/.oh-my-zsh/templates/zshrc.zsh-template ~/.zshrc
-chsh -s $(which zsh) #set zsh default shell
+chsh -s zsh #set zsh default shell
 
 log "Fetching latest TEL files" #todo: optimize this
 
