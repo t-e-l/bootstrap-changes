@@ -77,10 +77,12 @@ catch "$(~/.tel/shell/prompt/gitstatus/install 2>&1)"
 catch "$(git clone --depth=1 https://github.com/zdharma/fast-syntax-highlighting.git ~/.oh-my-zsh/plugins/fast-syntax-highlighting 2>&1)"
 #catch "$(git clone --depth=1 https://github.com/zsh-users/zsh-completions ~/.oh-my-zsh/plugins/zsh-completions 2>&1)"
 catch "$(git clone --depth=1 https://github.com/zsh-users/zsh-autosuggestions ~/.oh-my-zsh/plugins/zsh-autosuggestions 2>&1)"
+catch "$(git clone --depth=1 https://github.com/MichaelAquilina/zsh-you-should-use ~/.oh-my-zsh/plugins/zsh-you-should-use 2>&1)"
 catch "$(git clone --depth=1 https://github.com/marlonrichert/zsh-autocomplete ~/.oh-my-zsh/plugins/zsh-autocomplete 2>&1)"
+catch "$(git clone --depth=1 https://github.com/psprint/zsh-navigation-tools ~/.oh-my-zsh/plugins/zsh-navigation-tools 2>&1)"
 #catch "$(git clone --depth=1 https://github.com/zsh-users/zsh-history-substring-search ~/.tel/shell/plugins/zsh-history-substring-search 2>&1)"
 #sed -i 's/robbyrussell/avit/g' ~/.zshrc
-sed -i 's/plugins=(git)/plugins=(git fancy-ctrl-z zsh-autosuggestions fast-syntax-highlighting)/g' ~/.zshrc #fzf maybe needed here
+sed -i 's/plugins=(git)/plugins=(git pip fzf z emoji per-directory-history magic-enter command-not-found rand-quote common-aliases thefuck pylint zsh-navigation-tools zsh-you-should-use fancy-ctrl-z zsh-autosuggestions fast-syntax-highlighting)/g' ~/.zshrc #fzf maybe needed here
 
 # setup tel loading
 echo -e "	\n#|||||||||||||||#\n. ~/.tel/.telrc\n#|||||||||||||||#\n	" >> ~/.zshrc
