@@ -58,8 +58,11 @@ mkdir -p ~/bin
 log "Installing OMZ + shell plugins"
 rm -rf ~/.oh-my-zsh #incase setup is reran (must clone to empty dirs)
 #logf "ohmyzsh"
-sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" "" --unattended  > /dev/null 2>&1 && logf "finished installing OhMyZsh"
-chsh -s zsh #set zsh default shell
+#sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" "" --unattended  > /dev/null 2>&1 && logf "finished installing OhMyZsh"
+catch "$(git clone https://github.com/ohmyzsh/ohmyzsh.git ~/.oh-my-zsh 2>&1)"
+cp -f ~/.zshrc ~/.zshrc.bak
+cp ~/.oh-my-zsh/templates/zshrc.zsh-template ~/.zshrc
+chsh -s $(which zsh) #set zsh default shell
 
 log "Fetching latest TEL files" #todo: optimize this
 
@@ -75,7 +78,7 @@ rm -rf ~/.oh-my-zsh/plugins #incase setup is reran (must clone to empty dirs)
 catch "$(git clone --depth=1 https://github.com/romkatv/powerlevel10k.git ~/.tel/shell/prompt 2>&1)"
 catch "$(~/.tel/shell/prompt/gitstatus/install 2>&1)"
 #catch "$(git clone --depth=1 https://github.com/zsh-users/zsh-syntax-highlighting.git ~/.oh-my-zsh/plugins/zsh-syntax-highlighting 2>&1)"
-catch "$(git clone --depth=1 https://github.com/ohmyzsh/ohmyzsh/tree/master/plugins ~/.oh-my-zsh/plugins/ 2>&1)"
+#catch "$(git clone --depth=1 https://github.com/ohmyzsh/ohmyzsh/tree/master/plugins/ ~/.oh-my-zsh/plugins/ 2>&1)"
 catch "$(git clone --depth=1 https://github.com/zdharma/fast-syntax-highlighting.git ~/.oh-my-zsh/plugins/fast-syntax-highlighting 2>&1)"
 #catch "$(git clone --depth=1 https://github.com/zsh-users/zsh-completions ~/.oh-my-zsh/plugins/zsh-completions 2>&1)"
 catch "$(git clone --depth=1 https://github.com/zsh-users/zsh-autosuggestions ~/.oh-my-zsh/plugins/zsh-autosuggestions 2>&1)"

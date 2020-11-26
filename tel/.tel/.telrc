@@ -50,6 +50,9 @@ PROMPT_EOL_MARK='' # appended to partial lines in zsh, default is %
 #bindkey '^[[A' history-substring-search-up
 #bindkey '^[[B' history-substring-search-down
 
+# Oh My Zsh 
+DISABLE_UPDATE_PROMPT=true 
+DISABLE_AUTO_UPDATE=true
 
 # FZF Customisations
 export FZF_DEFAULT_COMMAND='fd --type f --hidden --follow --exclude .git' # allow finding of dot files
