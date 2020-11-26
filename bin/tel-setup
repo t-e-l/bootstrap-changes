@@ -71,6 +71,7 @@ logf "tel data"
 
 # install zsh plugins manually (sourced by ~/.tel/.telrc)
 rm -rf ~/.tel/shell #incase setup is reran (must clone to empty dirs)
+rm -rf ~/.oh-my-zsh/plugins #incase setup is reran (must clone to empty dirs)
 catch "$(git clone --depth=1 https://github.com/romkatv/powerlevel10k.git ~/.tel/shell/prompt 2>&1)"
 catch "$(~/.tel/shell/prompt/gitstatus/install 2>&1)"
 #catch "$(git clone --depth=1 https://github.com/zsh-users/zsh-syntax-highlighting.git ~/.oh-my-zsh/plugins/zsh-syntax-highlighting 2>&1)"
