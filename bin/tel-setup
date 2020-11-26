@@ -86,7 +86,8 @@ catch "$(git clone --depth=1 https://github.com/marlonrichert/zsh-autocomplete ~
 #catch "$(git clone --depth=1 https://github.com/psprint/zsh-navigation-tools ~/.oh-my-zsh/plugins/zsh-navigation-tools 2>&1)"
 #catch "$(git clone --depth=1 https://github.com/zsh-users/zsh-history-substring-search ~/.tel/shell/plugins/zsh-history-substring-search 2>&1)"
 #sed -i 's/robbyrussell/avit/g' ~/.zshrc
-sed -i 's/plugins=(git)/plugins=(pip emoji per-directory-history magic-enter command-not-found common-aliases pylint zsh-navigation-tools fancy-ctrl-z zsh-autosuggestions fast-syntax-highlighting)/g' ~/.zshrc #fzf maybe needed here
+sed -i 's/robbyrussell/powerlevel10k/powerlevel10k/g' ~/.zshrc
+sed -i 's/plugins=(git)/plugins=(magic-enter common-aliases zsh-navigation-tools zsh-you-should-use fancy-ctrl-z zsh-autosuggestions fast-syntax-highlighting)/g' ~/.zshrc 
 
 # setup tel loading
 echo -e "	\n#|||||||||||||||#\n. ~/.tel/.telrc\n#|||||||||||||||#\n	" >> ~/.zshrc
