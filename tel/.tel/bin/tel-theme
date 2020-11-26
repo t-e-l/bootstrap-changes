@@ -5,19 +5,26 @@ wallpaper_folder=~/.wallpapers
 
 show_help(){
     printf  "%s\n"\
-            "Set a new wallpaper for your device"\
-            "tel-wallpaper [OPTIONS] [PATTERN]"\
+            "theme and wallpaper manager"\
+            "tel-theme [OPTIONS] [PATTERN]"\
             "__________________________"\
 	    "OPTIONS"\
+            "  --install-theme   collect your current theme into a package ready for sharing"\
+            "  --create-theme   collect your current theme into a package ready for sharing"\
             "  -h   display this help message"\
             "  -f ~/mywallpaper.jpg  use supplied file"
 }
+
+install_theme(){
+	echo 'this is WIP'
+}
+
 create_theme(){
 	mkdir ~/../../cache/tel-theme
 	cd ~/../../cache/tel-theme
 	cp ~/.tel/configs/theme.conf .
 	cp ~/.tel/configs/theme.conf .
-
+	echo 'this is WIP'
 }
 
 
@@ -60,7 +67,7 @@ else
 	curr_dir=$(pwd)
 	wal --preview
 	printf "\e[38;5;2m Theme\e[m%s wal is extracting colorscheme from: $selected_file\n"
-	wal -i $selected_file -n -q -s -t -e
+	wal -i $selected_file -n -q -s -t -e || (echo 'failed to get colors from file' ; exit 1)
 	sed -i '/status-text-color/d' ~/.tel/configs/theme.conf
 	fg_text_color=$(sed '8q;d' ~/.cache/wal/colors)
        	echo -e "\nstatus-text-color=$fg_text_color" >> ~/.tel/configs/theme.conf
