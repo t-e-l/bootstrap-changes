@@ -9,19 +9,20 @@ alias tel-wiki="tel-open -u https://https://github.com/t-e-l/tel/wiki/FAQ"
 alias l='ls -lah'
 alias lst='ls -R | grep ":$" | sed -e '"'"'s/:$//'"'"' -e '"'"'s/[^-][^\/]*\//--/g'"'"' -e '"'"'s/^/ /'"'"' -e '"'"'s/-/|/'"'"''
 alias pg='ping -c 3 8.8.8.8' # quick connection check
-alias battery='~/.tel/status/*battery.py'
-alias storage='~/.tel/status/*storage.py'
-alias network='~/.tel/status/*network.py'
-alias cpu='~/.tel/status/*cpu_mem.sh'
-
-# Device specific
 alias x='exit'
+alias :q='exit'
+# Device specific
 alias w='tel-wifi'
 alias wifi='tel-wifi'
 alias bright='termux-brightness'
 alias torch='termux-torch'
 alias ton='termux-torch on && echo "Torch Enabled"'
 alias tof='termux-torch off && echo "Torch Disabled"'
+alias battery='~/.tel/status/*battery.py'
+alias storage='~/.tel/status/*storage.py'
+alias network='~/.tel/status/*network.py'
+alias cpu='~/.tel/status/*cpu_mem.sh'
+
 
 # root users
 alias app-uninstall='su -c pm uninstall'
