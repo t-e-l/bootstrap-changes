@@ -57,7 +57,9 @@ mkdir -p ~/bin
 # # # # ZSH setup # # #
 log "Installing OMZ + shell plugins"
 rm -rf ~/.oh-my-zsh #incase setup is reran (must clone to empty dirs)
-#logf "ohmyzsh"
+## install zsh plugins manually (sourced by ~/.tel/.telrc)
+rm -rf ~/.tel/shell #incase setup is reran (must clone to empty dirs)
+logf "ohmyzsh"
 #sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" "" --unattended  > /dev/null 2>&1 && logf "finished installing OhMyZsh"
 catch "$(git clone https://github.com/ohmyzsh/ohmyzsh.git ~/.oh-my-zsh 2>&1)"
 cp -f ~/.zshrc ~/.zshrc.bak
@@ -69,12 +71,9 @@ log "Fetching latest TEL files" #todo: optimize this
 # Get updates!
 ~/../usr/bin/tel-update $update_args 
 
-log "Installing TEL" #todo: optimize this
-logf "tel data"
+#log "Installing TEL" #todo: optimize this
+#logf "tel data"
 
-# install zsh plugins manually (sourced by ~/.tel/.telrc)
-rm -rf ~/.tel/shell #incase setup is reran (must clone to empty dirs)
-rm -rf ~/.oh-my-zsh/plugins #incase setup is reran (must clone to empty dirs)
 catch "$(git clone --depth=1 https://github.com/romkatv/powerlevel10k.git ~/.tel/shell/prompt 2>&1)"
 catch "$(~/.tel/shell/prompt/gitstatus/install 2>&1)"
 #catch "$(git clone --depth=1 https://github.com/zsh-users/zsh-syntax-highlighting.git ~/.oh-my-zsh/plugins/zsh-syntax-highlighting 2>&1)"
