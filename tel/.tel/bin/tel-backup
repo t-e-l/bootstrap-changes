@@ -2,7 +2,7 @@
 # SealyJ
 # version 0.2
 today=$(date +"%m_%d_%Y")
-backup_location=/storage/emulated/0/tel/backup/today
+backup_location=/storage/emulated/0/tel/backup
 
 check_folders(){
 if [ ! -d /storage/emulated/0 ] ; then
@@ -32,6 +32,7 @@ do
 case $answer in
 	[yY]* )
 		
+		
 		printf "\e[38;5;2m Backup\e[m%s8: creating installed pkgs list..."
 		pkg list-all > $backup_location/$today/userpkgs.txt
 		printf "\e[38;5;2m Backup\e[m%s8: backing up configs..."
@@ -41,6 +42,7 @@ case $answer in
 		printf "\e[38;5;2m Backup\e[m%s8: backing up TEL user data..."
 		tar czf userdata_$backup_name.tar.gz ~/.tel/data >&/dev/null
 		
+		#show working spinner
 		PID=$!
 		i=1
 		sp="/-\|"
@@ -50,10 +52,6 @@ case $answer in
 			  printf "\b${sp:i++%${#sp}:1}"
 			  sleep 0.1
 		done
-		#sleep 1.5
-		#clear
-		mv $backup_name $backup_location && echo "Moved backup to $backup_location"
-		cd $prevdir
 		echo "Finished"
 		break;;
 
