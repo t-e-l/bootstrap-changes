@@ -32,7 +32,8 @@ do
 case $answer in
 	[yY]* )
 		
-		
+		check_folders  #create dirs if missing
+
 		printf "\e[38;5;2m Backup\e[m%s8: creating installed pkgs list..."
 		pkg list-all > $backup_location/$today/userpkgs.txt
 		printf "\e[38;5;2m Backup\e[m%s8: backing up configs..."
@@ -72,9 +73,8 @@ exit_utility(){
 }
 
 main() {
-check_folders
 
-printf "\e[38;5;2m Backup & Restore\e[m%s8: Please choose an option"
+printf "\e[38;5;2m Backup & Restore\e[m%s: Please choose an option\n"
 #show menu
 PS3="Enter a number: "
 
