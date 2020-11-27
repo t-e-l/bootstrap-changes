@@ -84,7 +84,7 @@ main() {
 printf "\e[38;5;2m Backup & Restore\e[m%s\n"
 #show menu
 PS3="Enter a number: "
-options=(' Backup' '勒Restore'  ' Quit')
+options=[' Backup' '勒Restore'  ' Quit']
 select option in options ; do
   case $opt in
 	' Backup')
