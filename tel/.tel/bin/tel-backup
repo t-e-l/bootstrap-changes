@@ -94,12 +94,15 @@ do
     case $choice in
         1)
             echo "First Option"
+	    make_backup
             ;;
         2)
             echo "Second Option"
+	    restore_backup
             ;;
         3)
             echo "Third Option"
+	    exit_utility
             ;;
         *)
             echo "not an option fool D:"
