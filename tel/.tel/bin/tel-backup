@@ -86,11 +86,11 @@ printf "\e[38;5;2m Backup & Restore\e[m%s\n"
 PS3="Enter a number: "
 select option in ' Backup' '勒Restore' ' Quit' ; do
   case $opt in
-	' Backup')
+	 Backup)
 		make_backup;;
-	'勒Restore')
+	勒Restore)
 		restore_backup;;
-	' Quit')
+	 Quit)
 		exit_utility;;
 	*)
 		echo "Invalid option $REPLY";;
