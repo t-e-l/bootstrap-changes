@@ -2,7 +2,7 @@
 # SealyJ
 # version 0.2
 today=$(date +"%m_%d_%Y")
-temp_storage=~/../../cache/tel_backup_restore
+temp_storage=~/../usr/tmp
 backup_location=/storage/emulated/0/tel/backup
 
 check_folders(){
@@ -57,7 +57,7 @@ case $answer in
 			  printf "\b${sp:i++%${#sp}:1}"
 			  sleep 0.1
 		done
-		echo "Finished"
+		printf "\e[38;5;2m Backup\e[m%s: Finished!\n"
 		break;;
 
 	[nN]* ) exit;;
@@ -68,7 +68,8 @@ done
 }
 
 restore_backup(){
-	echo 'WIP restore selected'
+	printf "\e[38;5;2m Restore\e[m%s: loading data...\n"
+	cd $backup_location && ls -d | fzf
 }
 
 exit_utility(){

@@ -20,9 +20,8 @@ install_theme(){
 }
 
 create_theme(){
-	mkdir ~/../../cache/tel-theme
-	cd ~/../../cache/tel-theme
-	cp ~/.tel/configs/theme.conf .
+	mkdir $TEMP/tel-theme
+	cd $TEMP/tel-theme
 	cp ~/.tel/configs/theme.conf .
 	echo 'this is WIP'
 }
@@ -34,10 +33,12 @@ if [ -z $1 ] ; then
 	options='-f'
 else
 	case "$1" in
+		--install-theme)
+		install_theme
+		exit 0
+		;;
 		--create-theme)
 		create_theme
-	#	options=$1
-	#	selected_file=$2
 		exit 0
 		;;
 		-f) #use file
