@@ -63,10 +63,11 @@ printf "\e[38;5;2m Backup & Restore\e[m%s8: Please choose an option"
 #show menu
 PS3="Enter a number: "
 
-select character in make_backup restore_backup exit_utility
+select option in make_backup restore_backup exit_utility
 do
-    echo "Selected character: $character"
-    echo "Selected number: $REPLY"
+    echo "Selected: $option"
+	$option    
+#echo "Selected number: $REPLY"
 done
 }
 
