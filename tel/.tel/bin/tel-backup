@@ -84,10 +84,9 @@ main() {
 printf "\e[38;5;2m Backup & Restore\e[m%s\n"
 
 cmd=(dialog --separate-output --checklist "Select options:" 22 76 16)
-options=(1 "Option 1" off    # any option can be set to default to "on"
-         2 "Option 2" off
-         3 "Option 3" off
-         4 "Option 4" off)
+options=(1 " Backup" off    # any option can be set to default to "on"
+         2 "勒Restore" off
+         3 " Quit" off)
 choices=$("${cmd[@]}" "${options[@]}" 2>&1 >/dev/tty)
 clear
 for choice in $choices
@@ -102,8 +101,8 @@ do
         3)
             echo "Third Option"
             ;;
-        4)
-            echo "Fourth Option"
+        *)
+            echo "not an option fool D:"
             ;;
     esac
 done
