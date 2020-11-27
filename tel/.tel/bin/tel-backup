@@ -1,26 +1,18 @@
-#!/data/data/com.termux/files/usr/bin/bash
+#!/usr/bin/env bash
 # SealyJ
-# version 0.1
+# version 0.2
 backup_location=/storage/emulated/0/tel/backup
-backup_name='home_dir.tar.gz'
 
-figlet -f shadow 'TEL Backup'
-if [ ! -d /storage/emulated/0 ] ; then
-	echo "Error - No access to phone storage"
-	echo "backups are made to /storage/emulated/0/tel, (this path is also accessible to TEL through ~/storage/shared/tel) if TEL hasn't been granted storage permissions, this will likely fail. Run termux-setup-storage to grant access"
-	echo program will exit.. && exit
-fi
-
-
+make_backup(){
 while true
 do
-	echo ''
 	echo 'This utility will create a gzip backup of everything in your home directory ('~')' 
 	echo 'How backups will be restored is left up to the user'
-	echo ' '
-	read -p "This will overwrite any existing backup, are you sure you wish to continue? Y/N : " answer
+	read -p "This will overwrite any existing backup, are you sure you wish to continue? y/N : " answer
 case $answer in
 	[yY]* ) 
+		now=now=$(date +"%m_%d_%Y")
+		backup_name='home_dir_$now.tar.gz'
 		clear
 		prevdir=$(pwd)
 		cd ~
@@ -36,16 +28,47 @@ case $answer in
 			  printf "\b${sp:i++%${#sp}:1}"
 			  sleep 0.1
 		done
-		sleep 1.5
-		clear
+		#sleep 1.5
+		#clear
 		mv $backup_name $backup_location && echo "Moved backup to $backup_location"
 		cd $prevdir
 		echo "Finished"
 		break;;
 
 	[nN]* ) exit;;
-	* )     echo "Enter Y or N...";;
+	* )     echo "options are y or n...";;
 esac
 done
 
+}
+
+restore_backup(){
+	echo 'WIP restore selected'
+}
+
+exit_utility(){
+	echo exiting
+	exit 0
+}
+
+main() {
+
+if [ ! -d /storage/emulated/0 ] ; then
+	echo "Error - No access to phone storage"
+	echo "backups are made to /storage/emulated/0/tel, (this path is also accessible to TEL through ~/storage/shared/tel) if TEL hasn't been granted storage permissions, this will likely fail. Run termux-setup-storage to grant access"
+	echo program will exit.. && exit
+fi
+
+printf "\e[38;5;2m Backup & Restore\e[m%s8: Please choose an option"
+#show menu
+PS3="Enter a number: "
+
+select character in make_backup restore_backup exit_utility
+do
+    echo "Selected character: $character"
+    echo "Selected number: $REPLY"
+done
+}
+
+main $@
 
