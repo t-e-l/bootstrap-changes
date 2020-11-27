@@ -83,7 +83,7 @@ main() {
 
 printf "\e[38;5;2m Backup & Restore\e[m%s\n"
 
-cmd=(dialog --separate-output --checklist "Select options:" 22 76 16)
+cmd=(dialog --separate-output --checklist "Select options:") # 22 76 16)
 options=(1 " Backup" off    # any option can be set to default to "on"
          2 "勒Restore" off
          3 " Quit" off)
