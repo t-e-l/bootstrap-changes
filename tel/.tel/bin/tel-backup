@@ -3,7 +3,7 @@
 # version 0.2
 today=$(date +"%m_%d_%Y")
 temp_storage=~/../usr/tmp
-backup_location=/storage/emulated/0/tel/backup
+backup_location=~/storage/shared/tel/backup
 
 check_folders(){
 if [ ! -d $temp_storage ] ; then
