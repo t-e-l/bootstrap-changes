@@ -21,6 +21,13 @@ else
 	. ~/.tel/shell/prompt/powerlevel10k.zsh-theme
 	. ~/.p10k.zsh
 fi
+# Force prompt to stay at bottom of screen
+printf '\n%.0s' {1..100}
+alias clear="(clear && printf '\n%.0s' {1..100})"
+alias reset="(reset && printf '\n%.0s' {1..100})"
+alias tput reset="(tput reset && printf '\n%.0s' {1..100})"
+alias 'printf "\033c"'="(printf "\033c" && printf '\n%.0s' {1..100})"
+alias "printf '\033c'"="(printf "\033c" && printf '\n%.0s' {1..100})"
 
 # Throw some source
 . ~/.tel/scripts/readconfigs.sh 	# get user settings
