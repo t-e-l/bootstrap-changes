@@ -20,7 +20,7 @@ if [ ! -f ~/.p10k.zsh ] ; then #fallback to python prompt if file not exist
 else
 	# Use p10k?
 	POWERLEVEL9K_DISABLE_CONFIGURATION_WIZARD=true
-	. ~/.tel/shell/prompt/powerlevel10k.zsh-theme
+#	. ~/.tel/shell/prompt/powerlevel10k.zsh-theme
 	. ~/.p10k.zsh
 fi
 # Force prompt to stay at bottom of screen
