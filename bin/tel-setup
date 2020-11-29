@@ -33,7 +33,7 @@ apt-get update -y && apt-get upgrade -y && logf "finished updating Termux packag
 log "Installing required packages.."
 log "This may take a while..."
 logf "pkg install"
-catch "$(pkg install fzf sl cowsay openssh tree bc fd curl wget nano tmux zsh neofetch git make figlet ncurses-utils termux-api sed util-linux -y 2>&1)"
+catch "$(pkg install fzf sl cowsay imagemagick openssh tree bc fd curl wget nano tmux zsh neofetch git make figlet ncurses-utils termux-api sed util-linux -y 2>&1)"
 
 log "Installing python"
 logf "python install"
@@ -57,7 +57,6 @@ mkdir -p ~/bin
 # # # # ZSH setup # # #
 log "Installing OMZ + shell plugins"
 rm -rf ~/.oh-my-zsh #incase setup is reran (must clone to empty dirs)
-## install zsh plugins manually (sourced by ~/.tel/.telrc)
 rm -rf ~/.tel/shell #incase setup is reran (must clone to empty dirs)
 logf "ohmyzsh"
 #sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" "" --unattended  > /dev/null 2>&1 && logf "finished installing OhMyZsh"
@@ -67,12 +66,8 @@ cp ~/.oh-my-zsh/templates/zshrc.zsh-template ~/.zshrc
 chsh -s zsh #set zsh default shell
 
 log "Fetching latest TEL files" #todo: optimize this
-
 # Get updates!
 ~/../usr/bin/tel-update $update_args 
-
-#log "Installing TEL" #todo: optimize this
-#logf "tel data"
 
 catch "$(git clone --depth=1 https://github.com/romkatv/powerlevel10k.git ~/.tel/shell/prompt 2>&1)"
 catch "$(~/.tel/shell/prompt/gitstatus/install 2>&1)"
@@ -81,13 +76,11 @@ catch "$(~/.tel/shell/prompt/gitstatus/install 2>&1)"
 catch "$(git clone --depth=1 https://github.com/zdharma/fast-syntax-highlighting.git ~/.oh-my-zsh/plugins/fast-syntax-highlighting 2>&1)"
 #catch "$(git clone --depth=1 https://github.com/zsh-users/zsh-completions ~/.oh-my-zsh/plugins/zsh-completions 2>&1)"
 catch "$(git clone --depth=1 https://github.com/zsh-users/zsh-autosuggestions ~/.oh-my-zsh/plugins/zsh-autosuggestions 2>&1)"
-catch "$(git clone --depth=1 https://github.com/MichaelAquilina/zsh-you-should-use ~/.oh-my-zsh/plugins/zsh-you-should-use 2>&1)"
 catch "$(git clone --depth=1 https://github.com/marlonrichert/zsh-autocomplete ~/.oh-my-zsh/plugins/zsh-autocomplete 2>&1)"
-#catch "$(git clone --depth=1 https://github.com/psprint/zsh-navigation-tools ~/.oh-my-zsh/plugins/zsh-navigation-tools 2>&1)"
 #catch "$(git clone --depth=1 https://github.com/zsh-users/zsh-history-substring-search ~/.tel/shell/plugins/zsh-history-substring-search 2>&1)"
 #sed -i 's/robbyrussell/avit/g' ~/.zshrc
-sed -i 's/robbyrussell/powerlevel10k/powerlevel10k/g' ~/.zshrc
-sed -i 's/plugins=(git)/plugins=(magic-enter common-aliases zsh-navigation-tools zsh-you-should-use fancy-ctrl-z zsh-autosuggestions fast-syntax-highlighting)/g' ~/.zshrc 
+sed -i 's/robbyrussell/powerlevel10k\/powerlevel10k/g' ~/.zshrc
+sed -i 's/plugins=(git)/plugins=(magic-enter common-aliases zsh-navigation-tools fancy-ctrl-z zsh-autosuggestions fast-syntax-highlighting)/g' ~/.zshrc 
 
 #sed -i 's/plugins=(git)/plugins=(fast-syntax-highlighting)/g' ~/.zshrc 
 # setup tel loading
