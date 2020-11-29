@@ -66,7 +66,7 @@ fi
 
 cd ~/../usr/ || exit_error 'fatal error path does not exist: ~/../usr/' 
 rm -rf bootstrap-changes > /dev/null 2>&1 #incase last run failed with partial download 
-git clone -b $branch --depth=1 https://github.com/t-e-l/bootstrap-changes || exit_error 'Failed to download update, please check connection and try again'
+git clone -b $branch --depth=1 https://github.com/t-e-l/bootstrap-changes || (exit_error 'Failed to download update' && check_connection) 
 shopt -u dotglob
 # (include dotfiles in cp -r)
 cp -rf bootstrap-changes/bin/* ~/../usr/bin 
