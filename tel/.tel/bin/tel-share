@@ -1,6 +1,19 @@
 #!/usr/bin/env bash
 #cd ~/../ 
 export FZF_DEFAULT_COMMAND='fd --type f --hidden --follow --exclude .git'
+if [[ -t 0 ]] # Script is called normally - Terminal input (keyboard) - interactive
+then
+	echo "--> Input from terminal"
+	continue 
+else # Script is getting input from pipe or file - non-interactive
+	echo "--> Input from PIPE/FILE"
+	while read line
+	do
+     		lines="$lines $line"
+	done
+	am start -a android.intent.action.SEND -t text/plain -e android.intent.extra.TEXT "$lines"
+	exit 0
+fi
 if [ -z $1 ] ; then
 	selected_file=$(fzf --cycle --color=16 --prompt=" Share: ")
 else
