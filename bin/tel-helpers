@@ -23,7 +23,10 @@ warn() {
 error() {
 	printf "\033[0;%sm%s\033[0m\033[0;%sm%s\033[0m\n" "${RED}" "[TEL]: " "${WHITE}" "${1}"
 }
-
+exit_error() {
+	printf "\033[0;%sm%s\033[0m\033[0;%sm%s\033[0m\n" "${RED}" "[TEL]: " "${WHITE}" "${1}"
+	exit 1
+}
 catch(){
 if [ $?  -ne 0 ] ; then
         logf "${1}"

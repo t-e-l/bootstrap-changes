@@ -64,9 +64,9 @@ fi
 [[ "$remove_data" == "true" ]] && remove_data_no_prompt
 
 
-cd ~/../usr/ || (error 'fatal error path does not exist: ~/../usr/' && exit 1)
+cd ~/../usr/ || exit_error 'fatal error path does not exist: ~/../usr/' 
 rm -rf bootstrap-changes > /dev/null 2>&1 #incase last run failed with partial download 
-git clone -b $branch --depth=1 https://github.com/t-e-l/bootstrap-changes || (error 'Failed to download update, please check connection and try again' && exit 1)
+git clone -b $branch --depth=1 https://github.com/t-e-l/bootstrap-changes || exit_error 'Failed to download update, please check connection and try again'
 shopt -u dotglob
 # (include dotfiles in cp -r)
 cp -rf bootstrap-changes/bin/* ~/../usr/bin 
