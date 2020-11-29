@@ -11,9 +11,9 @@ CHECK_MARK="\033[0;32m\xE2\x9C\x94\033[0m"
 check_connection() {
 	reply=$(ping -c 1 -q google.com >&/dev/null; echo $?)
 	if [ $reply == 0 ] ; then 
-		printf "\033[0;%sm%s\033[0m\033[0;%sm%s\033[0m\n" "${GREEN}" "[TEL]: " "${WHITE}" "connection is up :)"
+		printf "\033[0;%sm%s\033[0m\033[0;%sm%s\033[0m\n" "${GREEN}" "[INTERNET]: " "${WHITE}" "${CHECK_MARK}"
 	else
-		printf "\033[0;%sm%s\033[0m\033[0;%sm%s\033[0m\n" "${RED}" "[TEL]: " "${WHITE}" "connection is down :("
+		printf "\033[0;%sm%s\033[0m\033[0;%sm%s\033[0m\n" "${RED}" "[INTERNET]: " "${WHITE}" "connection is down :("
 	fi
 }
 log_replace_last() {
