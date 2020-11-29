@@ -3,12 +3,17 @@
 		"right": [
 			{
 				"function": "powerline.segments.common.time.date"
+				"name": "date",
+				"args": {
+					"format": "%d/%m/%y",
+					"istime": true
+				}
 			},
 			{
 				"function": "powerline.segments.common.time.date",
 				"name": "time",
 				"args": {
-					"format": "%H:%M",
+					"format": "%I:%M %p",
 					"istime": true
 				}
 			}
