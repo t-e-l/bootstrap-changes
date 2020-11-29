@@ -18,6 +18,8 @@ onlinelinkscan
 quora
 dafont
 steam
+google
+ddg
 amazon
 ebay
 nutridata
