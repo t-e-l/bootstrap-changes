@@ -7,9 +7,11 @@ GREEN=${1:-"38;2;0;255;0"} # absolute rgb values
 ORANGE=${1:-"38;2;255;146;0"}
 RED=${1:-"38;2;255;0;0"}
 
+log_replace_last() {
+	echo -ne "\r\033[0;%sm%s\033[0m\033[0;%sm%s\033[0m\n" "${GREEN}" "[TEL]: " "${WHITE}" "${1}"
+}
 log() {
 	printf "\033[0;%sm%s\033[0m\033[0;%sm%s\033[0m\n" "${GREEN}" "[TEL]: " "${WHITE}" "${1}"
-
 }
 logf() {
 	echo "[$(date '+%Y-%m-%d %H:%M:%S')]: ${1}" >> ~/.log.tel
@@ -61,7 +63,7 @@ remove_data_no_prompt(){
 	rm -rf ~/.zlogin
 	rm -rf ~/.zshrc
 	rm -rf ~/.zsh_history
-	rm -rf ~/.log.tel
+#	rm -rf ~/.log.tel
 	rm -rf ~/.app_names
 	rm -rf ~/.apps
 	rm -rf ~/.bash_history
@@ -90,7 +92,7 @@ remove_data_prompt(){
 	rm -rf ~/.zlogin
 	rm -rf ~/.zshrc
 	rm -rf ~/.zsh_history
-	rm -rf ~/.log.tel
+#	rm -rf ~/.log.tel
 	rm -rf ~/.app_names
 	rm -rf ~/.apps
 	rm -rf ~/.bash_history
