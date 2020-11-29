@@ -7,13 +7,15 @@ GREEN=${1:-"38;2;0;255;0"} # absolute rgb values
 ORANGE=${1:-"38;2;255;146;0"}
 RED=${1:-"38;2;255;0;0"}
 CHECK_MARK="\033[0;32m\xE2\x9C\x94\033[0m"
+network_up=" Connected "
+network_up=" Disconnected "
 
 check_connection() {
 	reply=$(ping -c 1 -q google.com >&/dev/null; echo $?)
 	if [ $reply == 0 ] ; then 
-		printf "\033[0;%sm%s\033[0m\033[0;%sm%s\033[0m\n" "${GREEN}" "[INTERNET]: " "${WHITE}" "${CHECK_MARK}"
+		printf "\033[0;%sm%s\033[0m\033[0;%sm%s\033[0m\n" "${GREEN}" "[net]: " "${WHITE}" "${network_up}"
 	else
-		printf "\033[0;%sm%s\033[0m\033[0;%sm%s\033[0m\n" "${RED}" "[INTERNET]: " "${WHITE}" "connection is down :("
+		printf "\033[0;%sm%s\033[0m\033[0;%sm%s\033[0m\n" "${RED}" "[net]: " "${WHITE}" "${network_down}"
 	fi
 }
 log_replace_last() {

@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
-#TEL setup file
-#should be executed only once after the setup 
+# ~ TEL setup file ~ #
+# should be executed only once after the setup 
 
 source ~/../usr/bin/tel-helpers 
 
@@ -16,8 +16,7 @@ UPDATE=false
 
 if [ -f ~/.tel/.installed ]; then #set update var if finished installation was detected
 	logf ".installed exists"
-	error "TEL appears to already be installed. Continuing will replace all TEL files, you may also lose TEL user data. It is recommended to take a backup if you wish to continue. (command: tel-backup)"
-   
+	error "TEL appears to already be installed. Continuing will replace all TEL files, you may also lose user configuration files. It is recommended to take a backup if you wish to continue. (command: tel-backup)"
 	warn "Are you sure you want to continue? (y/N)"
 	read -r user_reponse
 	if [ "$user_reponse" != 'y' ] && [ "$user_reponse" != 'Y' ]; then
@@ -26,6 +25,9 @@ if [ -f ~/.tel/.installed ]; then #set update var if finished installation was d
 	fi
 fi
 
+check_connection
+
+rm -rf ~/../etc/motd # avoids user prompt to maintain motd
 log "Updating Termux packages..."
 logf "apt-get upgrade"
 apt-get update -y && apt-get upgrade -y && logf "finished updating Termux packages" #print to screen as hotfix
@@ -33,7 +35,7 @@ apt-get update -y && apt-get upgrade -y && logf "finished updating Termux packag
 log "Installing required packages.."
 log "This may take a while..."
 logf "pkg install"
-catch "$(pkg install fzf sl cowsay imagemagick openssh tree bc fd curl wget nano tmux zsh neofetch git make figlet ncurses-utils termux-api sed util-linux -y 2>&1)"
+catch "$(pkg install fzf imagemagick openssh tree bc fd curl wget nano tmux zsh git make figlet sl cowsay neofetch ncurses-utils termux-api sed util-linux -y 2>&1)"
 
 log "Installing python"
 logf "python install"
@@ -55,27 +57,27 @@ mkdir -p ~/.config
 mkdir -p ~/bin
 
 # # # # ZSH setup # # #
-log "Installing OMZ + shell plugins"
+log "Installing OMZ"
+logf "ohmyzsh"
 rm -rf ~/../etc/motd 
 rm -rf ~/.oh-my-zsh #incase setup is reran (must clone to empty dirs)
 rm -rf ~/.tel/shell #incase setup is reran (must clone to empty dirs)
-logf "ohmyzsh"
 #sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" "" --unattended  > /dev/null 2>&1 && logf "finished installing OhMyZsh"
-catch "$(git clone https://github.com/ohmyzsh/ohmyzsh.git ~/.oh-my-zsh 2>&1)"
-cp -f ~/.zshrc ~/.zshrc.bak
+catch "$(git clone --depth=1 https://github.com/ohmyzsh/ohmyzsh.git ~/.oh-my-zsh 2>&1)"
+cp -f ~/.zshrc ~/.zshrc.bak #backup previous 
 cp -f ~/.oh-my-zsh/templates/zshrc.zsh-template ~/.zshrc
 chsh -s zsh #set zsh default shell
 
-log "Fetching updates..."
 # Get updates!
+log "Fetching updates..."
+logf "running tel-update"
 ~/../usr/bin/tel-update $update_args
 
-log "Installing TEL interface"
-git clone --depth=1 https://github.com/romkatv/powerlevel10k.git ${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/themes/powerlevel10k
-#catch "$(git clone --depth=1 https://github.com/romkatv/powerlevel10k.git ~/.tel/shell/prompt 2>&1)"
+log "Installing shell plugins"
+logf "cloning plugins"
+catch "$(git clone --depth=1 https://github.com/romkatv/powerlevel10k.git ${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/themes/powerlevel10k 2>&1)"
 #run p10k installer now
-catch "$(${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/themes/powerlevel10k/gitstatus/install 2>&1)"
-#catch "$(git clone --depth=1 https://github.com/zsh-users/zsh-syntax-highlighting.git ~/.oh-my-zsh/plugins/zsh-syntax-highlighting 2>&1)" #old alternative
+catch "$(~/.oh-my-zsh/custom/themes/powerlevel10k/gitstatus/install 2>&1)"
 catch "$(git clone --depth=1 https://github.com/zdharma/fast-syntax-highlighting.git ~/.oh-my-zsh/plugins/fast-syntax-highlighting 2>&1)"
 catch "$(git clone --depth=1 https://github.com/zsh-users/zsh-completions ~/.oh-my-zsh/plugins/zsh-completions 2>&1)"
 catch "$(git clone --depth=1 https://github.com/zsh-users/zsh-autosuggestions ~/.oh-my-zsh/plugins/zsh-autosuggestions 2>&1)"
@@ -87,15 +89,17 @@ sed -i 's/robbyrussell/powerlevel10k\/powerlevel10k/g' ~/.zshrc
 sed -i 's/plugins=(git)/plugins=(magic-enter common-aliases zsh-navigation-tools zsh-completions fzf-tab fancy-ctrl-z zsh-autosuggestions fast-syntax-highlighting)/g' ~/.zshrc 
 
 #sed -i 's/plugins=(git)/plugins=(fast-syntax-highlighting)/g' ~/.zshrc 
-# setup tel loading
+
+# # # insert TEL loading file into .zshrc # # # 
 echo -e "	\n#|||||||||||||||#\n. ~/.tel/.telrc\n#|||||||||||||||#\n	" >> ~/.zshrc
 
 if [ -f "$HOME/../usr/etc/motd_finished" ]; then
 	#mv ~/../usr/etc/motd_finished ~/../usr/etc/motd #set final motd
-	rm -rf ~/../usr/etc/motd
+	(rm -rf ~/../usr/etc/motd)
 fi
 
 fix_permissions
+logf "fixing permissions"
 
 if [ "$UPDATE" = false ]; then
 	touch ~/.tel/.installed #mark setup finished
