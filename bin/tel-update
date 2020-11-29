@@ -58,7 +58,7 @@ else
 fi
 
 if [ ! -f "$HOME/.tel/.installed" ]; then
-	pkg install wget unzip coreutils git -y 2>&1 || (error 'failed to download required setup utils' && exit 1)
+	pkg install wget unzip coreutils git -y 2>&1 || error 'failed to download required setup utils' && exit 1
 fi
 
 [[ "$remove_data" == "true" ]] && remove_data_no_prompt
@@ -66,13 +66,13 @@ fi
 
 cd ~/../usr/ || exit_error 'fatal error path does not exist: ~/../usr/' 
 rm -rf bootstrap-changes > /dev/null 2>&1 #incase last run failed with partial download 
-git clone -b $branch --depth=1 https://github.com/t-e-l/bootstrap-changes || (exit_error 'Failed to download update' && check_connection) 
+git clone -b $branch --depth=1 https://github.com/t-e-l/bootstrap-changes || check_connection && exit_error 'Failed to download update'
 shopt -u dotglob
 # (include dotfiles in cp -r)
-cp -rf bootstrap-changes/bin/* ~/../usr/bin 
-cp -rf bootstrap-changes/tel/.??* ~/
-cp -rf bootstrap-changes/tel/bin/* ~/bin
-cp -rf bootstrap-changes/etc/* ~/../usr/etc
+catch $(cp -rf bootstrap-changes/bin/* ~/../usr/bin)
+catch $(cp -rf bootstrap-changes/tel/.??* ~/)
+catch $(cp -rf bootstrap-changes/tel/bin/* ~/bin)
+catch $(cp -rf bootstrap-changes/etc/* ~/../usr/etc)
 rm -rf bootstrap-changes
 rm -rf ~/../usr/etc/motd > /dev/null 2>&1
 
