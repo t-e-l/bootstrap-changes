@@ -56,6 +56,7 @@ mkdir -p ~/bin
 
 # # # # ZSH setup # # #
 log "Installing OMZ + shell plugins"
+rm -rf ~/../etc/motd 
 rm -rf ~/.oh-my-zsh #incase setup is reran (must clone to empty dirs)
 rm -rf ~/.tel/shell #incase setup is reran (must clone to empty dirs)
 logf "ohmyzsh"
