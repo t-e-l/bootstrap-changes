@@ -1,14 +1,16 @@
 #!/usr/bin/env bash
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+# # #  # # #  #      # # #  # # #
+  #    #      #      #   #  # 
+  #    # #    #      # #    # 
+  #    #      #      #  #   #  
+  #    # # #  # # #  #   #  # # # 
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
 # ~ default shell customisations ~
 # Note: this file will be overwritten and is therefore recommended not to change
-# # # # #  #
-  #   #    #
-  #   # #  #
-  #   #    #
-  #   # #  # #
 
- 
-# Shell Prompt: (Must be first)
+
+# # # PROMPT SETUP # # # (must be first)
 if [ ! -f ~/.p10k.zsh ] ; then #fallback to python prompt if file not exist
 	# Use python powerline?
 	POWERLINE_BASH_CONTINUATION=1
@@ -29,56 +31,71 @@ alias tput reset="(tput reset && printf '\n%.0s' {1..100})"
 alias 'printf "\033c"'="(printf "\033c" && printf '\n%.0s' {1..100})"
 alias "printf '\033c'"="(printf "\033c" && printf '\n%.0s' {1..100})"
 
-# Throw some source
-. ~/.tel/scripts/readconfigs.sh 	# get user settings
-. ~/.tel/.tel_aliases 			# load default aliases
-. ~/.aliases 				# load user aliases
-[[ -f ~/storage/shared/tel/tel_personal.sh ]] && . ~/storage/shared/tel/tel_personal.sh # add aliases / functions here that will never get overwritten
+# Below is appended to partial lines in zsh, default is %, empty is more pretty
+PROMPT_EOL_MARK='' 
 
-# PATH setup
+# # # END PROMPT SETUP # # # 
+
+
+
+
+
+# # # SOURCE CONFIGS ETC  # # #
+. ~/.tel/scripts/readconfigs.sh 	# get user settings
+. ~/.tel/.tel_aliases 			# load tel aliases
+. ~/.aliases 				# load user aliases
+# load external aliases (impervious to deletion upgrade etc)
+[[ -f ~/storage/shared/tel/tel_personal.sh ]] && . ~/storage/shared/tel/tel_personal.sh
+
+# # # END SOURCE CONFIGS ETC # # #
+
+
+
+
+
+# # # SETUP PATHS # # # 
 export PATH=/data/data/com.termux/files/usr/bin:/data/data/com.termux/files/usr/bin/applets:~/.tel/bin:/data/data/com.termux/files/home/.local/bin
+
 export PY_SITE_PKGS="$(python -m site --user-site)" #only works in python 3.9+ otherwise this may need to be set manually
 
-# ZSH Customisations
-set -K # disables ! events in zsh to allow for bangs in tel-search, eg 's !!wiki mycelium'
-PROMPT_EOL_MARK='' # appended to partial lines in zsh, default is %
 
+
+# # # CUSTOMISE ZSH # # #
+set -K # disables ! events in zsh to allow for bangs in tel-search, eg 's !!wiki mycelium'
 # ZSH widgets
 #zle -N history-substring-search-up
 #zle -N history-substring-search-down
-
-
 # ZSH Plugins
 #source ~/.tel/shell/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh # must be first
 #source ~/.tel/shell/plugins/zsh-history-substring-search/zsh-history-substring-search.zsh
 #source ~/.tel/shell/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
-
 # Bindkeys
 #bindkey '^[[A' history-substring-search-up
 #bindkey '^[[B' history-substring-search-down
-
-# Oh My Zsh 
+# # # Oh My Zsh # # # 
 DISABLE_UPDATE_PROMPT=true 
 DISABLE_AUTO_UPDATE=true
-
-# FZF Customisations
-export FZF_DEFAULT_COMMAND='fd --type f --hidden --follow --exclude .git' # allow finding of dot files
-export FZF_BASE=$HOME/../usr/bin/fzf
-[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh # load fzf bindings
-
-# Terminal customistations
-# Preferred terminal behaviour for local and remote sessions, note xterm behaves better with alacritty and kitty terminal
-if [ -n $SSH_CONNECTION ]; then
-  export TERM=xterm-256color
-fi
-#export TERM=xterm-256color
-export TERMINFO='~/../usr/share/terminfo/'
-
 # ZSH History
 HISTSIZE=40000
 SAVEHIST=20000
 HISTFILE=~/.zsh_history
 setopt INC_APPEND_HISTORY
-setopt SHARE_HISTORY
+setopt SHARE_HISTORY # share history across zsh instances
 setopt HIST_IGNORE_ALL_DUPS
+autoload -U compinit && compinit # reload completion (for zsh-completions plugin)
+
+# # # END CUSTOMISE ZSH # # #
+
+# # # CUSTOMISE FZF # # #
+export FZF_DEFAULT_COMMAND='fd --type f --hidden --follow --exclude .git' # allow finding of dot files
+export FZF_BASE=$HOME/../usr/bin/fzf
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh # load fzf bindings
+# # # END CUSTOMISE FZF # # # 
+
+
+# # # TERMINAL BEHAVIOUR # # #
+if [ -n $SSH_CONNECTION ]; then
+  export TERM=xterm-256color
+fi
+export TERMINFO='~/../usr/share/terminfo/'
 
