@@ -1,34 +1,45 @@
 #!/usr/bin/env bash
 #cd ~/../ 
 export FZF_DEFAULT_COMMAND='fd --type f --hidden --follow --exclude .git'
-if [[ -t 0 ]] # Script is called normally - Terminal input (keyboard) - interactive
-then
-	echo "--> Input from terminal"
-	continue 
-else # Script is getting input from pipe or file - non-interactive
-	echo "--> Input from PIPE/FILE"
+
+show_help(){
+    printf  "%s\n"\
+            "tel-share [OPTIONS] [FILE]"\
+            "__________________________"\
+            "USAGE"\
+	    "tel-share example.jpg = share example.jpg"\
+	    "echo hi | tel-share	= share output of echo command"\
+            "  -h   display this help message"
+}
+
+if [[ ! -t 0 ]] # Script is getting input from pipe or file - non-interactivethen
 	while read line
 	do
      		lines="$lines $line"
 	done
 	am start -a android.intent.action.SEND -t text/plain -e android.intent.extra.TEXT "$lines"
+	printf "\e[38;5;2m Sharing\e[m%s: piped data"
 	exit 0
-fi
-if [ -z $1 ] ; then
-	selected_file=$(fzf --cycle --color=16 --prompt=" Share: ")
 else
-	file_search="$@"
-	selected_file=$(fzf -e --cycle --color=16 --query="$file_search" --prompt=" File to share: " --select-1)
-fi
+	if [ -z $1 ] ; then
+		selected_file=$(fzf --cycle --color=16 --prompt=" Share: ")
+	else
+		if [ "$1" == "-h" ] || [ "$1" == "--help"]; then
+			show_help
+			exit 0
+		fi
 
-if [ -z $selected_file ] ; then
-#	echo 'No file chosen - Exiting...'
-	exit 1
-else
-	curr_dir=$(pwd)
-	printf "\e[38;5;2m Sharing\e[m%s file: $curr_dir/$selected_file"
-	
-	termux-share -a send "$selected_file" || echo "Couldn't share $selected_file"
+		file_search="$@"
+		selected_file=$(fzf -e --cycle --color=16 --query="$file_search" --prompt=" File to share: " --select-1)
+	fi
 
+	if [ -z $selected_file ] ; then
+#		echo 'No file chosen - Exiting...'
+		exit 1
+	else
+		curr_dir=$(pwd)
+		printf "\e[38;5;2m Sharing\e[m%s file: $curr_dir/$selected_file"
+		termux-share -a send "$selected_file" || echo "Couldn't share $selected_file"
+	fi
 fi
 

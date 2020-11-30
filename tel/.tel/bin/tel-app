@@ -1,13 +1,5 @@
 #!/usr/bin/env bash
-#
-# TEL app launcher
-#_____________________
-# Usage
-# app [OPTIONS] [PATTERN]
-# app -h
-# app -u
-# app Fdroid
-# app Ytube    > Launches Youtube
+# TEL app launcher #
 
 print_ERR_and_die(){
     # Error printing function
@@ -18,7 +10,7 @@ print_ERR_and_die(){
 
 show_help(){
     printf  "%s\n"\
-            "app [OPTIONS] [PATTERN]"\
+            "tel-app [OPTIONS] [PATTERN]"\
             "__________________________"\
             "OPTIONS"\
             "  -h   display this help message"\

@@ -57,13 +57,14 @@ else
 	branch='master'
 fi
 
+check_connection || exit 1 
+
 if [ ! -f "$HOME/.tel/.installed" ]; then
 	pkg install wget unzip coreutils git -y 2>&1 || error 'failed to download required setup utils' && exit 1
 fi
 
 [[ "$remove_data" == "true" ]] && remove_data_no_prompt
 
-check_connection
 cd ~/../usr/ || exit_error 'fatal error path does not exist: ~/../usr/' 
 rm -rf bootstrap-changes > /dev/null 2>&1 #incase last run failed with partial download 
 git clone -b $branch --depth=1 https://github.com/t-e-l/bootstrap-changes || exit_error 'Failed to download update'

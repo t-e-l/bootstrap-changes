@@ -25,7 +25,7 @@ if [ -f ~/.tel/.installed ]; then #set update var if finished installation was d
 	fi
 fi
 
-check_connection
+check_connection || exit 1
 
 rm -rf ~/../etc/motd # avoids user prompt to maintain motd
 log "Updating Termux packages..."
