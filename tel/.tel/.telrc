@@ -28,8 +28,6 @@ printf '\n%.0s' {1..100}
 alias clear="(clear && printf '\n%.0s' {1..100})"
 alias reset="(reset && printf '\n%.0s' {1..100})"
 alias tput reset="(tput reset && printf '\n%.0s' {1..100})"
-alias 'printf "\033c"'="(printf "\033c" && printf '\n%.0s' {1..100})"
-alias "printf '\033c'"="(printf "\033c" && printf '\n%.0s' {1..100})"
 
 # Below is appended to partial lines in zsh, default is %, empty is more pretty
 PROMPT_EOL_MARK='' 
@@ -72,6 +70,11 @@ set -K # disables ! events in zsh to allow for bangs in tel-search, eg 's !!wiki
 # Bindkeys
 #bindkey '^[[A' history-substring-search-up
 #bindkey '^[[B' history-substring-search-down
+# Completion #
+zstyle ":completion:*:git-checkout:*" sort false
+zstyle ':completion:*:descriptions' format '[%d]'
+zstyle ':completion:*' list-colors ${(s.:.)LS_COLORS}
+zstyle ':fzf-tab:complete:cd:*' fzf-preview 'exa -1 --color=always $realpath'
 # # # Oh My Zsh # # # 
 DISABLE_UPDATE_PROMPT=true 
 DISABLE_AUTO_UPDATE=true
