@@ -74,7 +74,7 @@ set -K # disables ! events in zsh to allow for bangs in tel-search, eg 's !!wiki
 zstyle ":completion:*:git-checkout:*" sort false
 zstyle ':completion:*:descriptions' format '[%d]'
 zstyle ':completion:*' list-colors ${(s.:.)LS_COLORS}
-zstyle ':fzf-tab:complete:cd:*' fzf-preview 'exa -1 --color=always $realpath'
+zstyle ':fzf-tab:complete:cd:*' fzf-preview 'exa -1 --color=16 $realpath'
 # # # Oh My Zsh # # # 
 DISABLE_UPDATE_PROMPT=true 
 DISABLE_AUTO_UPDATE=true
