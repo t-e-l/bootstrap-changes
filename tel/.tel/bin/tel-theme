@@ -68,7 +68,7 @@ else
 	curr_dir=$(pwd)
 	wal --preview
 	printf "\e[38;5;2m Theme\e[m%s wal is extracting colorscheme from: $selected_file\n"
-	wal -i $selected_file -n -q -s -t -e || (echo 'failed to get colors from file' ; exit 1)
+	wal -i "$selected_file" -n -q -s -t -e || (echo 'failed to get colors from file' ; exit 1)
 	sed -i '/status-text-color/d' ~/.tel/configs/theme.conf
 	fg_text_color=$(sed '8q;d' ~/.cache/wal/colors)
        	echo -e "\nstatus-text-color=$fg_text_color" >> ~/.tel/configs/theme.conf
