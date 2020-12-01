@@ -12,7 +12,7 @@ show_help(){
             "  -h   display this help message"
 }
 
-if [[ ! -t 0 ]] # Script is getting input from pipe or file - non-interactivethen
+if [ ! -t 0 ] ; then # Script is getting input from pipe or file - non-interactivethen
 	while read line
 	do
      		lines="$lines $line"
