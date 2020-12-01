@@ -9,6 +9,7 @@ show_help(){
             "USAGE"\
 	    "tel-share example.jpg = share example.jpg"\
 	    "echo hi | tel-share	= share output of echo command"\
+	    "fortune | tel-share -l	= share output of fortune and display output of piped command"\
             "  -h   display this help message"
 }
 
@@ -17,8 +18,12 @@ if [ ! -t 0 ] ; then # Script is getting input from pipe or file - non-interacti
 	do
      		lines="$lines $line"
 	done
-	am start -a android.intent.action.SEND -t text/plain -e android.intent.extra.TEXT "$lines"
-	printf "\e[38;5;2m Sharing\e[m%s: piped data"
+	am start -a android.intent.action.SEND -t text/plain -e android.intent.extra.TEXT "$lines" > /dev/null 2>&1
+	if [ $1 == -l ] ; then
+		printf "\e[38;5;2m Sharing\e[m%s: $lines"
+	else
+		printf "\e[38;5;2m Sharing\e[m%s: piped data"
+	fi
 	exit 0
 else
 	if [ -z $1 ] ; then
