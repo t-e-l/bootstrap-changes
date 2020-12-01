@@ -19,7 +19,7 @@ if [ ! -t 0 ] ; then # Script is getting input from pipe or file - non-interacti
      		lines="$lines $line"
 	done
 	am start -a android.intent.action.SEND -t text/plain -e android.intent.extra.TEXT "$lines" > /dev/null 2>&1
-	if [ $1 == -l ] ; then
+	if [ "$1" == "-l" ] ; then
 		printf "\e[38;5;2m Sharing\e[m%s: $lines"
 	else
 		printf "\e[38;5;2m Sharing\e[m%s: piped data"
