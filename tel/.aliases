@@ -18,10 +18,10 @@ alias bright='termux-brightness'
 alias torch='termux-torch'
 alias ton='termux-torch on && echo "Torch Enabled"'
 alias tof='termux-torch off && echo "Torch Disabled"'
-alias battery='~/.tel/status/*battery.py'
-alias storage='~/.tel/status/*storage.py'
-alias network='~/.tel/status/*network.py'
-alias cpu='~/.tel/status/*cpu_mem.sh'
+alias battery='~/.tel/status/**/*battery.py'
+alias storage='~/.tel/status/**/*storage.py'
+alias network='~/.tel/status/**/*network.py'
+alias cpu='~/.tel/status/**/*cpu_mem.sh'
 
 
 # root users
