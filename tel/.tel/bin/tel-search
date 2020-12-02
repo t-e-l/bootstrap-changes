@@ -1,6 +1,9 @@
 #!/usr/bin/env bash
 # search app for TEL 
 # v3 - by SealyJ
+if [ -z $SEARCH_LANG ] ; then 
+	SEARCH_LANG='en-GB'
+fi
 zsh -c 'set -K' # disables ! events in zsh to allow for bangs in tel-search
 instance_urls_file=~/.tel/configs/search/trusted.txt
 provider_bangs_file=~/.tel/configs/search/provider_bangs.txt
@@ -19,7 +22,7 @@ function rand_searx_instance () {
 	searx_url=${lines_searx_urls[$searx_selection]}
 }
 
-if [ "$1" == "-h" ] ; then
+if [ "$1" == "-h" ] || [ "$1" == "--help" ] ; then
 	echo -e "Usage: tel-search [options] [search term]
 	tel-search			= interactive search prompt
 	tel-search -h			= show this help menu
