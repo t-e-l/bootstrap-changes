@@ -1,6 +1,6 @@
 #!/usr/bin/env python
-# Script to format and display android notifications from the termux api.
-# version 0.12 - SealyJ
+# android notification daemon for TEL
+# version 0.13 - SealyJ
 # required pip pkgs: blessed
 import json
 import string
@@ -14,26 +14,41 @@ term = Terminal(force_styling=True) #force required if output not a tty
 homedir = os.path.expanduser("~")
 #user config
 ignored_strings = []
-ignored_strings_file = homedir + "/.tel/configs/notifications/ignored_strings"  
-with open(ignored_strings_file) as igstrings:
+
+try:
+    ignored_strings_file = homedir + "/.tel/configs/notifications/ignored_strings"  
+    with open(ignored_strings_file) as igstrings:
     ignored_strings = igstrings.read().splitlines()
-print(ignored_strings)
+except:
+    ignored_strings = ''
 
 ignored_pkgs = []
 ignored_pkgs_file = homedir + "/.tel/configs/notifications/ignored_pkgs"
-with open(ignored_pkgs_file) as igpkg:
+try:
+    with open(ignored_pkgs_file) as igpkg:
     ignored_pkgs = str(igpkg.read().splitlines())
-color_output = True
+except:
+    ignored_pkgs = ''
 
 #import env vars
-refresh = int(os.environ['NOTIFICATIONS_CHECK_DELAY'])
- #number of seconds between new notifs check
-color_output = os.environ['COLOR_APP_TITLES']
+#number of seconds between new notifs check
+if "NOTIFICATIONS_CHECK_DELAY" in os.environ:
+    refresh = int(os.environ['NOTIFICATIONS_CHECK_DELAY'])
+else:
+    refresh = 5
+
+if "COLOR_APP_TITLES" in os.environ:
+    color_output = os.environ['COLOR_APP_TITLES']
+else:    
+    color_output = 'false'
 if color_output == 'true':
     color_output = True
 else:
     color_output = False
-notifications_enabled = os.environ['NOTIFICATIONS_ENABLED']
+if "NOTIFICATIONS_ENABLED" in os.environ:
+    notifications_enabled = os.environ['NOTIFICATIONS_ENABLED']
+else:
+    notifications_enabled = 'true'
 if notifications_enabled != 'true':
     print("Notifications are disabled in user config, exiting..")
     exit()
