@@ -20,10 +20,20 @@ status_scripts = []
 os.chdir(homedir + "/.tel/scripts/status_manager")
 
 #import env vars
-status_enabled = os.environ['STATUS_WINDOW_ENABLED']
-user_sleeptime = float(os.environ['STATUS_MANAGER_SLEEP'])
+if "STATUS_WINDOW_ENABLED" in os.environ:
+    status_enabled = os.environ['STATUS_WINDOW_ENABLED']
+else:
+    status_enabled = 'true'
+if "STATUS_MANAGER_SLEEP" in os.environ:
+    user_sleeptime = float(os.environ['STATUS_MANAGER_SLEEP'])
+else:
+    user_sleeptime = 0.3
+
 #center_output = os.environ['CENTER_STATUS']
-notifications_enabled = os.environ['NOTIFICATIONS_ENABLED']
+if "NOTIFICATIONS_ENABLED" in os.environ:
+    notifications_enabled = os.environ['NOTIFICATIONS_ENABLED']
+else:
+    notifications_enabled = 'true'
 #tel_version = os.environ['TEL_VERSION']
 #status_manager_version = os.environ['STATUS_MANAGER_VERSION']
 
