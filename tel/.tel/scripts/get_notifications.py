@@ -26,7 +26,7 @@ ignored_pkgs = []
 ignored_pkgs_file = homedir + "/.tel/configs/notifications/ignored_pkgs"
 try:
     with open(ignored_pkgs_file) as igpkg:
-    ignored_pkgs = str(igpkg.read().splitlines())
+        ignored_pkgs = str(igpkg.read().splitlines())
 except:
     ignored_pkgs = ''
 
