@@ -13,10 +13,10 @@ from blessed import Terminal
 term = Terminal(force_styling=True) #force required if output not a tty
 homedir = os.path.expanduser("~")
 #user config
-ignored_strings = []
 
+ignored_strings = []
+ignored_strings_file = homedir + "/.tel/configs/notifications/ignored_strings"
 try:
-    ignored_strings_file = homedir + "/.tel/configs/notifications/ignored_strings"  
     with open(ignored_strings_file) as igstrings:
         ignored_strings = igstrings.read().splitlines()
 except:
