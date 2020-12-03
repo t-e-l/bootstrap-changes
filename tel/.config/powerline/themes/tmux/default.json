@@ -5,7 +5,7 @@
 				"function": "powerline.segments.common.time.date",
 				"name": "date",
 				"args": {
-					"format": "%d/%m/%y",
+					"format": "%a %d/%m/%y",
 					"istime": true
 				}
 			},
@@ -13,7 +13,7 @@
 				"function": "powerline.segments.common.time.date",
 				"name": "time",
 				"args": {
-					"format": "%I:%M %p",
+					"format": "%Z%I:%M:%S%P",
 					"istime": true
 				}
 			}
