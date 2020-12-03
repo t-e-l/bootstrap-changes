@@ -1,6 +1,11 @@
 #!/usr/bin/env bash
-#cd ~/../ 
-#export FZF_DEFAULT_COMMAND='fd --type f --hidden --follow --exclude .git'
+# Edit applet for TEL
+# Version 1
+# SealyJ 2020
+if [ "$1" == "-r" ] || [ "$1" == "--root" ] ; then
+	cd / 
+fi
+export FZF_DEFAULT_COMMAND='fd --type f --hidden --follow --exclude .git'
 [[ -z "$EDITOR" ]] && echo 'Please set a default $EDITOR' && exit 1
 if [ -z $1 ] ; then
 	selected_file=$(fzf --cycle --color=16 --prompt="  Edit with $EDITOR: ")
