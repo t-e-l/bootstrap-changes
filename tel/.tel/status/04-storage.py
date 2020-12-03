@@ -3,6 +3,7 @@
 #v0.5 27/08/20
 #from time import sleep
 import os
+from time import sleep
 import shutil
 import json
 import blessed
@@ -56,6 +57,6 @@ try:
         print(col + " " + term.normal + str(get_size(internal.free)) + " available " + str(get_size(external.free)) + col_ext + "ﳚ " + term.normal)
     else:
         print(col + " " + term.normal + str(get_size(internal.free)) + " available @ '~/storage'")
-        time.sleep(10)
+        sleep(10)
 except:
     print(' storage error, check permissions')
