@@ -8,6 +8,7 @@ if [ -z "$1" ] ; then
 	user_option='--update'
 else
 	user_option="$1"
+	shift
 fi
 
 if [ "$user_option" == '-h' ] || [ "$user_option" == '--help' ] ; then
