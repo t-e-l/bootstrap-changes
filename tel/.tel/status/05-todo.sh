@@ -7,3 +7,4 @@ if [ "$line1" == '' ] ; then
 else
 	echo " ${line1}"
 fi
+sleep 10

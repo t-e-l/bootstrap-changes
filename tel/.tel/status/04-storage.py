@@ -56,5 +56,6 @@ try:
         print(col + " " + term.normal + str(get_size(internal.free)) + " available " + str(get_size(external.free)) + col_ext + "ﳚ " + term.normal)
     else:
         print(col + " " + term.normal + str(get_size(internal.free)) + " available @ '~/storage'")
+        time.sleep(10)
 except:
     print(' storage error, check permissions')
