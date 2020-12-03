@@ -13,8 +13,8 @@ notification_list = []
 homedir = os.path.expanduser("~")
 try:
     notification_list = []
+    file_name = homedir + "/.tel/data/notifications"
     if notification_display_type == "scroll":
-        file_name = homedir + "/.tel/data/notifications"
         with open(file_name,"r+") as f_in:
             for line in f_in:
                 if len(line.split()) == 0:
@@ -33,7 +33,17 @@ try:
             elif len(notification_list) == 1:
                 print(notificationsicon + notification_list[0])
     else:
-        latest = subprocess.check_output(["tail", "-n1", homedir + "/.tel/data/notifications"],universal_newlines=True, timeout=5) #strip()
+        with open(file_name,"r+") as f_in:
+            for line in f_in:
+                if len(line.split()) == 0:
+                    continue
+                else: #only append non-empty lines
+                    notification_list.append(line)
+            if len(notification_list) > 1:
+                #scroll one forward each time script is ran
+                print(notificationsicon + notification_list[0].strip())
+
+        #latest = subprocess.check_output(["tail", "-n1", homedir + "/.tel/data/notifications"],universal_newlines=True, timeout=5) #strip()
         if latest:
             print(notificationsicon + latest)
         else:
