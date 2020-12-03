@@ -98,8 +98,8 @@ export FZF_BASE=$HOME/../usr/bin/fzf
 
 
 # # # TERMINAL BEHAVIOUR # # #
-if [ -n $SSH_CONNECTION ]; then
-  export TERM=xterm-256color
+if [ ! -z $SSH_CONNECTION ]; then
+  export TERM=xterm-256color # set generic SSH TERM profile
 fi
-export TERMINFO='~/../usr/share/terminfo/'
+export TERMINFO='~/../usr/share/terminfo/' # here you can play other term info files, already supplied is kitty-term
 
