@@ -85,6 +85,7 @@ HISTFILE=~/.zsh_history
 setopt INC_APPEND_HISTORY
 setopt SHARE_HISTORY # share history across zsh instances
 setopt HIST_IGNORE_ALL_DUPS
+setopt HIST_IGNORE_SPACE # prepend a space to commands means it is not logged to history
 autoload -U compinit && compinit # reload completion (for zsh-completions plugin)
 
 # # # END CUSTOMISE ZSH # # #
