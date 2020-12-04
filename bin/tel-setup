@@ -10,7 +10,7 @@ else
 	update_args="$1"
 fi
 
-
+# SHOULD CHECK HERE IF UPDATE IS NEEDED if so update then re run setup
 UPDATE=false
 
 
