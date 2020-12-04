@@ -60,7 +60,6 @@ export PY_SITE_PKGS="$(python -m site --user-site)" #only works in python 3.9+ o
 
 # # # CUSTOMISE ZSH # # #
 set -K # disables ! events in zsh to allow for bangs in tel-search, eg 's !!wiki mycelium'
-zle-toggle-mouse
 # ZSH widgets
 #zle -N history-substring-search-up
 #zle -N history-substring-search-down

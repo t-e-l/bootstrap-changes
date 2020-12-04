@@ -94,7 +94,7 @@ sed -i 's/plugins=(git)/plugins=(zsh-mouse magic-enter common-aliases zsh-naviga
 
 # # # insert TEL loading file into .zshrc # # # 
 echo -e "	\n#|||||||||||||||#\n. ~/.tel/.telrc\n#|||||||||||||||#\n	" >> ~/.zshrc
-
+echo "source ~/.oh-my-zsh/plugins/zsh-mouse/mouse.zsh && zle-toggle-mouse" >> ~/.zshrc
 if [ -f "$HOME/../usr/etc/motd_finished" ]; then
 	#mv ~/../usr/etc/motd_finished ~/../usr/etc/motd #set final motd
 	(rm -rf ~/../usr/etc/motd)
