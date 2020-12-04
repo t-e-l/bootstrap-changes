@@ -36,7 +36,7 @@ apt-get update -y && apt-get upgrade -y && logf "finished updating Termux packag
 log "Installing required packages.."
 log "This may take a while..."
 logf "pkg install"
-catch "$(pkg install fzf imagemagick openssh tree bc fd curl wget nano tmux zsh git make figlet sl cowsay neofetch ncurses-utils termux-api sed util-linux -y 2>&1)"
+catch "$(pkg install fzf imagemagick openssh tree bc fd curl wget nano tmux zsh git make figlet sl cronie cowsay neofetch ncurses-utils termux-api sed util-linux -y 2>&1)"
 
 log "Installing python"
 logf "python install"
@@ -81,13 +81,14 @@ catch "$(git clone --depth=1 https://github.com/romkatv/powerlevel10k.git ${ZSH_
 catch "$(~/.oh-my-zsh/custom/themes/powerlevel10k/gitstatus/install 2>&1)"
 catch "$(git clone --depth=1 https://github.com/zdharma/fast-syntax-highlighting.git ~/.oh-my-zsh/plugins/fast-syntax-highlighting 2>&1)"
 #catch "$(git clone --depth=1 https://github.com/zsh-users/zsh-completions ~/.oh-my-zsh/plugins/zsh-completions 2>&1)"
+catch "$(git clone --depth=1 https://github.com/ashleyh/zsh-mouse ~/.oh-my-zsh/plugins/zsh-mouse 2>&1)"
 catch "$(git clone --depth=1 https://github.com/zsh-users/zsh-autosuggestions ~/.oh-my-zsh/plugins/zsh-autosuggestions 2>&1)"
 catch "$(git clone --depth=1 https://github.com/marlonrichert/zsh-autocomplete ~/.oh-my-zsh/plugins/zsh-autocomplete 2>&1)"
 catch "$(git clone --depth=1 https://github.com/Aloxaf/fzf-tab ~/.oh-my-zsh/plugins/fzf-tab 2>&1)"
 #catch "$(git clone --depth=1 https://github.com/zsh-users/zsh-history-substring-search ~/.tel/shell/plugins/zsh-history-substring-search 2>&1)"
 #sed -i 's/robbyrussell/avit/g' ~/.zshrc
 sed -i 's/robbyrussell/powerlevel10k\/powerlevel10k/g' ~/.zshrc
-sed -i 's/plugins=(git)/plugins=(magic-enter common-aliases zsh-navigation-tools fzf-tab fancy-ctrl-z zsh-autosuggestions fast-syntax-highlighting)/g' ~/.zshrc 
+sed -i 's/plugins=(git)/plugins=(zsh-mouse magic-enter common-aliases zsh-navigation-tools fzf-tab fancy-ctrl-z zsh-autosuggestions fast-syntax-highlighting)/g' ~/.zshrc 
 
 #sed -i 's/plugins=(git)/plugins=(fast-syntax-highlighting)/g' ~/.zshrc 
 
