@@ -101,6 +101,7 @@ export FZF_BASE=$HOME/../usr/bin/fzf
 if [ ! -z $SSH_CONNECTION ]; then # Default SSH behaviour
 	termux-toast '[TEL]: User connected through SSH'
 	termux-wake-lock
+	alias logout='tel-wake-unlock && logout'
 	(am start --user 0 -n com.termux/com.termux.app.TermuxActivity > /dev/null 2>&1) # Bring tel to foreground
 	export TERM=xterm-256color # set generic SSH TERM profile
 fi
