@@ -69,19 +69,24 @@ else
 	#wal --preview
 	printf "\e[38;5;2m Theme\e[m%s wal is extracting colorscheme from: $selected_file\n"
 	wal -i "$selected_file" -n -q -s -t -e || (echo 'failed to get colors from file' ; exit 1)
-	sed -n '4,27p' ~/.cache/wal/colors.sh > ~/.termux/color.properties
+	#sed -n '4,27p' ~/.cache/wal/colors.sh > ~/.termux/color.properties
+	# write to status bar cols
 	sed -i '/status-text-color/d' ~/.tel/configs/theme.conf
 	fg_text_color=$(sed '8q;d' ~/.cache/wal/colors)
        	echo -e "\nstatus-text-color=$fg_text_color" >> ~/.tel/configs/theme.conf
+
 	printf "\e[38;5;2m Theme\e[m%s setting wallpaper as: $selected_file\n"
 	termux-wallpaper $options "$selected_file" || echo "Couldn't find $selected_file"
 	~/.tel/scripts/wal_cols_termux.sh # copy wal generated cols to ~/.termux/colors.properties
 	am broadcast --user 0 -a com.termux.app.reload_style com.termux > /dev/null 2>&1 # reload cols in termux
-	status_running=$(pgrep =f status_manager.py)
+	status_running=$(pgrep -f status_manager.py)
 	if [ ! -z "$status_running" ] ; then
-		kill "$(pgrep -f 'status_manager.py')"
-		pkill -f 'termux-api'
-		nohup ~/.tel/scripts/status_manager/status_manager.py > /dev/null 2>&1 &
+		~/.tel/scripts/status_manager/toggle_ui.sh
+		sleep 0.7	
+		~/.tel/scripts/status_manager/toggle_ui.sh
+#kill "$(pgrep -f 'status_manager.py')"
+		#pkill -f 'termux-api'
+		#nohup ~/.tel/scripts/status_manager/status_manager.py > /dev/null 2>&1 &
 	fi
 	#printf "\e[38;5;2m Theme\e[m%s TEL must restart for terminal colors to take effect\n"
 	#printf "\e[38;5;2m Theme\e[m%s Restarting TEL...\n"
