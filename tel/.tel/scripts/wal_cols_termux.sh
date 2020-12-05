@@ -2,8 +2,8 @@
 # TEL Startup file
 # these commands are ran only once when a session starts
 # this file will be replaced with each update so modifications are not recommended here
-termux_color_file=~/.termux/color.properties
-temp_color_file=~/.termux/color.temp
+termux_color_file=~/.termux/colors.properties
+temp_color_file=~/.termux/colors.temp
 
 source ~/.cache/wal/colors.sh
 
