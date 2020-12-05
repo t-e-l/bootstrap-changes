@@ -2,6 +2,7 @@
 # TEL Startup file
 # these commands are ran only once when a session starts
 # this file will be replaced with each update so modifications are not recommended here
+tel-delete-status -1
 source tel-helpers
 log "Loading Things"
 #echo -n "\e[4mLoading Things\e[0m" $'\r'
