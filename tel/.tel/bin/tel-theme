@@ -75,7 +75,11 @@ else
        	echo -e "\nstatus-text-color=$fg_text_color" >> ~/.tel/configs/theme.conf
 	printf "\e[38;5;2m Theme\e[m%s setting wallpaper as: $selected_file\n"
 	termux-wallpaper $options "$selected_file" || echo "Couldn't find $selected_file"
-	printf "\e[38;5;2m Theme\e[m%s Restarting TEL...\n"
+	~/.tel/wal_cols_termux.sh # copy wal generated cols to ~/.termux/colors.properties
+	am broadcast --user 0 -a com.termux.app.reload_style com.termux # reload cols in termux
+
+	#printf "\e[38;5;2m Theme\e[m%s TEL must restart for terminal colors to take effect\n"
+	#printf "\e[38;5;2m Theme\e[m%s Restarting TEL...\n"
 	#tel-restart
 fi
 
