@@ -52,8 +52,8 @@ def init_status_bar(status_scripts):
     status_bar = []
     for n in range(0,len(status_scripts)):
             new_output = ("Loading.. " + status_scripts[n].split("/status/",1)[1]) # show 'Loading.. filename' (remove path from name)
-            draw_status_bar(status_bar, n, new_output)
             status_bar.append(new_output)
+            draw_status_bar(status_bar, n, new_output)
     return status_bar
 
 
@@ -86,7 +86,6 @@ def main_loop():
     all_procs = []
     proc_queues = []
     proc_threads = []
-    
     for script_num in range(0,len(status_scripts)):
     # start all script as subprocess
         new_process = subprocess.Popen(["./status_script_wrapper.sh", status_scripts[script_num], str(term.width)], stdin=subprocess.PIPE, stdout=subprocess.PIPE)
