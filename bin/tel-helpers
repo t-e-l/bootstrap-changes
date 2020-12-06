@@ -36,19 +36,19 @@ log_replace_last() {
 	echo -ne "\r${GREEN}[TEL]: ${NC}${WHITE}${1}${NC}"
 }
 log() {
-	printf "${GREEN}[TEL]: ${NC}${WHITE}${1}${NC}"
+	printf "${GREEN}[TEL]: ${NC}${WHITE}${1}${NC}\n"
 }
 logf() {
 	echo "[$(date '+%Y-%m-%d %H:%M:%S')]: ${1}" >> ~/.log.tel
 }
 warn() {
-	printf "${ORANGE}[TEL]: ${NC}${WHITE}${1}${NC}"
+	printf "${ORANGE}[TEL]: ${NC}${WHITE}${1}${NC}\n"
 }
 error() {
-	printf "${RED}[TEL]: ${NC}${WHITE}${NC}${1}${NC}"
+	printf "${RED}[TEL]: ${NC}${WHITE}${NC}${1}${NC}\n"
 }
 exit_error() {
-	printf "${RED}[TEL]: ${NC}${WHITE}${1}${NC}"
+	printf "${RED}[TEL]: ${NC}${WHITE}${1}${NC}\n"
 	exit 1
 }
 catch(){
