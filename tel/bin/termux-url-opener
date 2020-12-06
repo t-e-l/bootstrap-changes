@@ -1,9 +1,10 @@
 #!/data/data/com.termux/files/usr/bin/bash
 # file is ran when url is shared with TEL
 source tel-helpers
-log "recieved url: $1"
-PS3="Select an option for url:"
-select choice in Open-in-term-Browser Download-Video Download-Page
+width=$(term_width)
+log "recieved url: \n ${1:0:$WIDTH}"
+PS3="Select a numbered option: "
+select choice in "Open in $BROWSER" "Video Download" "URL Download"
 do
 	case $REPLY in
 		1)
@@ -17,12 +18,14 @@ do
 			break
 			;;
 		3)
-			echo -n 'download to file'
 			echo -n 'Enter a name for file: '
 			read -p "Enter a name for the saved file: " filename 
 			curl $1 > $filename > /dev/null 2>&1
 			break
 			;;
+		4)
+			echo -n 'Exiting..'
+			exit 0
 		*)
 			echo -n 'not an option'
 			;;
