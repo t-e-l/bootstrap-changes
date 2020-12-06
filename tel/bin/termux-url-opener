@@ -1,23 +1,27 @@
 #!/data/data/com.termux/files/usr/bin/bash
 # file is ran when url is shared with TEL
-
-PS3="What do you want to do with this url: $1"
+source tel-helpers
+log "recieved url: $1"
+PS3="Select an option for url:"
 select choice in Open-in-term-Browser Download-Video Download-Page
 do
 	case $REPLY in
 		1)
 			echo -n 'opening in $BROWSER'
 			links $1 || w3m $1
+			break
 			;;
 		2)
 			echo -n 'downloading video to ~/storage/downloads/'
 			youtube-dl -f 'bestvideo[ext=mp4][height<=720]+bestaudio' --restrict-filenames -o '~/storage/downloads/%(title)s-%(id)s.%(ext)s' $1
+			break
 			;;
 		3)
 			echo -n 'download to file'
 			echo -n 'Enter a name for file: '
-			read filename 
-			curl $1 > $filename 
+			read -p "Enter a name for the saved file: " filename 
+			curl $1 > $filename > /dev/null 2>&1
+			break
 			;;
 		*)
 			echo -n 'not an option'
