@@ -3,10 +3,11 @@
 # Sourced for TEL operations
 
 # COLORS #
-WHITE=${1:-"38;5;07"} # relative term color value
-GREEN=${1:-"38;2;0;255;0"} # absolute rgb values
-ORANGE=${1:-"38;2;255;146;0"}
-RED=${1:-"38;2;255;0;0"}
+WHITE="\e[38;5;07m" # relative term color value
+GREEN="\e[38;2;0;255;0m" # absolute rgb values
+ORANGE="\e[38;2;255;146;0m"
+RED="\e[38;2;255;0;0m"
+NC="\e[m" # no color (reset)
 
 # SYMBOLS #
 SAY_SYMBOL=""
@@ -20,30 +21,34 @@ FONT_SIZE_SYMBOL=""
 
 # FUNCTIONS #
 
+term_width() {
+	echo $(tput cols)
+	# usage width=$(term_width)
+}
 check_connection() {
 	reply=$(ping -c 1 -q google.com >&/dev/null; echo $?)
 	if [ $reply != 0 ] ; then 
-		printf "\033[0;%sm%s\033[0m\033[0;%sm%s\033[0m\n" "${RED}" "[TEL]: " "${WHITE}" "network is down"
+		printf "${RED}[TEL]: ${NC}${WHITE}network is down${NC}"
 		return 1
 	fi
 }
 log_replace_last() {
-	echo -ne "\r\033[0;%sm%s\033[0m\033[0;%sm%s\033[0m\n" "${GREEN}" "[TEL]: " "${WHITE}" "${1}"
+	echo -ne "\r${GREEN}[TEL]: ${NC}${WHITE}${1}${NC}"
 }
 log() {
-	printf "\033[0;%sm%s\033[0m\033[0;%sm%s\033[0m\n" "${GREEN}" "[TEL]: " "${WHITE}" "${1}"
+	printf "${GREEN}[TEL]: ${NC}${WHITE}${1}${NC}"
 }
 logf() {
 	echo "[$(date '+%Y-%m-%d %H:%M:%S')]: ${1}" >> ~/.log.tel
 }
 warn() {
-	printf "\033[0;%sm%s\033[0m\033[0;%sm%s\033[0m\n" "${ORANGE}" "[TEL]: " "${WHITE}" "${1}"
+	printf "${ORANGE}[TEL]: ${NC}${WHITE}${1}${NC}"
 }
 error() {
-	printf "\033[0;%sm%s\033[0m\033[0;%sm%s\033[0m\n" "${RED}" "[TEL]: " "${WHITE}" "${1}"
+	printf "${RED}[TEL]: ${NC}${WHITE}${NC}${1}${NC}"
 }
 exit_error() {
-	printf "\033[0;%sm%s\033[0m\033[0;%sm%s\033[0m\n" "${RED}" "[TEL]: " "${WHITE}" "${1}"
+	printf "${RED}[TEL]: ${NC}${WHITE}${1}${NC}"
 	exit 1
 }
 catch(){
