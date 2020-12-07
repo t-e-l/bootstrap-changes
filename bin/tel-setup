@@ -33,10 +33,10 @@ log "Updating Termux packages..."
 logf "apt-get upgrade"
 apt-get update -y && apt-get upgrade -y && logf "finished updating Termux packages" #print to screen as hotfix
 
-log "Installing required packages.."
+log "Installing required packages"
 log "This may take a while..."
 logf "pkg install"
-catch "$(pkg install fzf imagemagick openssh tree bc fd curl wget nano tmux zsh git make figlet sl cronie cowsay neofetch ncurses-utils termux-api sed util-linux -y 2>&1)"
+catch "$(pkg install fzf w3m imagemagick openssh tree bc fd curl wget nano tmux zsh git make figlet sl cronie cowsay neofetch ncurses-utils termux-api sed util-linux -y 2>&1)"
 
 log "Installing python"
 logf "python install"
@@ -63,7 +63,6 @@ logf "ohmyzsh"
 rm -rf ~/../etc/motd 
 rm -rf ~/.oh-my-zsh #incase setup is reran (must clone to empty dirs)
 rm -rf ~/.tel/shell #incase setup is reran (must clone to empty dirs)
-#sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" "" --unattended  > /dev/null 2>&1 && logf "finished installing OhMyZsh"
 catch "$(git clone --depth=1 https://github.com/ohmyzsh/ohmyzsh.git ~/.oh-my-zsh 2>&1)"
 cp -f ~/.zshrc ~/.zshrc.bak #backup previous 
 cp -f ~/.oh-my-zsh/templates/zshrc.zsh-template ~/.zshrc
