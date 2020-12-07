@@ -52,8 +52,8 @@ def init_status_bar(status_scripts):
     status_bar = []
     for n in range(0,len(status_scripts)):
             new_output = ("Loading.. " + status_scripts[n].split("/status/",1)[1]) # show 'Loading.. filename' (remove path from name)
-            status_bar.append(new_output)
             draw_status_bar(status_bar, n, new_output)
+            status_bar.append(new_output)
     return status_bar
 
 
@@ -82,6 +82,9 @@ def main_loop():
     # get status scripts and init status bar
     status_scripts = get_scripts()
     loading_status_bar = init_status_bar(status_scripts)
+    for n in range(0,len(loading_status_bar)):
+            draw_status_bar(loading_status_bar, n, loading_status_bar[n])
+     
     status_bar = loading_status_bar
     all_procs = []
     proc_queues = []
