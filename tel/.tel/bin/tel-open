@@ -42,10 +42,10 @@ else
  	esac
 
 	file_search="$@"
-	selected_file=$(fzf -e --cycle --color=16 --query="$file_search" --prompt=" Open in app: " --select-1)
+	selected_file="$(fzf -e --cycle --color=16 --query="$file_search" --prompt=" Open in app: " --select-1)"
 fi
 
-if [ -z $selected_file ] ; then
+if [ -z "$selected_file" ] ; then
 #	echo 'No file chosen - Exiting...'
 	exit 1
 else
