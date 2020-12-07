@@ -1,20 +1,28 @@
-#!/data/data/com.termux/files/usr/bin/bash
+#!/usr/bin/env bash
 # file is ran when url is shared with TEL
 source tel-helpers
 width=$(term_width)
 log "recieved url:\n${1:$WIDTH}"
 PS3="Select a numbered option: "
-select choice in "Open in term Browser" "Video Download" "URL Download"
+select choice in "Open in term Browser" "Video Download" "URL Download" "Do nothing (exit)"
 do
 	case $REPLY in
 		1)
 			echo -n 'opening in terminal browser'
-			$BROWSER $1
+			$EDITOR $1
 			break
 			;;
 		2)
 			echo -n 'downloading video to ~/storage/downloads/'
-			youtube-dl -f 'bestvideo[ext=mp4][height<=720]+bestaudio' --restrict-filenames -o '~/storage/downloads/%(title)s-%(id)s.%(ext)s' $1 || youtubedr download -d ~/storage/downloads/ $1
+			#youtube-dl -f 'bestvideo[ext=mp4][height<=720]+bestaudio' --restrict-filenames -o '~/storage/downloads/%(title)s-%(id)s.%(ext)s' $1 ||
+			if [ -d ~/storage/downloads ] ; then
+				youtubedr download -d ~/storage/downloads/ $1
+			else
+				if [ ! -d ~/downloads ] ; then
+					mkdir ~/downloads
+				fi
+				youtubedr download -d ~/downloads $1
+			fi
 			break
 			;;
 		3)
