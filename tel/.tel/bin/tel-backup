@@ -10,15 +10,15 @@ if [ ! -d $temp_storage ] ; then
 	mkdir $temp_storage
 fi
 
-if [ ! -d /storage/emulated/0 ] ; then
+if [ ! -d ~/storage ] ; then
 	echo "Error - No access to phone storage"
 	echo "backups are made to /storage/emulated/0/tel, (this path is also accessible to TEL through ~/storage/shared/tel) if TEL hasn't been granted storage permissions, this will likely fail. Run termux-setup-storage to grant access"
 	echo program will exit.. && exit
 fi
 
-if [ ! -d /storage/emulated/0/tel ] ; then
+if [ ! -d ~/storage/shared/tel/backup ] ; then
 	echo "Creating backup folder at: $backup_location"
-	mkdir $backup_location
+	mkdir -p $backup_location
 fi
 
 if [ ! -d "$backup_location/$today" ] ; then
@@ -58,7 +58,7 @@ case $answer in
 			  printf "\b${sp:i++%${#sp}:1}"
 			  sleep 0.1
 		done
-		echo -ne '\r      '
+		echo -ne '\r' #remove last spinner
 		printf "\e[38;5;2m Backup\e[m%s: completed\n"
 		break;;
 
