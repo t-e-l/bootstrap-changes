@@ -61,7 +61,7 @@ def draw_status_bar(prev_status_bar,script_num,new_output):
     status_bar = prev_status_bar
     for line in range(0,len(prev_status_bar)):
         if line == script_num:
-            if new_output != prev_status_bar[line]:
+            #if new_output != prev_status_bar[line]:
                 status_bar[line] = new_output
                 if len(str(term.strip_seqs(new_output))) > term.width:
                     new_output = new_output[:term.width -8]
