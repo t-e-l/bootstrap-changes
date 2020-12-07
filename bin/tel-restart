@@ -1,9 +1,9 @@
-#!/data/data/com.termux/files/usr/bin/sh
+#!/usr/bin/env bash
 
 if [ "$#" != "0" ]; then
 	echo 'usage: tel-restart'
 	exit
 fi
-
+tel-delete-status -1
 am broadcast --user 0 \
 		 -a com.termux.app.restart com.termux > /dev/null

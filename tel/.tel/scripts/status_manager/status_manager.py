@@ -52,8 +52,8 @@ def init_status_bar(status_scripts):
     status_bar = []
     for n in range(0,len(status_scripts)):
         new_output = ("Waiting for: " + status_scripts[n].split("/status/",1)[1]) # show 'Loading.. filename' (remove path from name)
-            draw_status_bar(status_bar, n, new_output)
-            status_bar.append(new_output)
+        draw_status_bar(status_bar, n, new_output)
+        status_bar.append(new_output)
     return status_bar
 
 
