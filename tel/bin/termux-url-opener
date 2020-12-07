@@ -26,6 +26,7 @@ do
 		4)
 			echo -n 'Exiting..'
 			exit 0
+			;;
 		*)
 			echo -n 'not an option'
 			;;
