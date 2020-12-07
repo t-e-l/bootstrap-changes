@@ -18,7 +18,7 @@ if [ ! -d ~/storage/shared/tel/backup ] ; then
 	mkdir -p $backup_location 
 fi
 if [ ! -d "$backup_location/$today" ] ; then
-	mkdir $backup_location/$today && printf "\e[38;5;2m Backup\e[m%s: created backup folder at: $backup_location/$today"
+	mkdir $backup_location/$today && printf "\e[38;5;2m Backup\e[m%s: created backup folder at: $backup_location/$today \n"
 fi
 }
 
