@@ -14,7 +14,7 @@ do
 			;;
 		2)
 			echo -n 'downloading video to ~/storage/downloads/'
-			youtube-dl -f 'bestvideo[ext=mp4][height<=720]+bestaudio' --restrict-filenames -o '~/storage/downloads/%(title)s-%(id)s.%(ext)s' $1 || youtubedr -o '~/storage/downloads/%(title)s-%(id)s.%(ext)s' $1
+			youtube-dl -f 'bestvideo[ext=mp4][height<=720]+bestaudio' --restrict-filenames -o '~/storage/downloads/%(title)s-%(id)s.%(ext)s' $1 || youtubedr download -d ~/storage/downloads/ $1
 			break
 			;;
 		3)
