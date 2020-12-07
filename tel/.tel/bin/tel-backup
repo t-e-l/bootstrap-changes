@@ -31,8 +31,6 @@ fi
 make_backup(){
 while true
 do
-	echo 'This utility will create a gzip backup of everything in your home directory ('~')' 
-	echo 'How backups will be restored is left up to the user'
 	read -p "This will overwrite any previous backups made the same day are you sure you want to continue? y/N : " answer
 case $answer in
 	[yY]* )
@@ -40,7 +38,7 @@ case $answer in
 		check_folders  #create dirs if missing
 
 		printf "\e[38;5;2m Backup\e[m%s: creating installed pkgs list...\n"
-		apt list > $backup_location/$today/userpkgs.txt
+		(apt list --installed > $backup_location/$today/userpkgs.txt > /dev/null 2>&1)
 		printf "\e[38;5;2m Backup\e[m%s: backing up configs...\n"
 		tar czf $backup_location/$today/userconfs_$backup_name.tar.gz ~/.tel/configs >&/dev/null
 		printf "\e[38;5;2m Backup\e[m%s: backing up termux settings...\n"
