@@ -2,23 +2,18 @@
 # TEL Startup file
 # these commands are ran only once when a session starts
 # this file will be replaced with each update so modifications are not recommended here
-tel-delete-status -1
 source tel-helpers
 log "Loading Things"
 #echo -n "\e[4mLoading Things\e[0m" $'\r'
 sleep 0.1 # sleeps so line updates are actually visible to user
-#echo -n "reading user configs..                            " $'\r'
 #source ~/.tel/scripts/readconfigs.sh && echo -ne "all configs sourced ${CHECK_MARK}                " $'\r'
-sleep 0.1
 
 # Handle motd hints system if user changes config option
 if  [ $MOTD_HINTS == "true" ] ; then # backup user motd and restore if hints disabled
 	[[ ! -f ~/../usr/etc/.motd.bak ]] && cp -f ~/../usr/etc/motd ~/../usr/etc/.motd.bak && log "Backed up and enabled motd hints at startup ${CHECK_MARK}" && sleep 1
-		#echo -ne "backed up and enabled motd hints system ${CHECK_MARK}         " $'\r' && sleep 1
 	cp -f ~/../usr/etc/motd_hints ~/../usr/etc/motd && ~/.tel/scripts/hints.sh
 else
 	[[ -f ~/../usr/etc/.motd.bak ]] && mv -f ~/../usr/etc/.motd.bak ~/../usr/etc/motd && log "Restored user motd ${CHECK_MARK}" && sleep 1
-		#echo -ne "restored user motd ${CHECK_MARK}         " $'\r' && sleep 1
 fi
 
 if [ $SSH_SERVER == "true" ] ; then
@@ -37,8 +32,11 @@ fi
 
 if [ "$STARTUP_ANIMATION_ENABLED" == "true" ] ; then
 	log 'launching animation'
-	#tmux new-window -n '$ANIMATION_WINDOW_NAME' 'python ~/.tel/scripts/animation.py'
-	python ~/.tel/scripts/animation.py
+	if [ $USE_TMUX == "true" ] ; then
+		tmux new-window -n 'ctrl+c = skip' 'python ~/.tel/scripts/animation.py' 
+	else
+		python ~/.tel/scripts/animation.py
+	fi
 	log "launched python animation ${CHECK_MARK}"
 fi
 
