@@ -9,24 +9,18 @@ check_folders(){
 if [ ! -d $temp_storage ] ; then
 	mkdir $temp_storage
 fi
-
 if [ ! -d ~/storage ] ; then
 	echo "Error - No access to phone storage"
 	echo "backups are made to /storage/emulated/0/tel, (this path is also accessible to TEL through ~/storage/shared/tel) if TEL hasn't been granted storage permissions, this will likely fail. Run termux-setup-storage to grant access"
 	echo program will exit.. && exit
 fi
-
 if [ ! -d ~/storage/shared/tel/backup ] ; then
-	echo "Creating backup folder at: $backup_location"
-	mkdir -p $backup_location
+	mkdir -p $backup_location 
 fi
-
 if [ ! -d "$backup_location/$today" ] ; then
-	echo "Creating $backup_location/$today"
-	mkdir $backup_location/$today
+	mkdir $backup_location/$today && printf "\e[38;5;2m Backup\e[m%s: created backup folder at: $backup_location/$today"
 fi
 }
-
 
 make_backup(){
 while true
