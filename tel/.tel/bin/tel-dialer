@@ -70,7 +70,8 @@ add_contact(){
 	fi
 		am start -a android.intent.action.INSERT -t vnd.android.cursor.dir/contact -e name $add_contact_name -e phone $add_contact_number > /dev/null 2>&1
 	printf  "\e[38;5;2m Dialer\e[m: \e[38;5;1mAdded $add_contact_name to contacts%s\n\e[m"
-	update_contacts
+	touch ~/.dialer_flag
+	#update_contacts
 	exit 0
 }
 
@@ -83,7 +84,8 @@ main() {
 		add_contact "$@"
 	fi
 
-    [[ ! -a "$contactsfile" || "$1" == '-u' ]] && {
+    [[ ! -a "$contactsfile" || "$1" == '-u' || -f ~/.dialer_flag ]] && {
+	rm -f ~/.dialer_flag
     	printf  "\e[38;5;2m Dialer\e[m: \e[38;5;1mGenerating contacts list...%s\n\e[m"
 	update_contacts  # if contacts file missing - generate one
         [[ "$1" == '-u' ]] && exit 0
