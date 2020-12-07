@@ -2,19 +2,19 @@
 # file is ran when url is shared with TEL
 source tel-helpers
 width=$(term_width)
-log "recieved url: \n ${1:0:$WIDTH}"
+log "recieved url:\n${1:$WIDTH}"
 PS3="Select a numbered option: "
-select choice in "Open in $BROWSER" "Video Download" "URL Download"
+select choice in "Open in term Browser" "Video Download" "URL Download"
 do
 	case $REPLY in
 		1)
-			echo -n 'opening in $BROWSER'
-			links $1 || w3m $1
+			echo -n 'opening in terminal browser'
+			$BROWSER $1
 			break
 			;;
 		2)
 			echo -n 'downloading video to ~/storage/downloads/'
-			youtube-dl -f 'bestvideo[ext=mp4][height<=720]+bestaudio' --restrict-filenames -o '~/storage/downloads/%(title)s-%(id)s.%(ext)s' $1
+			youtube-dl -f 'bestvideo[ext=mp4][height<=720]+bestaudio' --restrict-filenames -o '~/storage/downloads/%(title)s-%(id)s.%(ext)s' $1 || youtubedr -o '~/storage/downloads/%(title)s-%(id)s.%(ext)s' $1
 			break
 			;;
 		3)
