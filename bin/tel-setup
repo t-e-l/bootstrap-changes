@@ -66,9 +66,8 @@ rm -rf ~/.tel/shell #incase setup is reran (must clone to empty dirs)
 catch "$(git clone --depth=1 https://github.com/ohmyzsh/ohmyzsh.git ~/.oh-my-zsh 2>&1)"
 if [ -f ~/.zshrc ] ; then
 	cp -f ~/.zshrc ~/.zshrc.bak #backup previous 
-else
-	touch ~/.zshrc
 fi
+
 cp -f ~/.oh-my-zsh/templates/zshrc.zsh-template ~/.zshrc
 
 # Get updates!
@@ -78,9 +77,9 @@ logf "running tel-update"
 
 log "Installing shell plugins"
 logf "cloning plugins"
-catch "$(git clone --depth=1 https://github.com/romkatv/powerlevel10k.git ${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/themes/powerlevel10k 2>&1)"
+catch "$(git clone --depth=1 https://github.com/romkatv/powerlevel10k.git ~/.oh-my-zsh/custom/themes/powerlevel10k 2>&1)"
 #run p10k installer now
-catch "$(~/.oh-my-zsh/custom/themes/powerlevel10k/gitstatus/install 2>&1)"
+catch "$(sh ~/.oh-my-zsh/custom/themes/powerlevel10k/gitstatus/install 2>&1)"
 catch "$(git clone --depth=1 https://github.com/zdharma/fast-syntax-highlighting.git ~/.oh-my-zsh/plugins/fast-syntax-highlighting 2>&1)"
 #catch "$(git clone --depth=1 https://github.com/zsh-users/zsh-completions ~/.oh-my-zsh/plugins/zsh-completions 2>&1)"
 catch "$(git clone --depth=1 https://github.com/zsh-users/zsh-autosuggestions ~/.oh-my-zsh/plugins/zsh-autosuggestions 2>&1)"
