@@ -28,7 +28,7 @@ elif [ "$user_option" == '--setup' ] ; then
 	log "Getting latest release changes"
 	branch='master'
 	update_permissions='false'
-	remove_data='true'
+	remove_data='false'
 elif [ "$user_option" == '--dev' ] ; then
 	log "Getting latest dev changes"
 	branch='dev'
