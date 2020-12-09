@@ -1,5 +1,6 @@
 #!/usr/bin/env bash
 # TEL updater
+
 source ~/../usr/bin/tel-helpers
 
 update_permissions="true"
@@ -8,7 +9,6 @@ if [ -z "$1" ] ; then
 	user_option='--update'
 else
 	user_option="$1"
-	shift
 fi
 
 if [ "$user_option" == '-h' ] || [ "$user_option" == '--help' ] ; then
@@ -28,7 +28,7 @@ elif [ "$user_option" == '--setup' ] ; then
 	log "Getting latest release changes"
 	branch='master'
 	update_permissions='false'
-#	remove_data='true'
+	remove_data='false'
 elif [ "$user_option" == '--dev' ] ; then
 	log "Getting latest dev changes"
 	branch='dev'
@@ -45,6 +45,7 @@ elif [ "$user_option" == '--reset' ] ; then
 elif [ "$user_option" == '--extras' ] ; then
 	if [ ! -f "$HOME/.tel/.installed" ]; then
 		error 'Extras can only be installed after TEL has been setup'
+		exit 1
 	fi
 	log "launching extras installer..."
 	~/.tel/extras/setup.sh
@@ -58,10 +59,10 @@ else
 	branch='master'
 fi
 
-check_connection || exit 1 
+check_connection 
 
 if [ ! -f "$HOME/.tel/.installed" ]; then
-	pkg install wget unzip coreutils git -y 2>&1 || error 'failed to download required setup utils' && exit 1
+	pkg install wget unzip coreutils git -y 2>&1 || exit_error 'failed to download required setup utils'
 fi
 
 [[ "$remove_data" == "true" ]] && remove_data_no_prompt
@@ -76,7 +77,7 @@ catch $(cp -rf bootstrap-changes/tel/.??* ~/)
 catch $(cp -rf bootstrap-changes/tel/bin/* ~/bin)
 catch $(cp -rf bootstrap-changes/etc/* ~/../usr/etc)
 rm -rf bootstrap-changes
-rm -rf ~/../usr/etc/motd > /dev/null 2>&1
+rm -rf ~/../usr/etc/motd > /dev/null 2>&1 #remove from bootstrapchanges repo?
 
 # PERMISSIONS
 [[ "$update_permissions" == "true" ]] && fix_permissions
