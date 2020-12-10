@@ -43,9 +43,9 @@ try:
         latest = notification_list[0].strip()
 
         #latest = subprocess.check_output(["tail", "-n1", homedir + "/.tel/data/notifications"],universal_newlines=True, timeout=5) #strip()
-        if latest:
+        try:
             print(notificationsicon + latest)
-        else:
+        except:
             print(notificationsicon + " no new notifications")
 except:
     #pass
