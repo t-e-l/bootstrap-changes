@@ -39,9 +39,8 @@ try:
                     continue
                 else: #only append non-empty lines
                     notification_list.append(line)
-            if len(notification_list) > 1:
-                #scroll one forward each time script is ran
-                print(notificationsicon + notification_list[0].strip())
+        if len(notification_list) > 0:
+            latest = notification_list[0].strip())
 
         #latest = subprocess.check_output(["tail", "-n1", homedir + "/.tel/data/notifications"],universal_newlines=True, timeout=5) #strip()
         if latest:
@@ -49,5 +48,5 @@ try:
         else:
             print(notificationsicon + " no new notifications")
 except:
-    pass
-    #print('except')
+    #pass
+    print('Notifs error')
