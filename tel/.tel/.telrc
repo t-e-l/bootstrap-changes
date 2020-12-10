@@ -52,7 +52,7 @@ PROMPT_EOL_MARK=''
 
 
 # # # SETUP PATHS # # # 
-export PATH=/data/data/com.termux/files/usr/bin:/data/data/com.termux/files/usr/bin/applets:~/.tel/bin:/data/data/com.termux/files/home/.local/bin
+export PATH=$PATH:/data/data/com.termux/files/usr/bin/applets:~/.tel/bin:/data/data/com.termux/files/home/.local/bin:/data/data/com.termux/files/usr/bin:/data/data/com.termux/files/usr/bin
 
 export PY_SITE_PKGS="$(python -m site --user-site)" #only works in python 3.9+ otherwise this may need to be set manually
 
@@ -60,16 +60,7 @@ export PY_SITE_PKGS="$(python -m site --user-site)" #only works in python 3.9+ o
 
 # # # CUSTOMISE ZSH # # #
 set -K # disables ! events in zsh to allow for bangs in tel-search, eg 's !!wiki mycelium'
-# ZSH widgets
-#zle -N history-substring-search-up
-#zle -N history-substring-search-down
-# ZSH Plugins
-#source ~/.tel/shell/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh # must be first
-#source ~/.tel/shell/plugins/zsh-history-substring-search/zsh-history-substring-search.zsh
-#source ~/.tel/shell/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
-# Bindkeys
-#bindkey '^[[A' history-substring-search-up
-#bindkey '^[[B' history-substring-search-down
+# (ZSH Plugins are being sourced by omz in .zshrc)
 # Completion #
 zstyle ":completion:*:git-checkout:*" sort false
 zstyle ':completion:*:descriptions' format '[%d]'
@@ -110,5 +101,5 @@ if [ ! -z $SSH_CONNECTION ]; then # Default SSH behaviour
 	(am start --user 0 -n com.termux/com.termux.app.TermuxActivity > /dev/null 2>&1) # Bring tel to foreground
 	export TERM=xterm-256color # set generic SSH TERM profile
 fi
-export TERMINFO='~/../usr/share/terminfo/' # here you can play other term info files, already supplied is kitty-term
+export TERMINFO='~/../usr/share/terminfo/' # here you can put term info files, already supplied is kitty-term
 
