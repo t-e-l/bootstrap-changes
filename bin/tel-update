@@ -75,10 +75,10 @@ catch $(cp -rf ~/../usr/tmp/bootstrap-changes/bin/* ~/../usr/bin)
 catch $(cp -rf ~/../usr/tmp/bootstrap-changes/tel/.??* ~/)
 catch $(cp -rf ~/../usr/tmp/bootstrap-changes/tel/bin/* ~/bin)
 catch $(cp -rf ~/../usr/tmp/bootstrap-changes/etc/* ~/../usr/etc)
-rm -rf ~/usr/bootstrap-changes
+rm -rf $TMPDIR/bootstrap-changes
 rm -rf ~/../usr/etc/motd > /dev/null 2>&1 #remove from bootstrapchanges repo?
 git clone --depth=1 https://github.com/t-e-l/bin $TMPDIR/tel-update || exit_error 'Failed to download latest bins' 
-cp -f $TMPDIR/bin/* ~/.tel/bin/ 
+cp -f $TMPDIR/tel-update/bin/* ~/.tel/bin/ 
 rm -rf $TMPDIR/tel-update
 
 
