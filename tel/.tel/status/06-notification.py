@@ -33,20 +33,19 @@ try:
             elif len(notification_list) == 1:
                 print(notificationsicon + notification_list[0])
     else:
-        with open(file_name,"r+") as f_in:
-            for line in f_in:
-                if len(line.split()) == 0:
-                    continue
-                else: #only append non-empty lines
-                    notification_list.append(line)
-        #if len(notification_list) > 0:
-        latest = notification_list[0].strip()
-
         #latest = subprocess.check_output(["tail", "-n1", homedir + "/.tel/data/notifications"],universal_newlines=True, timeout=5) #strip()
         try:
+            with open(file_name,"r+") as f_in:
+                for line in f_in:
+                    if len(line.split()) == 0:
+                        continue
+                    else: #only append non-empty lines
+                        notification_list.append(line)
+            #if len(notification_list) > 0:
+            latest = notification_list[0].strip()
             print(notificationsicon + latest)
         except:
             print(notificationsicon + " no new notifications")
 except:
     #pass
-    print('Notifs error')
+    print(notificationsicon + ' notifications error')
