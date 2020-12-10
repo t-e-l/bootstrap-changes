@@ -20,10 +20,10 @@ if [ ! -f ~/.p10k.zsh ] ; then #fallback to python prompt if file not exist
 else
 	# Use p10k?
 	POWERLEVEL9K_DISABLE_CONFIGURATION_WIZARD=true
-#	. ~/.tel/shell/prompt/powerlevel10k.zsh-theme
+#	. ~/.tel/shell/prompt/powerlevel10k.zsh-theme #sourced as theme by omz
 	. ~/.p10k.zsh
 fi
-# Force prompt to stay at bottom of screen
+# Attempt to keep prompt to stay at bottom of screen
 printf '\n%.0s' {1..100}
 alias clear="(clear && printf '\n%.0s' {1..100})"
 alias reset="(reset && printf '\n%.0s' {1..100})"
@@ -61,7 +61,7 @@ export PY_SITE_PKGS="$(python -m site --user-site)" #only works in python 3.9+ o
 # # # CUSTOMISE ZSH # # #
 set -K # disables ! events in zsh to allow for bangs in tel-search, eg 's !!wiki mycelium'
 # (ZSH Plugins are being sourced by omz in .zshrc)
-# Completion #
+# Tab Completion #
 zstyle ":completion:*:git-checkout:*" sort false
 zstyle ':completion:*:descriptions' format '[%d]'
 zstyle ':completion:*' list-colors ${(s.:.)LS_COLORS}
@@ -70,6 +70,7 @@ zstyle ':fzf-tab:complete:cd:*' fzf-preview 'exa -1 --color=16 $realpath'
 DISABLE_UPDATE_PROMPT=true 
 DISABLE_AUTO_UPDATE=true
 # ZSH History
+HIST_STAMPS="%d/%m/%y %T"
 HISTSIZE=40000
 SAVEHIST=20000
 HISTFILE=~/.zsh_history
