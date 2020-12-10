@@ -77,7 +77,7 @@ catch $(cp -rf bootstrap-changes/tel/bin/* ~/bin)
 catch $(cp -rf bootstrap-changes/etc/* ~/../usr/etc)
 rm -rf bootstrap-changes
 rm -rf ~/../usr/etc/motd > /dev/null 2>&1 #remove from bootstrapchanges repo?
-git clone -b $branch --depth=1 https://github.com/t-e-l/bin.git temp || exit_error 'Failed to download update' 
+git clone --depth=1 https://github.com/t-e-l/bin.git temp || exit_error 'Failed to download latest bins' 
 mv -f temp/bin/* ~/.tel/bin/ 
 rm -rf temp
 
