@@ -67,19 +67,19 @@ fi
 
 [[ "$remove_data" == "true" ]] && remove_data_no_prompt
 cd ~/../usr/ || exit_error 'fatal error path does not exist: ~/../usr/' 
-rm -rf bootstrap-changes > /dev/null 2>&1 #incase last run failed with partial download 
-git clone -b $branch --depth=1 https://github.com/t-e-l/bootstrap-changes || exit_error 'Failed to download update'
-mkdir temp
+rm -rf $TMPDIR/tel-update > /dev/null 2>&1 #incase last run failed with partial download 
+mkdir $TMPDIR/tel-update
+git clone -b $branch --depth=1 https://github.com/t-e-l/bootstrap-changes $TMPDIR/tel-update || exit_error 'Failed to download update'
 shopt -u dotglob # (include dotfiles in cp -r)
-catch $(cp -rf bootstrap-changes/bin/* ~/../usr/bin)
-catch $(cp -rf bootstrap-changes/tel/.??* ~/)
-catch $(cp -rf bootstrap-changes/tel/bin/* ~/bin)
-catch $(cp -rf bootstrap-changes/etc/* ~/../usr/etc)
-rm -rf bootstrap-changes
+catch $(cp -rf ~/../usr/tmp/bootstrap-changes/bin/* ~/../usr/bin)
+catch $(cp -rf ~/../usr/tmp/bootstrap-changes/tel/.??* ~/)
+catch $(cp -rf ~/../usr/tmp/bootstrap-changes/tel/bin/* ~/bin)
+catch $(cp -rf ~/../usr/tmp/bootstrap-changes/etc/* ~/../usr/etc)
+rm -rf ~/usr/bootstrap-changes
 rm -rf ~/../usr/etc/motd > /dev/null 2>&1 #remove from bootstrapchanges repo?
-git clone --depth=1 https://github.com/t-e-l/bin.git temp || exit_error 'Failed to download latest bins' 
-mv -f temp/bin/* ~/.tel/bin/ 
-rm -rf temp
+git clone --depth=1 https://github.com/t-e-l/bin $TMPDIR/tel-update || exit_error 'Failed to download latest bins' 
+cp -f $TMPDIR/bin/* ~/.tel/bin/ 
+rm -rf $TMPDIR/tel-update
 
 
 # PERMISSIONS
