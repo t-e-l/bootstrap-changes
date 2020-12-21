@@ -3,23 +3,25 @@
 if [ "$USE_WAL" == 'true' ] ; then
 	[[ -f ~/.cache/wal/sequences ]] && (wal -R -q -e && cat ~/.cache/wal/sequences)
 fi
-if [ -z $SSH_CONNECTION ] ; then
-if [ "$USE_TMUX" == 'true' ] ; then # user config choice
-	if [ -z $TMUX ] ; then # tmux not running
-		tmux has-session -t "TEL" > /dev/null 2>&1
-		if [ $? != 0 ]; then # start main TEL session if not already running
-			tmux -f ~/.tel/.tel_tmux.conf new-session -n "$NAME" -s "TEL" '~/.tel/scripts/startup.sh ; $SHELL' 
-		else # start unique tmux session for each Termux session
-			session_number=$(tmux ls | wc -l)
-			tmux new-session -s "TEL$session_number" 
+if [ -z "$SSH_CONNECTION" ] ; then # user not logged in via ssh
+	if [ "$USE_TMUX" == 'true' ] ; then # user config choice
+		if [ -z "$TMUX" ] ; then # tmux not running
+			tmux has-session -t "TEL" > /dev/null 2>&1
+			if [ $? != 0 ]; then # start main TEL session if not already running
+				tmux -f ~/.tel/.tel_tmux.conf new-session -n "$NAME" -s "TEL" '~/.tel/scripts/startup.sh ; $SHELL' 
+			else # start unique tmux session for each Termux session
+				session_number=$(tmux ls | wc -l)
+				tmux new-session -s "TEL$session_number" 
+			fi
 		fi
-	fi
-else # User disabled tmux startup 
-	~/.tel/scripts/startup.sh
-fi
+	else # User disabled tmux startup 
+		~/.tel/scripts/startup.sh
+	fi 
 
-else
-	session_number=$(tmux ls | wc -l)
-	tmux attach -t TEL || tmux new-session -s "TEL$session_number:SSH" 
+else # USER is connected via SSH 
+	if [ "$USE_TMUX" == 'true' ] ; then # user config choice
+		session_number=$(tmux ls | wc -l)
+		tmux attach -t TEL || tmux new-session -s "TEL$session_number" 
+	fi
 fi
 
