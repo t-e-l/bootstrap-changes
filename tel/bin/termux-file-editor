@@ -1,4 +1,4 @@
-#!/usr/bin/env bash
+#!/data/data/com.termux/files/usr/bin/bash
 # file is required by TEL to open files that are shared to TEL app
 source ~/.tel/configs/userprefs.sh
 source tel-helpers
