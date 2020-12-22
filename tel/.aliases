@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# add your own aliases + functions here or at ~/storage/shared/tel/tel_personal.sh
+# add your own aliases + functions here or even better at ~/storage/shared/tel/tel_personal.sh
 
 # Websites
 alias router="tel-open -u http://192.168.1.1" # example router address
@@ -11,7 +11,8 @@ alias lst='ls -R | grep ":$" | sed -e '"'"'s/:$//'"'"' -e '"'"'s/[^-][^\/]*\//--
 alias pg='ping -c 3 8.8.8.8' # quick connection check
 alias x='exit'
 alias :q='exit'
-# Device specific
+
+# HARDWARE
 alias w='tel-wifi'
 alias wifi='tel-wifi'
 alias bright='termux-brightness'
@@ -24,7 +25,8 @@ alias network='~/.tel/status/**/*network.py'
 alias cpu='~/.tel/status/**/*cpu_mem.sh'
 
 
-# root users
+# ROOT - (requires su binary)
+alias sudo='su -c "$@"'
 alias app-uninstall='su -c pm uninstall'
 alias htop='su -c htop'
 alias dmesg='su -c dmesg'
@@ -38,8 +40,8 @@ alias tel-fetch="neofetch --source ~/.tel/data/asciiart.txt"
 
 # APPS
 alias cam="app camera"
-alias cl="app clock"
-alias t="app telegram"
+alias clock="app clock"
+alias tele="app telegram"
 alias vpn="app vpn"
 alias vnc="app vnc"
 alias sig="app signal"
