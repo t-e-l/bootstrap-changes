@@ -1,4 +1,4 @@
-#!/usr/bin/env bash
+#!/data/data/com.termux/files/usr/bin/bash
 # file is ran when url is shared with TEL
 source tel-helpers
 width=$(term_width)
