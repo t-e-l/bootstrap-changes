@@ -83,7 +83,7 @@ autoload -U compinit && compinit # reload completion (for zsh-completions plugin
 # # # END CUSTOMISE ZSH # # #
 
 # # # CUSTOMISE FZF # # #
-export FZF_DEFAULT_COMMAND='fd --type f --hidden --follow --exclude .git' # allow finding of dot files
+#export FZF_DEFAULT_COMMAND='fd --type f --hidden --follow --exclude .git' # allow finding of dot files
 export FZF_BASE=$HOME/../usr/bin/fzf
 export FZF_DEFAULT_OPTS="
 	$FZF_DEFAULT_OPTS
