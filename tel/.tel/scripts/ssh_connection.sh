@@ -1,4 +1,4 @@
-#!/usr/bin/env bash
+#!/data/data/com.termux/files/usr/bin/bash
 # sourced when a user connects via secure shell to TEL
 if [ ! -z "$SSH_CONNECTION" ] ; then # if user is connected via ssh
 	export TERM=xterm-256color # set generic term profile
