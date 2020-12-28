@@ -98,6 +98,3 @@ export FZF_DEFAULT_OPTS="
 ~/.tel/scripts/ssh_connection.sh # Checks to see if user is logged in via ssh (and sets basic behaviour)
 export TERMINFO='~/../usr/share/terminfo/' # here you can put term info files, already supplied is kitty-term
 
-
-# # # USER ADDED STARTUP # # #
-[[ -f ~/storage/shared/tel/tel_startup.sh ]] && . ~/storage/shared/tel/tel_startup.sh

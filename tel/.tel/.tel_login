@@ -8,7 +8,7 @@ if [ -z "$SSH_CONNECTION" ] ; then # user not logged in via ssh
 		if [ -z "$TMUX" ] ; then # tmux not running
 			tmux has-session -t "TEL" > /dev/null 2>&1
 			if [ $? != 0 ]; then # start main TEL session if not already running
-				tmux -f ~/.tel/.tel_tmux.conf new-session -n "$NAME" -s "TEL" '~/.tel/scripts/startup.sh ; $SHELL' 
+				tmux -f ~/.tel/.tel_tmux.conf new-session -n "$NAME" -s "TEL" '~/.tel/scripts/startup.sh ; [[ -f ~/storage/shared/tel/tel_startup.sh ]] && . ~/storage/shared/tel/tel_startup.sh ; $SHELL'
 			else # start unique tmux session for each Termux session
 				session_number=$(tmux ls | wc -l)
 				tmux new-session -s "TEL$session_number" 
@@ -16,6 +16,7 @@ if [ -z "$SSH_CONNECTION" ] ; then # user not logged in via ssh
 		fi
 	else # User disabled tmux startup 
 		~/.tel/scripts/startup.sh
+		[[ -f ~/storage/shared/tel/tel_startup.sh ]] && . ~/storage/shared/tel/tel_startup.sh
 	fi 
 
 else # USER is connected via SSH 
