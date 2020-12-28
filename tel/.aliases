@@ -26,7 +26,6 @@ alias cpu='~/.tel/status/**/*cpu_mem.sh'
 
 
 # ROOT - (requires su binary)
-alias sudo='su -c "$@"'
 alias app-uninstall='su -c pm uninstall'
 alias htop='su -c htop'
 alias dmesg='su -c dmesg'
