@@ -2,8 +2,6 @@ Skip
 wikipedia
 imdb
 YouTube (in App)
-images
-video
 giphy
 reddit
 subreddit
