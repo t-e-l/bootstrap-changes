@@ -69,12 +69,14 @@ fi
 cd ~/../usr/ || exit_error 'fatal error path does not exist: ~/../usr/' 
 rm -rf $TMPDIR/tel-update > /dev/null 2>&1 #incase last run failed with partial download 
 mkdir $TMPDIR/tel-update
-git clone -b $branch --depth=1 https://github.com/t-e-l/bootstrap-changes $TMPDIR/tel-update/bootstrap-changes || exit_error 'Failed to download update'
-git clone --depth=1 https://github.com/t-e-l/bin $TMPDIR/tel-update/bin || exit_error 'Failed to download latest bins' 
-shopt -u dotglob # (include dotfiles in cp -r)
-cp -f $TMPDIR/tel-update/bin/* ~/../usr/bin/ #../usr/bin preferred over .tel/bin (.tel/bin is a local fallback for offline setups)
-#catch $(cp -rf $TMPDIR/tel-update/bootstrap-changes/bin/* ~/../usr/bin)
-catch $(cp -rf $TMPDIR/tel-update/bootstrap-changes/tel/.??* ~/)
+git clone --quiet -b $branch --depth=1 https://github.com/t-e-l/bootstrap-changes $TMPDIR/tel-update/bootstrap-changes || exit_error 'Failed to download update'
+git clone --quiet --depth=1 https://github.com/t-e-l/bin $TMPDIR/tel-update/bin || exit_error 'Failed to download latest bins' 
+shopt -u dotglob # (include dotfiles in cp -r * globbing)
+rm -f $TMPDIR/tel-update/bin/README.md
+catch $(cp -rf $TMPDIR/tel-update/bin/* ~/../usr/bin) # files in ~/../usr/bin are preferred by tel over files in ~/.tel/bin 
+catch $(cp -rf $TMPDIR/tel-update/bootstrap-changes/tel/* ~/)
+catch $(cp -rf $TMPDIR/tel-update/bootstrap-changes/tel/* ~/)
+#catch $(cp -rf $TMPDIR/tel-update/bootstrap-changes/tel/.??* ~/)
 catch $(cp -rf $TMPDIR/tel-update/bootstrap-changes/tel/bin/* ~/bin)
 catch $(cp -rf $TMPDIR/tel-update/bootstrap-changes/etc/* ~/../usr/etc)
 rm -rf $TMPDIR/tel-update > /dev/null 2>&1 # cleanup
@@ -83,4 +85,4 @@ rm -rf ~/../usr/etc/motd > /dev/null 2>&1 #remove from bootstrapchanges repo?
 
 # PERMISSIONS
 [[ "$update_permissions" == "true" ]] && fix_permissions
-log 'Finished installing changes'
+log 'Finished applying updates'

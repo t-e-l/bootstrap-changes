@@ -28,7 +28,7 @@ term_width() {
 check_connection() {
 	reply=$(ping -c 1 -q google.com >&/dev/null; echo $?)
 	if [ $reply != 0 ] ; then 
-		printf "${RED}[TEL]: ${NC}${WHITE}network is down${NC}"
+		printf "${RED}[TEL]: ${NC}${WHITE} Warning: network appears to be down${NC}\n"
 		return 1
 	fi
 }
@@ -73,7 +73,8 @@ fix_permissions(){
 	# bin locations 
 	[[ -d ~/../usr/bin ]] && chmod +x ~/../usr/bin/*
 	[[ -d ~/.tel/bin ]] && chmod +x ~/.tel/bin/*
-	[[ -d ~/bin ]] && chmod +x ~/bin/* # scripts that receive files and urls shared to TEL
+	# chmod fails to access ~/bin :S  
+	#[[ -d ~/bin ]] && chmod +x ~/bin/* # scripts that receive files and urls shared to TEL
 }
 
 remove_data_no_prompt(){
