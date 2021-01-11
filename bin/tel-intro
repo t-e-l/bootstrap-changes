@@ -1,0 +1,9 @@
+
+#!/usr/bin/env bash
+
+if [ "$#" != "0" ]; then
+	echo 'usage: tel-intro'
+	exit
+fi
+am broadcast --user 0 \
+		 -a com.termux.app.intro com.termux > /dev/null
