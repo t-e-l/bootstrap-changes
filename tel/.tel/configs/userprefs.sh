@@ -8,7 +8,7 @@
 # Basic #
 export NAME='User' # main/home window name
 export EDITOR=nano # set your file editor command: [nano,vim,neovim,sublime,emacs..]
-export BROWSER=w3m # set your web browser command: [w3m,links,elinks,lynx,brow.sh,emacs..]
+export BROWSER=links # set your web browser command: [w3m,links,elinks,lynx,brow.sh,emacs..]
 export LOCATION=London # weather command and weather status script - [string]
 export PATH_TO_SD=none # if not using an sdcard must be set to: none, else path must be absolute (no '~' or '$HOME' !) [none / pathtosdcard]
 
