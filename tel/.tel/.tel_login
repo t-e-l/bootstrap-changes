@@ -21,6 +21,7 @@ if [ -z "$SSH_CONNECTION" ] ; then # user not logged in via ssh
 
 else # USER is connected via SSH 
 	if [ "$USE_TMUX" == 'true' ] ; then # user config choice
+		sleep 0.5
 		if [ -z "$TMUX" ] ; then # tmux not running
 			session_number=$(tmux ls | wc -l)
 			tmux attach -t TEL || tmux new-session -s "TEL$session_number" 
