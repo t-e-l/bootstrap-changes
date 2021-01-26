@@ -32,6 +32,7 @@ alias dmesg='su -c dmesg'
 
 # DEMO
 alias weather="curl v2.wttr.in/$LOCATION"
+alias map="telnet mapscii.me"
 alias tron="ssh sshtron.zachlatta.com"
 alias starwars="telnet towel.blinkenlights.nl"
 alias matrix="cmatrix"
