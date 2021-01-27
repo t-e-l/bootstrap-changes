@@ -1,9 +1,22 @@
 # # # TEL login file # # # 
 # liable to be overwritten with updates
+#
+#
+# Check if session is remote or local
+if [ -n "$SSH_CLIENT" ] || [ -n "$SSH_TTY" ]; then
+  SESSION_TYPE=remote/ssh
+# many other tests omitted
+else
+  case $(ps -o comm= -p $PPID) in
+    sshd|*/sshd) SESSION_TYPE=remote/ssh;;
+  esac
+fi
+
+
 if [ "$USE_WAL" == 'true' ] ; then
 	[[ -f ~/.cache/wal/sequences ]] && (wal -R -q -e && cat ~/.cache/wal/sequences)
 fi
-if [ -z "$SSH_CONNECTION" ] ; then # user not logged in via ssh
+if [ -z "$SESSION_TYPE" ] ; then # user not logged in via ssh
 	if [ "$USE_TMUX" == 'true' ] ; then # user config choice
 		if [ -z "$TMUX" ] ; then # tmux not running
 			sleep 0.1 # required for resuming from restricted battery 
