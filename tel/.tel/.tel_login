@@ -19,7 +19,6 @@ fi
 if [ -z "$SESSION_TYPE" ] ; then # user not logged in via ssh
 	if [ "$USE_TMUX" == 'true' ] ; then # user config choice
 		if [ -z "$TMUX" ] ; then # tmux not running
-			sleep 0.1 # required for resuming from restricted battery 
 			tmux has-session -t "TEL" > /dev/null 2>&1
 			if [ $? != 0 ]; then # start main TEL session if not already running
 				tmux -f ~/.tel/.tel_tmux.conf new-session -n "$NAME" -s "TEL" '~/.tel/scripts/startup.sh ; [[ -f ~/storage/shared/tel/tel_startup.sh ]] && . ~/storage/shared/tel/tel_startup.sh ; $SHELL'
@@ -36,7 +35,6 @@ if [ -z "$SESSION_TYPE" ] ; then # user not logged in via ssh
 else # USER is connected via SSH 
 	~/.tel/scripts/ssh_connection.sh #  sets basic behaviour
 	if [ "$USE_TMUX" == 'true' ] ; then # user config choice
-		sleep 0.1
 		if [ -z "$TMUX" ] ; then # tmux not running
 			session_number=$(tmux ls | wc -l)
 			tmux attach || tmux new-session -s "TEL$session_number" 
