@@ -16,7 +16,6 @@ else
 fi
 
 if [ $SSH_SERVER == "true" ] ; then
-	warn "launching ssh server  "
 	sshd
 	warn "launched ssh server ${CHECK_MARK}"
 	sleep 2.2
@@ -29,21 +28,21 @@ if [ "$NOTIFICATIONS_ENABLED" == "true" ] ; then
 fi
 
 if [ "$STARTUP_ANIMATION_ENABLED" == "true" ] ; then
-	log 'launching animation'
+	log_no_newline 'launching animation'
 	if [ $USE_TMUX == "true" ] ; then
 		tmux new-window -n 'ctrl+c = skip' 'python ~/.tel/scripts/animation.py' 
 	else
 		python ~/.tel/scripts/animation.py
 	fi
-	log "launched python animation ${CHECK_MARK}"
+	log_replace_last "launched python animation ${CHECK_MARK}"
 fi
 
 if [ "$STATUS_WINDOW_ENABLED" == "true" ] ; then
 	running=$(pgrep -f status_manager.py)
 	if [ -z "$running" ] ; then
-		log 'launching status manager'
+		log_no_newline 'launching status manager'
 		nohup ~/.tel/scripts/status_manager/toggle_ui.sh > /dev/null 2>&1 &
-		log "launched status manager ${CHECK_MARK}"
+		log_replace_last "launched status manager ${CHECK_MARK}"
 	fi
 fi
 
