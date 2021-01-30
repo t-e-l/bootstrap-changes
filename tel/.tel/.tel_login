@@ -1,6 +1,5 @@
-# # # TEL login file # # # 
-# liable to be overwritten with updates
-#
+# # # TEL login file - called with each terminal spawned # # # 
+### liable to be overwritten with updates ###
 #
 # Check if session is remote or local
 if [ -n "$SSH_CLIENT" ] || [ -n "$SSH_TTY" ]; then
@@ -13,7 +12,7 @@ else
 fi
 
 
-if [ "$USE_WAL" == 'true' ] ; then
+if [ "$THEME_COLS" == 'true' ] ; then
 	[[ -f ~/.cache/wal/sequences ]] && (wal -R -q -e && cat ~/.cache/wal/sequences)
 fi
 if [ -z "$SESSION_TYPE" ] ; then # user not logged in via ssh
