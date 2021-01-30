@@ -36,7 +36,6 @@ alias map="telnet mapscii.me"
 alias tron="ssh sshtron.zachlatta.com"
 alias starwars="telnet towel.blinkenlights.nl"
 alias matrix="cmatrix"
-alias tel-fetch="neofetch --source ~/.tel/data/asciiart.txt"
 
 # APPS
 alias cam="app camera"
