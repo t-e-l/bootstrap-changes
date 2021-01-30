@@ -5,7 +5,6 @@
 source tel-helpers
 log "Loading Things"
 #echo -n "\e[4mLoading Things\e[0m" $'\r'
-sleep 0.1 # sleeps so line updates are actually visible to user
 #source ~/.tel/scripts/readconfigs.sh && echo -ne "all configs sourced ${CHECK_MARK}                " $'\r'
 
 # Handle motd hints system if user changes config option
@@ -18,16 +17,15 @@ fi
 
 if [ $SSH_SERVER == "true" ] ; then
 	warn "launching ssh server  "
-	sleep 0.2
 	sshd
 	warn "launched ssh server ${CHECK_MARK}"
 	sleep 2.2
 fi
 
 if [ "$NOTIFICATIONS_ENABLED" == "true" ] ; then
-	log "launching notification daemon"
+	log_no_newline "\nlaunching notification daemon"
 	nohup ~/.tel/scripts/get_notifications.py > /dev/null 2>&1 &
-	log "launched notification daemon ${CHECK_MARK}"
+	log_replace_last "launched notification daemon ${CHECK_MARK}"
 fi
 
 if [ "$STARTUP_ANIMATION_ENABLED" == "true" ] ; then
@@ -50,5 +48,4 @@ if [ "$STATUS_WINDOW_ENABLED" == "true" ] ; then
 fi
 
 log "Ready!      ${CHECK_MARK}"
-sleep 0.1
 exit 0
