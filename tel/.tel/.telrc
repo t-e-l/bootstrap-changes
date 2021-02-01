@@ -24,10 +24,10 @@ else
 	. ~/.p10k.zsh
 fi
 # Attempt to keep prompt to stay at bottom of screen
-printf '\n%.0s' {1..$(tput lines)}
-alias clear="(clear && printf '\n%.0s' {1..$(tput lines)})"
-alias reset="(reset && printf '\n%.0s' {1..$(tput lines)})"
-alias tput reset="(tput reset && printf '\n%.0s' {1..$(tput lines)})"
+printf '\n%.0s' {1..100}
+alias clear="(clear && printf '\n%.0s' {1..100})"
+alias reset="(reset && printf '\n%.0s' {1..100})"
+alias tput reset="(tput reset && printf '\n%.0s' {1..100})"
 
 # Below is appended to partial lines in zsh, default is %, empty is more pretty
 PROMPT_EOL_MARK='' 
