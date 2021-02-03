@@ -16,11 +16,12 @@ export PATH_TO_SD=none # if not using an sdcard must be set to: none, else path 
 export STARTUP_ANIMATION_ENABLED=false  # show the animation on startup? ctrl + c skips [true/false]
 export MOTD_HINTS=false # swap motd for a version that supplies a tel usage hint each startup, false restores old user motd [true/false]
 export SSH_SERVER=false # this needs to be configured before being set to true, search for termux openssh. If you don't know what this is, leave as 'false'! It has BIG security implications and is only recommended for advanced users. [true/false]
-export USE_TMUX=true # TEL starts up with tmux env (allow key shortcuts and split windows etc) [true/false]
-export THEME_COLS=true # Terminal colors are supplied by tel-theme [true/false]
+export USE_TMUX=true # TEL starts up with tmux env (recommeneded to keep as true) [true/false]
+export THEME_COLS=true # Terminal colors are supplied from tel-theme [true/false]
 
-# Powersaver # - see status.sh for further tweaks to save battery
+# Powersaving #
+# see status.sh and notifications.sh for further options
+export WEATHER_CHECK=60 # weather status script, check the weather forcast [minutes]
 export POWER_SAVER_ACTIVE=false #prevents various processes using battery whilst tel is inactive [true/false]
 export POWER_SAVER_TIMEOUT=57 #seconds of inactivity required to start power saver, ideally set to your screen timeout minus 3 seconds [seconds]
 export POWER_SAVER_DISPLAY_COMMAND='' #examples: "uptime, neofetch --stdout"
-export WEATHER_CHECK=60 # weather status script, check the weather forcast [minutes]
