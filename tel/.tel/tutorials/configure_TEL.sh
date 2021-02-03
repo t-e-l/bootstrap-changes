@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-clear ; cowsay "Okay, App Launch tutorial!"
+clear ; cowsay "Okay, Config tutorial!"
 read user_response
 clear ; cowsay "I will type and interact with the terminal the same way you can"
 read user_response
@@ -8,25 +8,22 @@ read user_response
 clear ; cowsay "First I will split the window, so I can continue to explain.."
 read user_response
 tmux split-pane -dv 
-clear ; cowsay "Now I will type the app command..."
+clear ; cowsay "Now I type the command..."
 read user_response
-tel-typewriter -i tel-app -t Tutorial.bottom
-clear ; cowsay "Now I will hit enter to run the app launcher interatively"
+tel-typewriter -i tel-edit -t Tutorial.bottom
+clear ; cowsay "I will hit enter to run tel-edit interatively"
 read user_response
 tel-typewriter -k Enter -t Tutorial.bottom
-clear ; cowsay "Then I start typing an app name, it's closest result is highlighted"
+clear ; cowsay "We are looking for configs, so i will type that in now"
 read user_response
-tel-typewriter -i settin -t Tutorial.bottom
-clear ; cowsay "As soon as the app you're looking for has been highlighted.."
+tel-typewriter -i 'tel configs' -t Tutorial.bottom
+clear ; cowsay "As soon as the file you're looking for has been highlighted.."
 read user_response
-clear ; cowsay "You can hit enter again to launch! or cancel with Ctrl+c"
+clear ; cowsay "You can hit enter again to launch the editor! or cancel with Ctrl+c"
 read user_response
 clear ; cowsay "I will cancel with Ctrl+c for now"
 read user_response
 tel-typewriter -k C-c -t Tutorial.bottom
-clear ; cowsay "you can also start tel-app with the shortcut: Alt+a"
-read user_response
-clear ; cowsay "i'll do that now"
 read user_response
 tel-typewriter -k M-a -t Tutorial.bottom
 clear ; cowsay "Thus concludes our tutorial!"

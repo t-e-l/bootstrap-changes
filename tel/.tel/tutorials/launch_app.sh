@@ -19,12 +19,12 @@ read user_response
 tel-typewriter -i settin -t Tutorial.bottom
 clear ; cowsay "As soon as the app you're looking for has been highlighted.."
 read user_response
-clear ; cowsay "You can hit enter again to launch! or cancel with Ctrl+c"
+clear ; cowsay "You can hit enter again to launch! or cancel with Ctrl+c or ESC"
 read user_response
 clear ; cowsay "I will cancel with Ctrl+c for now"
 read user_response
 tel-typewriter -k C-c -t Tutorial.bottom
-clear ; cowsay "you can also start tel-app with the shortcut: Alt+a"
+clear ; cowsay "you can also start tel-app with the shortcut: TEL+a"
 read user_response
 clear ; cowsay "or you can type the app name after tel-app. for example: 'tel-app settings'"
 read user_response
