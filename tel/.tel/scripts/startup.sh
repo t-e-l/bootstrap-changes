@@ -3,10 +3,8 @@
 # these commands are ran only once when a session starts
 # this file will be replaced with each update so modifications are not recommended here
 source tel-helpers
-log_no_newline "Loading Things"
-log_replace_last "..."
+log_no_newline "starting up..."
 sleep 0.1
-	sleep 1
 
 # Handle motd hints system if user changes config option
 #if  [ $MOTD_HINTS == "true" ] ; then # backup user motd and restore if hints disabled
@@ -28,7 +26,6 @@ if [ "$NOTIFICATIONS_ENABLED" == "true" ] ; then
 	nohup ~/.tel/scripts/get_notifications.py > /dev/null 2>&1 &
 	log_replace_last "launched notification daemon ${CHECK_MARK}"
 	sleep 0.1
-	sleep 1
 fi
 
 if [ "$STARTUP_ANIMATION_ENABLED" == "true" ] ; then
@@ -40,7 +37,6 @@ if [ "$STARTUP_ANIMATION_ENABLED" == "true" ] ; then
 	#fi
 	log_replace_last "launched python animation ${CHECK_MARK}"
 	sleep 0.1
-	sleep 1
 fi
 
 if [ "$STATUS_WINDOW_ENABLED" == "true" ] ; then
@@ -50,10 +46,9 @@ if [ "$STATUS_WINDOW_ENABLED" == "true" ] ; then
 		nohup ~/.tel/scripts/status_manager/toggle_ui.sh > /dev/null 2>&1 &
 		log_replace_last "launched status manager ${CHECK_MARK}"
 	sleep 0.1
-	sleep 1
 	fi
 fi
 
 log_replace_last "Ready! ${CHECK_MARK}"
-sleep 0.5
+sleep 0.2
 exit 0
