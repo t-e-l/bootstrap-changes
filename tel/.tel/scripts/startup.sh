@@ -35,7 +35,7 @@ fi
 if [ "$STARTUP_ANIMATION_ENABLED" == "true" ] ; then
 	log_replace_last 'launching animation'
 	if [ $USE_TMUX == "true" ] ; then
-		tmux new-window -n 'C-c=skip' 'python ~/.tel/scripts/animation.py' &
+		tmux new-window -n 'C-c=skip' 'python ~/.tel/scripts/animation.py' 
 		wait
 	else
 		python ~/.tel/scripts/animation.py &
@@ -44,7 +44,14 @@ if [ "$STARTUP_ANIMATION_ENABLED" == "true" ] ; then
 	log_replace_last "launched python animation ${CHECK_MARK}"
 	echo
 	sleep 0.1
+	#wait for finish of animation
+	while [ "$(ps aux | grep python)" -eq 1 ]
+	do
+		sleep 1
+	done
 fi
+
+
 
 if [ "$STATUS_WINDOW_ENABLED" == "true" ] ; then
 	running=$(pgrep -f status_manager.py)
