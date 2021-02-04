@@ -36,7 +36,7 @@ if [ "$STARTUP_ANIMATION_ENABLED" == "true" ] ; then
 	#if [ $USE_TMUX == "true" ] ; then
 	#	tmux new-window -n 'ctrl+c = skip' 'python ~/.tel/scripts/animation.py' 
 	#else
-	python ~/.tel/scripts/animation.py
+	(bash -c 'python ~/.tel/scripts/animation.py') # subshells for safe ctrl +c exit
 	#fi
 	log_replace_last "launched python animation ${CHECK_MARK}"
 	echo
