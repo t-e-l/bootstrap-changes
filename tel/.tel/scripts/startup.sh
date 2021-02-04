@@ -45,7 +45,7 @@ if [ "$STARTUP_ANIMATION_ENABLED" == "true" ] ; then
 	echo
 	sleep 0.1
 	#wait for finish of animation
-	while [ "$(ps aux | grep python)" -eq 1 ]
+	while [ -z "$(pgrep -f animation.py)" ]
 	do
 		sleep 1
 	done
