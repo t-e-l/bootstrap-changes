@@ -3,26 +3,26 @@
 # these commands are ran only once when a session starts
 # this file will be replaced with each update so modifications are not recommended here
 source tel-helpers
-log "Loading Things"
-#echo -n "\e[4mLoading Things\e[0m" $'\r'
-#source ~/.tel/scripts/readconfigs.sh && echo -ne "all configs sourced ${CHECK_MARK}                " $'\r'
+log_no_newline "Loading Things"
+log_replace_last "..."
 
 # Handle motd hints system if user changes config option
-if  [ $MOTD_HINTS == "true" ] ; then # backup user motd and restore if hints disabled
-	[[ ! -f ~/../usr/etc/.motd.bak ]] && cp -f ~/../usr/etc/motd ~/../usr/etc/.motd.bak && log "Backed up and enabled motd hints at startup ${CHECK_MARK}" && sleep 1
-	cp -f ~/../usr/etc/motd_hints ~/../usr/etc/motd && ~/.tel/scripts/hints.sh
-else
-	[[ -f ~/../usr/etc/.motd.bak ]] && mv -f ~/../usr/etc/.motd.bak ~/../usr/etc/motd && log "Restored user motd ${CHECK_MARK}" && sleep 1
-fi
+#if  [ $MOTD_HINTS == "true" ] ; then # backup user motd and restore if hints disabled
+#	[[ ! -f ~/../usr/etc/.motd.bak ]] && cp -f ~/../usr/etc/motd ~/../usr/etc/.motd.bak && log "Backed up and enabled motd hints at startup ${CHECK_MARK}" && sleep 1
+#	cp -f ~/../usr/etc/motd_hints ~/../usr/etc/motd && ~/.tel/scripts/hints.sh
+#else
+#	[[ -f ~/../usr/etc/.motd.bak ]] && mv -f ~/../usr/etc/.motd.bak ~/../usr/etc/motd && log "Restored user motd ${CHECK_MARK}" && sleep 1
+#fi
 
 if [ $SSH_SERVER == "true" ] ; then
+	log_no_newline "launching ssh server"
 	sshd
-	warn "launched ssh server ${CHECK_MARK}"
-	sleep 2.2
+	log_replace_last "launched ssh server ${CHECK_MARK}"
+	sleep 1
 fi
 
 if [ "$NOTIFICATIONS_ENABLED" == "true" ] ; then
-	log_no_newline "\nlaunching notification daemon"
+	log_no_newline "launching notification daemon"
 	nohup ~/.tel/scripts/get_notifications.py > /dev/null 2>&1 &
 	log_replace_last "launched notification daemon ${CHECK_MARK}"
 fi
