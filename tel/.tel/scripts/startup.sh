@@ -17,14 +17,14 @@ sleep 0.1
 #fi
 
 if [ $SSH_SERVER == "true" ] ; then
-	log_no_newline "launching ssh server"
+	log_replace_last "launching ssh server"
 	sshd
 	log_replace_last "launched ssh server ${CHECK_MARK}"
 	sleep 1
 fi
 
 if [ "$NOTIFICATIONS_ENABLED" == "true" ] ; then
-	log_no_newline "launching notification daemon"
+	log_replace_last "launching notification daemon"
 	nohup ~/.tel/scripts/get_notifications.py > /dev/null 2>&1 &
 	log_replace_last "launched notification daemon ${CHECK_MARK}"
 	sleep 0.1
@@ -32,7 +32,7 @@ if [ "$NOTIFICATIONS_ENABLED" == "true" ] ; then
 fi
 
 if [ "$STARTUP_ANIMATION_ENABLED" == "true" ] ; then
-	log_no_newline 'launching animation'
+	log_replace_last 'launching animation'
 	#if [ $USE_TMUX == "true" ] ; then
 	#	tmux new-window -n 'ctrl+c = skip' 'python ~/.tel/scripts/animation.py' 
 	#else
@@ -46,7 +46,7 @@ fi
 if [ "$STATUS_WINDOW_ENABLED" == "true" ] ; then
 	running=$(pgrep -f status_manager.py)
 	if [ -z "$running" ] ; then
-		log_no_newline 'launching status manager'
+		log_replace_last 'launching status manager'
 		nohup ~/.tel/scripts/status_manager/toggle_ui.sh > /dev/null 2>&1 &
 		log_replace_last "launched status manager ${CHECK_MARK}"
 	sleep 0.1
@@ -54,7 +54,6 @@ if [ "$STATUS_WINDOW_ENABLED" == "true" ] ; then
 	fi
 fi
 
-log "Ready!      ${CHECK_MARK}"
-	sleep 0.1
-	sleep 1
+log_replace_last "Ready! ${CHECK_MARK}"
+sleep 0.5
 exit 0
