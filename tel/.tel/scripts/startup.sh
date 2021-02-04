@@ -35,7 +35,8 @@ fi
 if [ "$STARTUP_ANIMATION_ENABLED" == "true" ] ; then
 	log_replace_last 'launching animation'
 	if [ $USE_TMUX == "true" ] ; then
-		tmux new-window -n 'C-c=skip' 'python ~/.tel/scripts/animation.py' 
+		tmux new-window -n 'C-c=skip' 'python ~/.tel/scripts/animation.py' &
+		wait
 	else
 		python ~/.tel/scripts/animation.py &
 		wait
