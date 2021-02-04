@@ -44,10 +44,9 @@ if [ "$STARTUP_ANIMATION_ENABLED" == "true" ] ; then
 	log_replace_last "launched python animation ${CHECK_MARK}"
 	echo
 	sleep 0.1
-	#wait for finish of animation
-	while [ -z "$(pgrep -f animation.py)" ]
-	do
+	while :; do #wait for finish of animation
 		sleep 1
+	[[ -z "$(pgrep -f animation.py)" ]] && break
 	done
 fi
 
