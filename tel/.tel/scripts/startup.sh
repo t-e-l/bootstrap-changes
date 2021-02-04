@@ -2,7 +2,7 @@
 # TEL Startup file
 # these commands are ran only once when a session starts
 # this file will be replaced with each update so modifications are not recommended here
-trap '' INT # prevent ctrl + c exits
+#trap '' INT # prevent ctrl + c exits
 source tel-helpers
 log_no_newline "starting up..."
 echo
@@ -34,12 +34,12 @@ fi
 
 if [ "$STARTUP_ANIMATION_ENABLED" == "true" ] ; then
 	log_replace_last 'launching animation'
-	#if [ $USE_TMUX == "true" ] ; then
-	#	tmux new-window -n 'C-c=skip' 'python ~/.tel/scripts/animation.py' 
-	#else
+	if [ $USE_TMUX == "true" ] ; then
+		tmux new-window -n 'C-c=skip' 'python ~/.tel/scripts/animation.py' 
+	else
 		python ~/.tel/scripts/animation.py &
 		wait
-	#fi
+	fi
 	log_replace_last "launched python animation ${CHECK_MARK}"
 	echo
 	sleep 0.1
@@ -51,8 +51,8 @@ if [ "$STATUS_WINDOW_ENABLED" == "true" ] ; then
 		log_replace_last 'launching status manager'
 		nohup ~/.tel/scripts/status_manager/toggle_ui.sh > /dev/null 2>&1 &
 		log_replace_last "launched status manager ${CHECK_MARK}"
-	echo
-	sleep 0.1
+		echo
+		sleep 0.1
 	fi
 fi
 
