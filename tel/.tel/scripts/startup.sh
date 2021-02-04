@@ -2,6 +2,7 @@
 # TEL Startup file
 # these commands are ran only once when a session starts
 # this file will be replaced with each update so modifications are not recommended here
+trap '' INT # prevent ctrl + c exits
 source tel-helpers
 log_no_newline "starting up..."
 echo
