@@ -4,6 +4,7 @@
 # this file will be replaced with each update so modifications are not recommended here
 source tel-helpers
 log_no_newline "starting up..."
+echo
 sleep 0.1
 
 # Handle motd hints system if user changes config option
@@ -18,6 +19,7 @@ if [ $SSH_SERVER == "true" ] ; then
 	log_replace_last "launching ssh server"
 	sshd
 	log_replace_last "launched ssh server ${CHECK_MARK}"
+	echo
 	sleep 1
 fi
 
@@ -25,6 +27,7 @@ if [ "$NOTIFICATIONS_ENABLED" == "true" ] ; then
 	log_replace_last "launching notification daemon"
 	nohup ~/.tel/scripts/get_notifications.py > /dev/null 2>&1 &
 	log_replace_last "launched notification daemon ${CHECK_MARK}"
+	echo
 	sleep 0.1
 fi
 
@@ -36,6 +39,7 @@ if [ "$STARTUP_ANIMATION_ENABLED" == "true" ] ; then
 	python ~/.tel/scripts/animation.py
 	#fi
 	log_replace_last "launched python animation ${CHECK_MARK}"
+	echo
 	sleep 0.1
 fi
 
@@ -45,6 +49,7 @@ if [ "$STATUS_WINDOW_ENABLED" == "true" ] ; then
 		log_replace_last 'launching status manager'
 		nohup ~/.tel/scripts/status_manager/toggle_ui.sh > /dev/null 2>&1 &
 		log_replace_last "launched status manager ${CHECK_MARK}"
+	echo
 	sleep 0.1
 	fi
 fi
