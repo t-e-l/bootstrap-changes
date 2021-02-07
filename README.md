@@ -1,3 +1,4 @@
+![TEL-logo](https://raw.githubusercontent.com/SealedJoy/images/main/logo-big.png)
 # bootstrap-changes
 Anything Related to TEL's shell is kept here.
 
