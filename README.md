@@ -1,6 +1,7 @@
-![TEL-logo](https://raw.githubusercontent.com/SealedJoy/images/main/logo-big.png)
 # bootstrap-changes
 Anything Related to TEL's shell is kept here.
+![TEL-logo](https://raw.githubusercontent.com/SealedJoy/images/main/logo-big.png)
+
 
 This repo provides the internal structure for TEL's various shell / environmental related files. It is collected when a new apk build is triggered, and pulled by the tel-update utility.
 
