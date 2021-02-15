@@ -29,6 +29,9 @@ echo -e "statusbar-color=$backgroundalpha" >> ~/.tel/configs/theme.conf # add co
 echo -e "bar-color=$backgroundalpha" >> ~/.tel/configs/theme.conf # add color to value and back into file
 
 
+# TEL keyboard
+am broadcast --user 0 --es theme 4 --es color "$background" -a com.tel.keyboard.inputmethod.THEME com.tel.keyboard.inputmethod
+
 # termux colors
 termux_color_file=~/.termux/colors.properties
 temp_color_file=~/.termux/colors.temp
