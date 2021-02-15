@@ -5,27 +5,28 @@
 source ~/.cache/wal/colors.sh # source theme cols
 
 # tel keyboard colors
-sed -i '/keyboard-color/d' ~/.tel/configs/theme.conf #remove existing line from config
-sed -i '/keyboard-text-color/d' ~/.tel/configs/theme.conf #remove existing line from config
-sed -i '/keyboard-selected-color/d' ~/.tel/configs/theme.conf #remove existing line from config
-echo -e "\keyboard-color=$background" >> ~/.tel/configs/theme.conf # add color to value and back into file
-echo -e "\keyboard-text-color=$foreground" >> ~/.tel/configs/theme.conf # add color to value and back into file
-echo -e "\keyboard-selected-color=$cursor" >> ~/.tel/configs/theme.conf # add color to value and back into file
+#sed -i '/keyboard-color/d' ~/.tel/configs/theme.conf #remove existing line from config
+#sed -i '/keyboard-text-color/d' ~/.tel/configs/theme.conf #remove existing line from config
+#sed -i '/keyboard-selected-color/d' ~/.tel/configs/theme.conf #remove existing line from config
+#echo -e "keyboard-color=$background" >> ~/.tel/configs/theme.conf # add color to value and back into file
+#echo -e "keyboard-text-color=$foreground" >> ~/.tel/configs/theme.conf # add color to value and back into file
+#echo -e "keyboard-selected-color=$cursor" >> ~/.tel/configs/theme.conf # add color to value and back into file
 
 
 # tel status modules colors
 sed -i '/status-text-color/d' ~/.tel/configs/theme.conf #remove existing line from config
-echo -e "\nstatus-text-color=$foreground" >> ~/.tel/configs/theme.conf # add color to value and back into file
+echo -e "status-text-color=$foreground" >> ~/.tel/configs/theme.conf # add color to value and back into file
 
 # tel bg color - requires alpha channel for transparency
 sed -i '/background-color/d' ~/.tel/configs/theme.conf #remove existing line from config
 backgroundalpha="#99${background:1:6}"
-echo -e "\nbackground-color=$backgroundalpha" >> ~/.tel/configs/theme.conf # add color to value and back into file
+echo -e "background-color=$backgroundalpha" >> ~/.tel/configs/theme.conf # add color to value and back into file
 
-# tel statusbar bg color - requires alpha channel for transparency
-sed -i '/statusbar-color/d' ~/.tel/configs/theme.conf #remove existing line from config
+# tel statusbar + termux bar bg color - requires alpha channel for transparency
+sed -i '/bar-color/d' ~/.tel/configs/theme.conf #remove BOTH existing lines from config
 backgroundalpha="#99${background:1:6}"
-echo -e "\nstatusbar-color=$backgroundalpha" >> ~/.tel/configs/theme.conf # add color to value and back into file
+echo -e "statusbar-color=$backgroundalpha" >> ~/.tel/configs/theme.conf # add color to value and back into file
+echo -e "bar-color=$backgroundalpha" >> ~/.tel/configs/theme.conf # add color to value and back into file
 
 
 # termux colors
