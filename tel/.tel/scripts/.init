@@ -1,3 +1,4 @@
+#!/usr/bin/env bash
 # # # TEL profile file - called with each terminal spawned # # # 
 ### liable to be overwritten with updates ###
 # sourced before .zlogin and .zshrc and after .zshenv
