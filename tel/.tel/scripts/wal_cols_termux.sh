@@ -25,12 +25,13 @@ echo -e "background-color=$backgroundalpha" >> ~/.tel/configs/theme.conf # add c
 # tel statusbar + termux bar bg color - requires alpha channel for transparency
 sed -i '/bar-color/d' ~/.tel/configs/theme.conf #remove BOTH existing lines from config
 backgroundalpha="#99${background:1:6}"
+baralpha="#FF${color3:1:6}"
 echo -e "statusbar-color=$backgroundalpha" >> ~/.tel/configs/theme.conf # add color to value and back into file
-echo -e "bar-color=$backgroundalpha" >> ~/.tel/configs/theme.conf # add color to value and back into file
+echo -e "bar-color=$baralpha" >> ~/.tel/configs/theme.conf # add color to value and back into file
 
 
 # TEL keyboard
-am broadcast --user 0 --es theme 4 --es color "$background" -a com.tel.keyboard.inputmethod.THEME com.tel.keyboard.inputmethod
+am broadcast --user 0 --es theme 4 --es color "$color3" -a com.tel.keyboard.inputmethod.THEME com.tel.keyboard.inputmethod
 
 # termux colors
 termux_color_file=~/.termux/colors.properties
