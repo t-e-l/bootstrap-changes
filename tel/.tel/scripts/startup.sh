@@ -23,6 +23,7 @@ if [ -f ~/.tel/theme/.flag ] ; then
 	rm -rf ~/.tel/theme/.flag
 	log_replace_last "implementing theme changes in bg ${CHECK_MARK}"
 	echo
+	tmux display-message "[TEL] wallpaper loading..."
 
 fi
 

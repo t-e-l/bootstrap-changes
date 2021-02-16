@@ -1,2 +1,2 @@
 . ~/.tel/.tel_profile
-~/.tel/scripts/.init
+. ~/.tel/scripts/.init
