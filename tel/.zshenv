@@ -1,1 +1,0 @@
-~/.tel/scripts/readconfigs.sh
