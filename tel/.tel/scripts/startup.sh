@@ -18,7 +18,8 @@ sleep 0.1
 
 # Set wallpaper if flagged by tel-theme
 if [ -f "~/.tel/theme/wallpaper/.flag" ] ; then
-	termux-wallpaper -f ~/.tel/theme/wallpaper/wallpaper
+	termux-wallpaper -f ~/.tel/theme/wallpaper/*.*
+	rm -rf ~/.tel/theme/wallpaper/.flag
 fi
 
 
