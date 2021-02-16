@@ -1,1 +1,1 @@
-source ~/.tel/scripts/readconfigs.sh
+~/.tel/scripts/readconfigs.sh
