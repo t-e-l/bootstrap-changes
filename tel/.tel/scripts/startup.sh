@@ -16,6 +16,12 @@ sleep 0.1
 #	[[ -f ~/../usr/etc/.motd.bak ]] && mv -f ~/../usr/etc/.motd.bak ~/../usr/etc/motd && log "Restored user motd ${CHECK_MARK}" && sleep 1
 #fi
 
+# Set wallpaper if flagged by tel-theme
+if [ -f "~/.tel/theme/wallpaper/.flag" ] ; then
+	termux-wallpaper -f ~/.tel/theme/wallpaper/wallpaper
+fi
+
+
 if [ $SSH_SERVER == "true" ] ; then
 	log_replace_last "launching ssh server"
 	sshd
