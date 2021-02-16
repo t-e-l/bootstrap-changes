@@ -16,7 +16,8 @@ if [ ! -f ~/.p10k.zsh ] ; then #fallback to python prompt if file not exist
 	POWERLINE_BASH_CONTINUATION=1
 	POWERLINE_BASH_SELECT=1
 	powerline-daemon -q
-	. $PY_SITE_PKGS/powerline/bindings/zsh/powerline.zsh
+	#. $PY_SITE_PKGS/powerline/bindings/zsh/powerline.zsh
+	. ~/.local/lib/python3.*/site-packages/powerline/bindings/zsh/powerline.zsh
 else
 	# Use p10k?
 	POWERLEVEL9K_DISABLE_CONFIGURATION_WIZARD=true
@@ -54,7 +55,7 @@ PROMPT_EOL_MARK=''
 # # # SETUP PATHS # # # 
 export PATH=$PATH:/data/data/com.termux/files/usr/bin/applets:~/.tel/bin:/data/data/com.termux/files/home/.local/bin:/data/data/com.termux/files/usr/bin:/data/data/com.termux/files/usr/bin
 
-export PY_SITE_PKGS="$(python -m site --user-site)" #only works in python 3.9+ otherwise this may need to be set manually
+#export PY_SITE_PKGS="$(python -m site --user-site)" #only works in python 3.9+ otherwise this may need to be set manually
 
 
 
@@ -85,11 +86,16 @@ autoload -U compinit && compinit # reload completion (for zsh-completions plugin
 # # # CUSTOMISE FZF # # #
 #export FZF_DEFAULT_COMMAND='fd --type f --hidden --follow --exclude .git' # allow finding of dot files
 export FZF_BASE=$HOME/../usr/bin/fzf
-export FZF_DEFAULT_OPTS="
+
+if [ -f ~/.cache/wal/colors.sh ] && [ $THEME_COLS == 'true' ] ; then
+	source ~/.cache/wal/colors.sh
+else
+	export FZF_DEFAULT_OPTS="
 	$FZF_DEFAULT_OPTS
 	--color fg:7,bg:0,hl:1,fg+:232,bg+:1,hl+:255
 	--color info:7,prompt:2,spinner:1,pointer:232,marker:1
 "
+fi
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh # load fzf bindings
 # # # END CUSTOMISE FZF # # # 
 
