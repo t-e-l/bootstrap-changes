@@ -3,7 +3,6 @@
 ### liable to be overwritten with updates ###
 # sourced before .zlogin and .zshrc and after .zshenv
 # Check if session is remote or local
-~/.tel/scripts/readconfigs.sh
 if [ -n "$SSH_CLIENT" ] || [ -n "$SSH_TTY" ]; then
   SESSION_TYPE=remote/ssh
 else
