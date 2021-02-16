@@ -31,7 +31,7 @@ echo -e "bar-color=$baralpha" >> ~/.tel/configs/theme.conf # add color to value 
 
 
 # TEL keyboard
-am broadcast --user 0 --es theme 4 --es color "$color3" -a com.tel.keyboard.inputmethod.THEME com.tel.keyboard.inputmethod
+am broadcast --user 0 --es theme 4 --es color "$color3" -a com.tel.keyboard.inputmethod.THEME com.tel.keyboard.inputmethod > /dev/null 2>&1
 
 # termux colors
 termux_color_file=~/.termux/colors.properties
