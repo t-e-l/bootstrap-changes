@@ -27,7 +27,7 @@ if [ -f ~/.tel/theme/.flag ] ; then
 fi
 
 
-if [ $SSH_SERVER == "true" ] ; then
+if [ "$SSH_SERVER" == "true" ] ; then
 	log_replace_last "launching ssh server"
 	sshd
 	log_replace_last "launched ssh server ${CHECK_MARK}"
