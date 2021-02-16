@@ -19,9 +19,9 @@ sleep 0.1
 # Set wallpaper if flagged by tel-theme
 if [ -f ~/.tel/theme/.flag ] ; then
 	log_replace_last 'implementing theme changes'
-	termux-wallpaper -f ~/.tel/theme/wallpaper/*.* > /dev/null 2>&1
+	(termux-wallpaper -f ~/.tel/theme/wallpaper/*.* > /dev/null 2>&1) > /dev/null &
 	rm -rf ~/.tel/theme/.flag
-	log_replace_last "implemented theme changes ${CHECK_MARK}"
+	log_replace_last "implementing theme changes in bg ${CHECK_MARK}"
 	echo
 
 fi
