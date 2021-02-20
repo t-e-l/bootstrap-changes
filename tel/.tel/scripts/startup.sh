@@ -6,7 +6,6 @@
 source tel-helpers
 log_no_newline "starting up..."
 echo
-sleep 0.1
 
 # Handle motd hints system if user changes config option
 #if  [ $MOTD_HINTS == "true" ] ; then # backup user motd and restore if hints disabled
@@ -32,7 +31,6 @@ if [ "$SSH_SERVER" == "true" ] ; then
 	sshd
 	log_replace_last "launched ssh server ${CHECK_MARK}"
 	echo
-	sleep 1
 fi
 
 if [ "$NOTIFICATIONS_ENABLED" == "true" ] ; then
@@ -40,7 +38,6 @@ if [ "$NOTIFICATIONS_ENABLED" == "true" ] ; then
 	nohup ~/.tel/scripts/get_notifications.py > /dev/null 2>&1 &
 	log_replace_last "launched notification daemon ${CHECK_MARK}"
 	echo
-	sleep 0.1
 fi
 
 if [ "$STARTUP_ANIMATION_ENABLED" == "true" ] ; then
@@ -54,9 +51,8 @@ if [ "$STARTUP_ANIMATION_ENABLED" == "true" ] ; then
 	fi
 	log_replace_last "launched python animation ${CHECK_MARK}"
 	echo
-	sleep 0.1
 	while :; do #wait for finish of animation
-		sleep 1
+		sleep 0.5
 	[[ -z "$(pgrep -f animation.py)" ]] && break
 	done
 fi
@@ -64,18 +60,16 @@ fi
 
 
 if [ "$STATUS_WINDOW_ENABLED" == "true" ] ; then
-	if [ "$(cat ~/.tel/scripts/status_manager/.state" == "enabled" ] ; then
+	if [ "$(cat ~/.tel/scripts/status_manager/.state)" == "enabled" ] ; then
 		running=$(pgrep -f status_manager.py)
 		if [ -z "$running" ] ; then
 			log_replace_last 'launching status manager'
 			nohup ~/.tel/scripts/status_manager/toggle_ui.sh > /dev/null 2>&1 &
 			log_replace_last "launched status manager ${CHECK_MARK}"
 			echo
-			sleep 0.1
 		fi
 	fi
 fi
 
 log_replace_last "Ready! ${CHECK_MARK}"
-sleep 0.2
 exit 0
