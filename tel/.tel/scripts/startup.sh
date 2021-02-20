@@ -64,13 +64,15 @@ fi
 
 
 if [ "$STATUS_WINDOW_ENABLED" == "true" ] ; then
-	running=$(pgrep -f status_manager.py)
-	if [ -z "$running" ] ; then
-		log_replace_last 'launching status manager'
-		nohup ~/.tel/scripts/status_manager/toggle_ui.sh > /dev/null 2>&1 &
-		log_replace_last "launched status manager ${CHECK_MARK}"
-		echo
-		sleep 0.1
+	if [ "$(cat ~/.tel/scripts/status_manager/.state" == "enabled" ] ; then
+		running=$(pgrep -f status_manager.py)
+		if [ -z "$running" ] ; then
+			log_replace_last 'launching status manager'
+			nohup ~/.tel/scripts/status_manager/toggle_ui.sh > /dev/null 2>&1 &
+			log_replace_last "launched status manager ${CHECK_MARK}"
+			echo
+			sleep 0.1
+		fi
 	fi
 fi
 
