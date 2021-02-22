@@ -13,9 +13,9 @@ else
 fi
 
 
-if [ "$THEME_COLS" == 'true' ] ; then
-	[[ -f ~/.cache/wal/sequences ]] && (~/.local/bin/wal -R -q -e && cat ~/.cache/wal/sequences)
-fi
+#if [ "$THEME_COLS" == 'true' ] ; then
+#	[[ -f ~/.cache/wal/sequences ]] && (~/.local/bin/wal -R -q -e && cat ~/.cache/wal/sequences)
+#fi
 if [ -z "$SESSION_TYPE" ] ; then # user not logged in via ssh
 	if [ "$USE_TMUX" == 'true' ] ; then # user config choice
 		if [ -z "$TMUX" ] ; then # tmux not running
