@@ -1,9 +1,8 @@
 #!/usr/bin/env bash
-# TEL Startup file
-# these commands are ran only once when a session starts
 # this file will be replaced with each update so modifications are not recommended here
-source ~/.cache/wal/colors.sh # source theme cols
+source ~/.tel/theme/active/colors.sh # source theme cols
 
+#source ~/.cache/wal/colors.sh # source theme cols
 # tel keyboard colors
 #sed -i '/keyboard-color/d' ~/.tel/configs/theme.conf #remove existing line from config
 #sed -i '/keyboard-text-color/d' ~/.tel/configs/theme.conf #remove existing line from config
