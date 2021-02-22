@@ -2,8 +2,10 @@
 # # # TEL profile file - called with each terminal spawned # # # 
 ### liable to be overwritten with updates ###
 # sourced before .zlogin and .zshrc and after .zshenv
+
+. ~/.tel/scripts/readconfigs.sh #read user settings
+
 # Check if session is remote or local
-. ~/.tel/scripts/readconfigs.sh
 if [ -n "$SSH_CLIENT" ] || [ -n "$SSH_TTY" ]; then
   SESSION_TYPE=remote/ssh
 else
@@ -22,7 +24,6 @@ if [ -z "$SESSION_TYPE" ] ; then # user not logged in via ssh
 			tmux has-session -t "TEL" > /dev/null 2>&1
 			if [ $? != 0 ]; then # start main TEL session if not already running
 				tmux new-session -n "$NAME" -s "TEL" '~/.tel/scripts/startup.sh ; [[ -f ~/storage/shared/tel/tel_startup.sh ]] && . ~/storage/shared/tel/tel_startup.sh ; $SHELL'
-				#tmux -f ~/.tel/.tel_tmux.conf new-session -n "$NAME" -s "TEL" '~/.tel/scripts/startup.sh ; [[ -f ~/storage/shared/tel/tel_startup.sh ]] && . ~/storage/shared/tel/tel_startup.sh ; $SHELL'
 			else # start unique tmux session for each Termux session
 				session_number=$(tmux ls | wc -l)
 				tmux new-session -f ~/.tmux.conf -s "TEL$session_number" 
