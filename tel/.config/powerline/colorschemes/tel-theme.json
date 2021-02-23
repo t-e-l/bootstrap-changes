@@ -1,5 +1,5 @@
 {
-	"name": "Solarized dark",
+	"name": "tel-theme",
 	"groups": {
 		"information:additional":     { "fg": "solarized:base2", "bg": "solarized:base03", "attrs": [] },
 		"information:regular":        { "fg": "solarized:base3", "bg": "solarized:base03", "attrs": ["bold"] },
