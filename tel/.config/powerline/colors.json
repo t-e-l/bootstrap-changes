@@ -61,6 +61,23 @@
 		"darkorange3": 166,
 		"skyblue1": 117,
 		"khaki1": 228,
+		
+		"tel:base0": [0, "002b36"],
+		"tel:base1": [1, "073642"],
+		"tel:base2": [2, "586e75"],
+		"tel:base3": [3, "657b83"],
+		"tel:base4": [4, "839496"],
+		"tel:base5": [5, "93a1a1"],
+		"tel:base6": [6, "eee8d5"],
+		"tel:base7": [7, "fdf6e3"],
+		"tel:base8": [8, "b58900"],
+		"tel:base9": [9, "cb4b16"],
+		"tel:base10": [10, "dc322f"],
+		"tel:base11": [11, "d33682"],
+		"tel:base12": [12, "6c71c4"],
+		"tel:base13": [13, "268bd2"],
+		"tel:base14": [14, "2aa198"],
+		"tel:base15": [15, "859900"]
 
 		"solarized:base03": [8, "002b36"],
 		"solarized:base02": [0, "073642"],
