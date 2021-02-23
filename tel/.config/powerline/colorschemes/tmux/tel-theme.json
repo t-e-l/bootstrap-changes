@@ -5,10 +5,10 @@
 		"activity_status":      { "fg": "tel:base1", "bg": "tel:base0", "attrs": [] },
 		"bell_status":          { "fg": "tel:base1",    "bg": "tel:base0", "attrs": [] },
 		"window":               { "fg": "tel:base1",  "bg": "tel:base0", "attrs": [] },
-		"window:divider":       { "fg": "tel:base01", "bg": "tel:base0", "attrs": [] },
-		"window:current":       { "fg": "tel:base01",  "bg": "tel:base0", "attrs": [] },
-		"window_name":          { "fg": "tel:base01",  "bg": "tel:base0", "attrs": ["bold"] },
-		"session":              { "fg": "tel:base01",  "bg": "tel:base0", "attrs": [] },
+		"window:divider":       { "fg": "tel:base1", "bg": "tel:base0", "attrs": [] },
+		"window:current":       { "fg": "tel:base1",  "bg": "tel:base0", "attrs": [] },
+		"window_name":          { "fg": "tel:base1",  "bg": "tel:base0", "attrs": ["bold"] },
+		"session":              { "fg": "tel:base1",  "bg": "tel:base0", "attrs": [] },
 		"session:prefix":       { "fg": "tel:base0", "bg": "tel:base2",  "attrs": ["bold"] }
 	}
 }
