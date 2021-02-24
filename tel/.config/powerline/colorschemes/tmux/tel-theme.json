@@ -1,14 +1,14 @@
 {
 	"groups": {
-		"active_window_status": { "fg": "tel:base1",   "bg": "tel:base0", "attrs": [] },
-		"window_status":        { "fg": "tel:base1",  "bg": "tel:base0", "attrs": [] },
-		"activity_status":      { "fg": "tel:base1", "bg": "tel:base0", "attrs": [] },
-		"bell_status":          { "fg": "tel:base1",    "bg": "tel:base0", "attrs": [] },
-		"window":               { "fg": "tel:base1",  "bg": "tel:base0", "attrs": [] },
-		"window:divider":       { "fg": "tel:base1", "bg": "tel:base0", "attrs": [] },
-		"window:current":       { "fg": "tel:base1",  "bg": "tel:base0", "attrs": [] },
-		"window_name":          { "fg": "tel:base1",  "bg": "tel:base0", "attrs": ["bold"] },
-		"session":              { "fg": "tel:base1",  "bg": "tel:base0", "attrs": [] },
-		"session:prefix":       { "fg": "tel:base0", "bg": "tel:base2",  "attrs": ["bold"] }
+		"active_window_status": { "fg": "tel:base4",   "bg": "tel:base1", "attrs": [] },
+		"window_status":        { "fg": "tel:base3",  "bg": "tel:base1", "attrs": [] },
+		"activity_status":      { "fg": "tel:base0", "bg": "tel:base2", "attrs": [] },
+		"bell_status":          { "fg": "tel:base1",    "bg": "tel:base15", "attrs": [] },
+		"window":               { "fg": "tel:base3",  "bg": "tel:base1", "attrs": [] },
+		"window:divider":       { "fg": "tel:base2", "bg": "tel:base1", "attrs": [] },
+		"window:current":       { "fg": "tel:base14",  "bg": "tel:base2", "attrs": [] },
+		"window_name":          { "fg": "tel:base14",  "bg": "tel:base2", "attrs": [] },
+		"session":              { "fg": "tel:base14",  "bg": "tel:base3", "attrs": [] },
+		"session:prefix":       { "fg": "tel:base1", "bg": "tel:base15",  "attrs": ["bold"] }
 	}
 }
