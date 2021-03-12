@@ -27,4 +27,5 @@ export POWER_SAVER_DISPLAY_COMMAND='' #examples: "uptime, neofetch --stdout"
 # Preffered Apps # 
 export BROWSER=links # set your web browser command: [w3m,links,elinks,lynx,brow.sh,emacs..]
 export EDITOR=nano # set your file editor command: [nano,vim,neovim,sublime,emacs..]
-export YT_PKG_NAME="org.schabi.newpipe/.MainActivity" # package name to use for youtube searches
+export YT_PKG_NAME="org.schabi.newpipe" #/.MainActivity" # package name to use for youtube searches
+export YT_APP_NAME="NewPipe" # app name to launch for youtube
