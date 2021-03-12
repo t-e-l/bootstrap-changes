@@ -39,5 +39,8 @@ alias url='tel-open -u'
 alias u='tel-open -u'
 alias bookmarks="tel-open -u"
 alias tel-manager="~/.tel/scripts/status_manager/toggle_ui.sh"
-alias y="~/.tel/scripts/youtube.sh" # launch or search
-alias yt="~/.tel/scripts/youtube.sh"
+alias youtube="tel-youtube" # launch or search
+alias y="tel-youtube" # launch or search
+alias backup="tel-backup"
+alias fetch="tel-fetch"
+
