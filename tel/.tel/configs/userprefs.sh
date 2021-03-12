@@ -7,8 +7,6 @@
 
 # Basic #
 export NAME='User' # main/home window name
-export EDITOR=nano # set your file editor command: [nano,vim,neovim,sublime,emacs..]
-export BROWSER=links # set your web browser command: [w3m,links,elinks,lynx,brow.sh,emacs..]
 export LOCATION="London" # weather command and weather status script - [string]
 export PATH_TO_SD=none # if not using an sdcard must be set to: none, else path must be absolute (no '~' or '$HOME' !) [none / pathtosdcard]
 
@@ -25,3 +23,8 @@ export WEATHER_CHECK=60 # weather status script, check the weather forcast [minu
 export POWER_SAVER_ACTIVE=false #prevents various processes using battery whilst tel is inactive [true/false]
 export POWER_SAVER_TIMEOUT=57 #seconds of inactivity required to start power saver, ideally set to your screen timeout minus 3 seconds [seconds]
 export POWER_SAVER_DISPLAY_COMMAND='' #examples: "uptime, neofetch --stdout"
+
+# Preffered Apps # 
+export BROWSER=links # set your web browser command: [w3m,links,elinks,lynx,brow.sh,emacs..]
+export EDITOR=nano # set your file editor command: [nano,vim,neovim,sublime,emacs..]
+export YT_PKG_NAME="org.schabi.newpipe/.MainActivity" # package name to use for youtube searches
