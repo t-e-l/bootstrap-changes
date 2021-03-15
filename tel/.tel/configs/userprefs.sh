@@ -12,7 +12,6 @@ export PATH_TO_SD=none # if not using an sdcard must be set to: none, else path 
 
 # Startup #
 export STARTUP_ANIMATION_ENABLED=false  # show the animation on startup? ctrl + c skips [true/false]
-export MOTD_HINTS=false # swap motd for a version that supplies a tel usage hint each startup, false restores old user motd [true/false]
 export SSH_SERVER=false # this needs to be configured before being set to true, search for termux openssh. If you don't know what this is, leave as 'false'! It has BIG security implications and is only recommended for advanced users. [true/false]
 export USE_TMUX=true # TEL starts up with tmux env (recommeneded to keep as true) [true/false]
 export THEME_COLS=true # Terminal colors are supplied from tel-theme [true/false]
