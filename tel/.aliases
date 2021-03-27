@@ -3,7 +3,7 @@
 
 # Websites
 alias router="tel-open -u http://192.168.1.1" # example router address
-alias tel-wiki="tel-open -u https://https://github.com/t-e-l/tel/wiki/FAQ"
+alias tel-wiki="tel-open -u https://github.com/t-e-l/tel/wiki/FAQ"
 
 # SHELL
 alias l='ls -lah'
@@ -15,6 +15,8 @@ alias :q='exit'
 # HARDWARE
 alias w='tel-wifi'
 alias wifi='tel-wifi'
+alias won='tel-wifi on'
+alias wof='tel-wifi off'
 alias bright='termux-brightness'
 alias torch='termux-torch'
 alias ton='termux-torch on && echo "Torch Enabled"'
@@ -26,7 +28,7 @@ alias cpu='~/.tel/status/**/*cpu_mem.sh'
 
 
 # ROOT - (requires su binary)
-alias app-uninstall='su -c pm uninstall'
+alias uninstall='su -c pm uninstall'
 alias htop='su -c htop'
 alias dmesg='su -c dmesg'
 
@@ -35,7 +37,8 @@ alias weather="curl v2.wttr.in/$LOCATION"
 alias map="telnet mapscii.me"
 alias tron="ssh sshtron.zachlatta.com"
 alias starwars="telnet towel.blinkenlights.nl"
-alias matrix="cmatrix"
+alias mud="tt++"
+#alias matrix="cmatrix"
 
 # APPS
 alias cam="app camera"
