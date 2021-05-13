@@ -12,7 +12,7 @@ dischargeicon=""
 #THERMICON=$(echo $'\ufa0e')
 #HEALTHICON=$(echo $'\uf7df')    
 homedir = os.path.expanduser("~")
-os.system("pkill -f 'BatteryStatus'")
+os.system("pkill -f 'BatteryStatus' > /dev/null")
 try:
     battery = json.loads(subprocess.check_output(["termux-battery-status"], universal_newlines=True, timeout=5)) 
 

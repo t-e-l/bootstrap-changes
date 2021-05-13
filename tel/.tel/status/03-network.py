@@ -11,7 +11,7 @@ dataicon = ""  #" #
 wifiicon = ""
 nodataicon = ""
 try:
-    os.system("pkill -f 'WifiConnectionInfo'")
+    os.system("pkill -f 'WifiConnectionInfo' > /dev/null")
 #    killprev = json.loads(subprocess.check_output(["killall", "termux-wifi-connectioninfo"], universal_newlines=True, timeout=5))
     wlan = json.loads(subprocess.check_output(["termux-wifi-connectioninfo"], universal_newlines=True, timeout=5))
     if wlan["supplicant_state"] == "COMPLETED":
