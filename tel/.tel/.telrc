@@ -97,6 +97,8 @@ else
 "
 fi
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh # load fzf bindings
+# preview window
+export BAT_THEME=base16
 # # # END CUSTOMISE FZF # # # 
 
 
