@@ -1,7 +1,5 @@
 set mouse
-set smooth
 set fill 0
-set morespace
 set autoindent
 include ~/.nano/*.nanorc
 
