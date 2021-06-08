@@ -6,9 +6,12 @@ alias router="tel-open -u http://192.168.1.1" # example router address
 alias tel-wiki="tel-open -u https://github.com/t-e-l/tel/wiki/FAQ"
 
 # SHELL
-alias l='ls -lah'
-alias lst='ls -R | grep ":$" | sed -e '"'"'s/:$//'"'"' -e '"'"'s/[^-][^\/]*\//--/g'"'"' -e '"'"'s/^/ /'"'"' -e '"'"'s/-/|/'"'"''
-alias pg='ping -c 3 8.8.8.8' # quick connection check
+alias l="exa -alm@h --sort=changed --group-directories-first --icons --classify --git --color=auto --color-scale"
+alias lt="exa -aT --sort=changed --group-directories-first --icons --classify --git --color=auto --color-scale"
+alias ls="exa --sort=changed --group-directories-first --icons --classify --git --color=auto --color-scale"
+#alias l='ls -lah'
+#alias lst='ls -R | grep ":$" | sed -e '"'"'s/:$//'"'"' -e '"'"'s/[^-][^\/]*\//--/g'"'"' -e '"'"'s/^/ /'"'"' -e '"'"'s/-/|/'"'"''
+alias pg='ping 8.8.8.8' # quick connection check
 alias x='exit'
 alias :q='exit'
 
@@ -26,8 +29,7 @@ alias storage='~/.tel/status/**/*storage.py'
 alias network='~/.tel/status/**/*network.py'
 alias cpu='~/.tel/status/**/*cpu_mem.sh'
 
-
-# ROOT - (requires su binary)
+# ROOT - (requires su binary preinstalled)
 alias uninstall='su -c pm uninstall'
 alias htop='su -c htop'
 alias dmesg='su -c dmesg'
@@ -38,7 +40,7 @@ alias map="telnet mapscii.me"
 alias tron="ssh sshtron.zachlatta.com"
 alias starwars="telnet towel.blinkenlights.nl"
 alias mud="tt++"
-#alias matrix="cmatrix"
+alias matrix="cmatrix"
 
 # APPS
 alias cam="app camera"
