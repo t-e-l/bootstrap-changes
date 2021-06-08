@@ -6,9 +6,9 @@ alias router="tel-open -u http://192.168.1.1" # example router address
 alias tel-wiki="tel-open -u https://github.com/t-e-l/tel/wiki/FAQ"
 
 # SHELL
-alias l="exa -alm@h --sort=changed --group-directories-first --icons --classify --git --color=auto --color-scale"
-alias lt="exa -aT --sort=changed --group-directories-first --icons --classify --git --color=auto --color-scale"
-alias ls="exa --sort=changed --group-directories-first --icons --classify --git --color=auto --color-scale"
+alias l="exa -alm@h --grid --sort=changed --group-directories-first --icons --classify --git --color=auto --color-scale"
+alias lt="exa --ignore-glob=".git" -aT --sort=name --group-directories-first --icons --classify --git --color=auto --color-scale"
+alias ls="exa --ignore-glob=".git" --sort=name --grid --group-directories-first --icons --classify --git --color=auto --color-scale"
 #alias l='ls -lah'
 #alias lst='ls -R | grep ":$" | sed -e '"'"'s/:$//'"'"' -e '"'"'s/[^-][^\/]*\//--/g'"'"' -e '"'"'s/^/ /'"'"' -e '"'"'s/-/|/'"'"''
 alias pg='ping 8.8.8.8' # quick connection check
