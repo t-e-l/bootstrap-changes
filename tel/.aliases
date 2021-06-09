@@ -7,7 +7,7 @@ alias tel-wiki="tel-open -u https://github.com/t-e-l/tel/wiki/FAQ"
 
 # SHELL
 alias l="exa -alm@h --grid --sort=changed --group-directories-first --icons --classify --git --color=auto --color-scale"
-alias lt="exa --ignore-glob=".git" -aT --sort=name --group-directories-first --icons --classify --git --color=auto --color-scale"
+alias lt="exa --ignore-glob=".git" -a --tree --sort=name --group-directories-first --icons --classify --git --color=auto --color-scale"
 alias ls="exa --ignore-glob=".git" --sort=name --grid --group-directories-first --icons --classify --git --color=auto --color-scale"
 #alias l='ls -lah'
 #alias lst='ls -R | grep ":$" | sed -e '"'"'s/:$//'"'"' -e '"'"'s/[^-][^\/]*\//--/g'"'"' -e '"'"'s/^/ /'"'"' -e '"'"'s/-/|/'"'"''
