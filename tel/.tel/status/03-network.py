@@ -18,9 +18,8 @@ try:
     wifi_percentage = int(round(100 * (1 - (-20 - wlan["rssi"]) / (-20 - -85)), 0))
     if wifi_percentage > 100:
         wifi_percentage = 100
-    elif:
-        wifi_percentage < 0:
-            wifi_percentage = 0
+    elif wifi_percentage < 0:
+        wifi_percentage = 0
     if wlan["supplicant_state"] == "COMPLETED":
         if wlan["rssi"] <= 0 and wlan["rssi"] >= -45:
             strengthcol = term.green
