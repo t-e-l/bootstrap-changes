@@ -18,6 +18,9 @@ try:
     wifi_percentage = int(round(100 * (1 - (-20 - wlan["rssi"]) / (-20 - -85)), 0))
     if wifi_percentage > 100:
         wifi_percentage = 100
+    elif:
+        wifi_percentage < 0:
+            wifi_percentage = 0
     if wlan["supplicant_state"] == "COMPLETED":
         if wlan["rssi"] <= 0 and wlan["rssi"] >= -45:
             strengthcol = term.green
@@ -31,7 +34,7 @@ try:
             strengthcol = term.orangered
         elif wlan["rssi"] < -85:
             strengthcol = term.red
-        wifi_str = strengthcol + wifiicon + term.normal + str(wifi_percentage) + "% " + wlan["ip"] + " @ " + wlan["ssid"] +" " + str(wlan["link_speed_mbps"]) + "mbps " + str(wlan["rssi"]) + 'dBm '  
+        wifi_str = strengthcol + wifiicon + term.normal + " " + str(wifi_percentage) + "% " + wlan["ip"] + " @ " + wlan["ssid"] +" " + str(wlan["link_speed_mbps"]) + "mbps " + str(wlan["rssi"]) + 'dBm '  
         print(wifi_str)
     else: 
         # if wlan fails then check data
