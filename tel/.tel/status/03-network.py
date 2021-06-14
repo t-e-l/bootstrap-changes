@@ -31,7 +31,7 @@ try:
             strengthcol = term.orangered
         elif wlan["rssi"] < -85:
             strengthcol = term.red
-        wifi_str = strengthcol + wifiicon + term.normal + " " + wlan["ip"] + " @ " + wlan["ssid"] +" " + str(wlan["link_speed_mbps"]) + "mbps " + str(wlan["rssi"]) + 'dBm ' + str(wifi_percentage) + "%" 
+        wifi_str = strengthcol + wifiicon + term.normal + str(wifi_percentage) + "% " + wlan["ip"] + " @ " + wlan["ssid"] +" " + str(wlan["link_speed_mbps"]) + "mbps " + str(wlan["rssi"]) + 'dBm '  
         print(wifi_str)
     else: 
         # if wlan fails then check data
