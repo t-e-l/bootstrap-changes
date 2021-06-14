@@ -15,7 +15,7 @@ try:
 #    killprev = json.loads(subprocess.check_output(["killall", "termux-wifi-connectioninfo"], universal_newlines=True, timeout=5))
     wlan = json.loads(subprocess.check_output(["termux-wifi-connectioninfo"], universal_newlines=True, timeout=5))
     #percent = 100 * ( 1 - ( -85 - wlan["rssi"]
-    wifi_percentage = 100 * (1 - (-20 - wlan["rssi"]) / (-20 - -85))
+    wifi_percentage = round(100 * (1 - (-20 - wlan["rssi"]) / (-20 - -85)),1)
     if wifi_percentage > 100:
         wifi_percentage = 100
     if wlan["supplicant_state"] == "COMPLETED":
