@@ -54,7 +54,7 @@ try:
         percentage_free_ext = size_as_percentage(external.total,external.free)
         col_ext = pick_color(percentage_free_ext)
 
-        print(col + " " + term.normal + str(get_size(internal.free)) + " available " + str(get_size(external.free)) + col_ext + "ﳚ " + term.normal)
+        print(col + " " + term.normal + " " + percentage_free + "% " + str(get_size(internal.free)) + " available " + str(get_size(external.free)) + col_ext + "ﳚ " + term.normal)
     else:
         print(col + " " + term.normal + str(get_size(internal.free)) + " available @ '~/storage'")
         sleep(10)

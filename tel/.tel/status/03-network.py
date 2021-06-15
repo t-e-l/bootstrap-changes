@@ -8,7 +8,7 @@ import subprocess
 from blessed import Terminal
 term = Terminal(force_styling=True) #force required if output not a tty
 dataicon = ""  #" #
-wifiicon = ""
+wifiicon = ""  #"
 nodataicon = ""
 try:
     os.system("pkill -f 'WifiConnectionInfo' > /dev/null")
