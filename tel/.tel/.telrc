@@ -63,10 +63,15 @@ export PATH=$PATH:/data/data/com.termux/files/usr/bin/applets:~/.tel/bin:/data/d
 set -K # disables ! events in zsh to allow for bangs in tel-search, eg 's !!wiki mycelium'
 # (ZSH Plugins are being sourced by omz in .zshrc)
 # Tab Completion #
-zstyle ":completion:*:git-checkout:*" sort false
+zstyle ':fzf-tab:*' fzf-command ftb-tmux-popup
+zstyle ':completion:complete:*:options' sort false # set for every cmd
+zstyle ':completion:*:git-checkout:*' sort false
 zstyle ':completion:*:descriptions' format '[%d]'
 zstyle ':completion:*' list-colors ${(s.:.)LS_COLORS}
 zstyle ':fzf-tab:complete:cd:*' fzf-preview 'exa --tree --level=1 --color=auto --color-scale --classify --icons $realpath'
+zstyle ':fzf-tab:*' switch-group ',' '.'
+zstyle ':fzf-tab:*' accept-line enter
+zstyle ':fzf-tab:*' continuous-trigger '/'
 # # # Oh My Zsh # # # 
 DISABLE_UPDATE_PROMPT=true 
 DISABLE_AUTO_UPDATE=true
