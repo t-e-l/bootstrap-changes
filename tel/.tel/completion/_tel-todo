@@ -1,0 +1,16 @@
+#compdef tel-todo
+
+__tel-todo() {
+    # Give completions using the `_arguments` utility function with
+    # `-s` for option stacking  
+    # `-S` for delimiting options with `--` like in `exa -- -a`.
+    _arguments -S \
+        "(- *)"{-h,--help}"[Show list of command-line options]" \
+        {-v,--version}"[Show version of tel-todo]" \
+        {-e,--edit}"[Open the list with your EDITOR]" \
+        {-r,--remove}"[remove the most recent line]" \
+        {-c,--clear}"[Clear/wipe the entire list]" \
+        '*:filename:_files'
+}
+
+__tel-todo
