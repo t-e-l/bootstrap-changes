@@ -54,20 +54,16 @@ PROMPT_EOL_MARK=''
 
 
 
-# # # SETUP PATHS # # # 
-export PATH=$PATH:/data/data/com.termux/files/usr/bin/applets:~/.tel/bin:/data/data/com.termux/files/home/.local/bin:/data/data/com.termux/files/usr/bin:/data/data/com.termux/files/usr/bin
-
-#export PY_SITE_PKGS="$(python -m site --user-site)" #only works in python 3.9+ otherwise this may need to be set manually
-
-
-
 # # # CUSTOMISE ZSH # # #
 set -K # disables ! events in zsh to allow for bangs in tel-search, eg 's !wiki mycelium'
 # (ZSH Plugins are being sourced by omz in .zshrc)
 
+# # # SETUP PATHS # # # 
+export PATH=$PATH:/data/data/com.termux/files/usr/bin/applets:~/.tel/bin:/data/data/com.termux/files/home/.local/bin:/data/data/com.termux/files/usr/bin:/data/data/com.termux/files/usr/bin
 
 # # # Completion # # #
-fpath=($HOME/.tel/completion $fpath)
+export fpath=($HOME/.tel/completion $fpath)
+export FPATH=$FPATH:$HOME/.tel/completion
 zstyle ':fzf-tab:*' fzf-command ftb-tmux-popup
 zstyle ':fzf-tab:complete:*:*' popup-pad 30 0
 
