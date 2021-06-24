@@ -71,7 +71,7 @@ zstyle ':completion:*:git-checkout:*' sort false
 zstyle ':completion:*:descriptions' format '[%d]'
 zstyle ':completion:*' list-colors ${(s.:.)LS_COLORS}
 zstyle ':fzf-tab:complete:cd:*' fzf-preview 'exa --tree --level=1 --color=auto --color-scale --classify --icons $realpath'
-zstyle ':fzf-tab:complete:exa:*' fzf-preview 'exa --tree --level=1 --color=auto --color-scale --classify --icons $realpath'
+#zstyle ':fzf-tab:complete:exa:*' fzf-preview 'exa --tree --level=1 --color=auto --color-scale --classify --icons $realpath'
 zstyle ':fzf-tab:*' switch-group ',' '.'
 zstyle ':fzf-tab:*' accept-line enter
 zstyle ':fzf-tab:*' continuous-trigger '/'
