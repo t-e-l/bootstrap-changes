@@ -60,10 +60,12 @@ export PATH=$PATH:/data/data/com.termux/files/usr/bin/applets:~/.tel/bin:/data/d
 
 
 # # # CUSTOMISE ZSH # # #
-set -K # disables ! events in zsh to allow for bangs in tel-search, eg 's !!wiki mycelium'
+set -K # disables ! events in zsh to allow for bangs in tel-search, eg 's !wiki mycelium'
 # (ZSH Plugins are being sourced by omz in .zshrc)
 # Tab Completion #
 zstyle ':fzf-tab:*' fzf-command ftb-tmux-popup
+zstyle ':fzf-tab:complete:*:*' popup-pad 30 0
+
 zstyle ':completion:complete:*:options' sort false # set for every cmd
 zstyle ':completion:*:git-checkout:*' sort false
 zstyle ':completion:*:descriptions' format '[%d]'
@@ -72,6 +74,10 @@ zstyle ':fzf-tab:complete:cd:*' fzf-preview 'exa --tree --level=1 --color=auto -
 zstyle ':fzf-tab:*' switch-group ',' '.'
 zstyle ':fzf-tab:*' accept-line enter
 zstyle ':fzf-tab:*' continuous-trigger '/'
+zstyle ':completion:*:*:*:*:processes' command "ps -u $USER -o pid,user,comm -w -w"
+zstyle ':fzf-tab:complete:(kill|ps):argument-rest' fzf-preview \
+'[[ $group == "[process ID]" ]] && ps --pid=$word -o cmd --no-headers -w -w'
+zstyle ':fzf-tab:complete:(kill|ps):argument-rest' fzf-flags --preview-window=down:3:wrap
 # # # Oh My Zsh # # # 
 DISABLE_UPDATE_PROMPT=true 
 DISABLE_AUTO_UPDATE=true
@@ -89,9 +95,7 @@ autoload -U compinit && compinit # reload completion (for zsh-completions plugin
 # # # END CUSTOMISE ZSH # # #
 
 # # # CUSTOMISE FZF # # #
-#export FZF_DEFAULT_COMMAND='fd --type f --hidden --follow --exclude .git' # allow finding of dot files
 export FZF_BASE=$HOME/../usr/bin/fzf
-
 if [ -f ~/.cache/wal/colors.sh ] && [ "$THEME_COLS" == 'true' ] ; then
 	source ~/.cache/wal/colors.sh
 else
