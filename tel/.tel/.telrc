@@ -45,6 +45,8 @@ PROMPT_EOL_MARK=''
 . ~/.aliases 				# load user aliases
 # load external aliases (impervious to deletion upgrade etc)
 [[ -f ~/storage/shared/tel/tel_personal.sh ]] && . ~/storage/shared/tel/tel_personal.sh
+#source tel completions for zsh
+[[ -f ~/.tel/scripts/completion.zsh ]] && . ~/.tel/scripts/completion.zsh
 
 # # # END SOURCE CONFIGS ETC # # #
 
