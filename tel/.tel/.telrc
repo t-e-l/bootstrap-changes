@@ -46,7 +46,6 @@ PROMPT_EOL_MARK=''
 # load external aliases (impervious to deletion upgrade etc)
 [[ -f ~/storage/shared/tel/tel_personal.sh ]] && . ~/storage/shared/tel/tel_personal.sh
 #source tel completions for zsh
-[[ -f ~/.tel/scripts/completion.zsh ]] && . ~/.tel/scripts/completion.zsh
 
 # # # END SOURCE CONFIGS ETC # # #
 
@@ -78,7 +77,7 @@ zstyle ':fzf-tab:*' accept-line enter
 zstyle ':fzf-tab:*' continuous-trigger '/'
 zstyle ':completion:*:*:*:*:processes' command "ps -u $USERNAME -o pid,user,comm -w -w"
 zstyle ':fzf-tab:complete:(kill|ps):argument-rest' fzf-preview \
-'[[ $group == "[process ID]" ]] && { ps --pid=$word -o cmd --no-headers -w -w' ; zstyle ':fzf-tab:complete:(kill|ps):argument-rest' fzf-flags --preview-window=up:3:wrap}
+'[[ $group == "[process ID]" ]] && ps --pid=$word -o cmd --no-headers -w -w' ; zstyle ':fzf-tab:complete:(kill|ps):argument-rest' fzf-flags --preview-window=up:3:wrap
 
 #zstyle ':fzf-tab:complete:(kill|ps):argument-rest' fzf-flags --preview-window=up:3:wrap
 # # # Oh My Zsh # # # 
