@@ -5,8 +5,8 @@ __tel-theme() {
     # `-s` for option stacking  
     # `-S` for delimiting options with `--` like in `exa -- -a`.
     _arguments -S \
-        "(- *)"{-v,--version}"[Show version of tel-theme]" \
-        "(- *)"{-'\?',--help}"[Show list of command-line options]" \
+        {-v,--version}"[Show version of tel-theme]" \
+        "(- *)"{-h,--help}"[Show list of command-line options]" \
         {-a,--apply}"[Pick + apply a theme from currently installed]" \
         {-f,--file}"[Generate theme files based upon colors in an image file]" \
         {-c,--create}"[Package theme files into a ready-to-apply theme file]" \
