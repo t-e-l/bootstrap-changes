@@ -8,7 +8,7 @@ __tel-todo() {
         "(- *)"{-h,--help}"[Show list of command-line options]" \
         {-v,--version}"[Show version of tel-todo]" \
         {-e,--edit}"[Open the list with your EDITOR]" \
-        {-r,--remove}"[remove the most recent line]" \
+	{-r,--remove}"[remove the most recent line, or supply line number{s} to remove]" \
         {-c,--clear}"[Clear/wipe the entire list]" \
         '*:filename:_files'
 }
