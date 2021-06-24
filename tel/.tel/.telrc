@@ -64,7 +64,10 @@ export PATH=$PATH:/data/data/com.termux/files/usr/bin/applets:~/.tel/bin:/data/d
 # # # CUSTOMISE ZSH # # #
 set -K # disables ! events in zsh to allow for bangs in tel-search, eg 's !wiki mycelium'
 # (ZSH Plugins are being sourced by omz in .zshrc)
-# Tab Completion #
+
+
+# # # Completion # # #
+fpath=($HOME/.tel/completions $fpath)
 zstyle ':fzf-tab:*' fzf-command ftb-tmux-popup
 zstyle ':fzf-tab:complete:*:*' popup-pad 30 0
 
