@@ -67,7 +67,7 @@ set -K # disables ! events in zsh to allow for bangs in tel-search, eg 's !wiki 
 
 
 # # # Completion # # #
-fpath=($HOME/.tel/completions $fpath)
+fpath=($HOME/.tel/completion $fpath)
 zstyle ':fzf-tab:*' fzf-command ftb-tmux-popup
 zstyle ':fzf-tab:complete:*:*' popup-pad 30 0
 
