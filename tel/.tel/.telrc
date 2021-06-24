@@ -71,13 +71,14 @@ zstyle ':completion:*:git-checkout:*' sort false
 zstyle ':completion:*:descriptions' format '[%d]'
 zstyle ':completion:*' list-colors ${(s.:.)LS_COLORS}
 zstyle ':fzf-tab:complete:cd:*' fzf-preview 'exa --tree --level=1 --color=auto --color-scale --classify --icons $realpath'
+zstyle ':fzf-tab:complete:exa:*' fzf-preview 'exa --tree --level=1 --color=auto --color-scale --classify --icons $realpath'
 zstyle ':fzf-tab:*' switch-group ',' '.'
 zstyle ':fzf-tab:*' accept-line enter
 zstyle ':fzf-tab:*' continuous-trigger '/'
 zstyle ':completion:*:*:*:*:processes' command "ps -u $USERNAME -o pid,user,comm -w -w"
 zstyle ':fzf-tab:complete:(kill|ps):argument-rest' fzf-preview \
 '[[ $group == "[process ID]" ]] && ps --pid=$word -o cmd --no-headers -w -w'
-zstyle ':fzf-tab:complete:(kill|ps):argument-rest' fzf-flags --preview-window=down:3:wrap
+zstyle ':fzf-tab:complete:(kill|ps):argument-rest' fzf-flags --preview-window=up:3:wrap
 # # # Oh My Zsh # # # 
 DISABLE_UPDATE_PROMPT=true 
 DISABLE_AUTO_UPDATE=true
