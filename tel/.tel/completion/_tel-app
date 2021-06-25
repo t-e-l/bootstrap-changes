@@ -1,0 +1,15 @@
+#compdef tel-app
+
+__tel-app() {
+    # Give completions using the `_arguments` utility function with
+    # `-s` for option stacking  
+    # `-S` for delimiting options with `--` like in `exa -- -a`.
+    _arguments -S \
+        "(- *)"{-h,--help}"[Show list of command-line options]" \
+        {-v,--version}"[Show version of tel-app]" \
+        {-i,--info}"[Select app to open info page]" \
+	{-u,--update-cache}"[Update the app cache]" \
+	{-r,--remove}"[Select app to uninstall (root required)]" \
+}
+
+__tel-app
