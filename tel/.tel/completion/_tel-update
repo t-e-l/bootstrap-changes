@@ -1,0 +1,18 @@
+#compdef tel-update
+
+__tel-update() {
+    # Give completions using the `_arguments` utility function with
+    # `-s` for option stacking  
+    # `-S` for delimiting options with `--` like in `exa -- -a`.
+    _arguments -S \
+        "(- *)"{-h,--help}"[Show list of command-line options]" \
+        {-v,--version}"[Show version of tel-update]" \
+	--update"[Update tel bins (default behaviour)]" \
+	--full"[Get and apply latest release changes (destructive)]" \
+        --reset"[Setup fresh release version]" \
+	--dev"[Setup developer version (destructive)]" \
+	--custom"[Specify a branch to setup (destructive)]" \
+	--extras"[Launch extras installer]" \
+}
+
+__tel-update
