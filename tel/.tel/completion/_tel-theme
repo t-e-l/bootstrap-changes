@@ -9,8 +9,7 @@ __tel-theme() {
         "(- *)"{-h,--help}"[Show list of command-line options]" \
         {-a,--apply}"[Pick + apply a theme from currently installed]" \
         {-f,--file}"[Generate theme files based upon colors in an image file]" \
-        {-c,--create}"[Package theme files into a ready-to-apply theme file]" \
-        '*:filename:_files'
+        {-c,--create}"[Package theme files into a ready-to-apply theme file]" 
 }
 
 __tel-theme
