@@ -30,7 +30,6 @@ alias network='~/.tel/status/**/*network.py'
 alias cpu='~/.tel/status/**/*cpu_mem.sh'
 
 # ROOT - (requires su binary preinstalled)
-alias uninstall='su -c pm uninstall'
 alias htop='su -c htop'
 alias dmesg='su -c dmesg'
 
