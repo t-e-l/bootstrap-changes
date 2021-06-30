@@ -1,4 +1,4 @@
-#compdef tel-app
+#compdef tel-dialer
 
 __tel-dialer() {
     # Give completions using the `_arguments` utility function with
@@ -13,4 +13,4 @@ __tel-dialer() {
 	{-s,--share}"[share a contact with intent]" \
 }
 
-__tel-app
+__tel-dialer
