@@ -1,0 +1,16 @@
+#compdef tel-app
+
+__tel-dialer() {
+    # Give completions using the `_arguments` utility function with
+    # `-s` for option stacking  
+    # `-S` for delimiting options with `--` like in `exa -- -a`.
+    _arguments -S \
+        "(- *)"{-h,--help}"[Show list of command-line options]" \
+        {-v,--version}"[Show version of tel-app]" \
+        {-a,--add}"[add a new contact]" \
+	{-u,--update-cache}"[Update the app cache]" \
+	{-o,--output}"[print contact to stdout]" \
+	{-s,--share}"[share a contact with intent]" \
+}
+
+__tel-app
