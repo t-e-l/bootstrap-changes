@@ -46,4 +46,5 @@ alias restore="tel-backup --restore"
 alias br="tel-backup"
 alias update="tel-update"
 alias fetch="tel-fetch"
+alias personal-setup=~/.tel/scripts/create_personal_aliases.sh
 
