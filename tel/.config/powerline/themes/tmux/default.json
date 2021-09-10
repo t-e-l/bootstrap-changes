@@ -6,7 +6,7 @@
 				"name": "date",
 				"args": {
 					"format": "%a %d/%m/%y",
-					"istime": true
+					"istime": false
 				}
 			},
 			{
