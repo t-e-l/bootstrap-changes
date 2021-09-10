@@ -8,7 +8,7 @@
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
 # ~ default shell customisations ~
 # Note: this file will be overwritten and is therefore recommended not to change
-
+. $HOME/.tel/configs/userprefs.sh # required for TERM_COLS
 
 # # # PROMPT SETUP # # # (must be first)
 if [ ! -f ~/.p10k.zsh ] ; then #fallback to python prompt if file not exist
