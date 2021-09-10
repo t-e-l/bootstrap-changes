@@ -13,7 +13,7 @@
 				"function": "powerline.segments.common.time.date",
 				"name": "time",
 				"args": {
-					"format": "%Z%I:%M:%S%P",
+					"format": "%Z%I:%M%P",
 					"istime": true
 				}
 			}
