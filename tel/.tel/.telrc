@@ -101,7 +101,7 @@ autoload -U compinit && compinit
 
 # # # CUSTOMISE FZF # # #
 export FZF_BASE=$HOME/../usr/bin/fzf
-if [ -f ~/.cache/wal/colors.sh ] && [ "$THEME_COLS" == 'true' ] ; then
+if [ -f "~/.cache/wal/colors.sh" ] && [ "$THEME_COLS" == 'true' ] ; then
 	export FZF_DEFAULT_OPTS="
 	$FZF_DEFAULT_OPTS
 	--color fg:7,bg:0,hl:1,fg+:232,bg+:1,hl+:255
