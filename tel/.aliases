@@ -2,8 +2,11 @@
 # add your own aliases + functions here or even better at ~/storage/shared/tel/tel_personal.sh
 
 # Websites
-alias router="tel-open -u http://192.168.1.1" # example router address
+#alias router="tel-open -u http://192.168.1.1" # example router address
 alias tel-wiki="tel-open -u https://github.com/t-e-l/tel/wiki/FAQ"
+
+# HELPFUL
+alias tel-personal="$EDITOR ~/storage/shared/tel/tel_personal.sh"
 
 # SHELL
 alias l="exa -alm@h --grid --sort=changed --group-directories-first --icons --classify --git --color=auto --color-scale"
