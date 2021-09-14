@@ -1,0 +1,20 @@
+Key combo: "[TEL] + [f]" = spawn find (to insert a file path)
+Key combo: "[TEL] + [o]" = spawn open
+Key combo: "[TEL] + [p]" = spawn dialer
+Key combo: "[TEL] + [b]" = spawn bookmarks
+Key combo: "[TEL] + [e]" = spawn $EDITOR
+Key combo: "[TEL] + [a]" = spawn app launcher
+Key combo: "[TEL] + [t]" = open todo list in editor
+Key combo: "[TEL] + [y]" = launch youtube/newpipe app
+Key combo: "[TEL] + [s]" = spawn search
+Key combo: "[TEL] + [w]" = toggle wifi (experimental)
+Key combo: "[TEL] + [i]" = toggle status manager visable
+Key combo: "[TEL] + [|]" = split current window vertically
+Key combo: "[TEL] + [-]" = split current wind ow horizontally
+Key combo: "[TEL] + [z]" = zoom / fullscreen toggle pane
+Key combo: "[TEL] + [ALT] + [arrow key]" = resize pane
+Key combo: "[TEL] + [l]" = switch tmux layout
+Key combo: "[TEL] + [Return]" = new pane
+Key combo: "[TEL] + [q]" = quit current pane
+Key combo: "[TEL] + [CTRL] + [ALT] + [r]" = Restart TEL
+
