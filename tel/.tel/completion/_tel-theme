@@ -10,6 +10,7 @@ __tel-theme() {
         {-a,--apply}"[Pick + apply a theme from currently installed]" \
         {-f,--file}"[Generate theme files based upon colors in an image file]" \
         {-c,--create}"[Package theme files into a ready-to-apply theme file]" 
+	{-t,--theme}"[apply a preconfigured color palette (run without args for list)]" 
 }
 
 __tel-theme
