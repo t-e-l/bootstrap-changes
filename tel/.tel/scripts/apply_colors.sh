@@ -11,8 +11,8 @@ source ~/.tel/theme/active/colors.sh # source theme cols
 #echo -e "keyboard-text-color=$foreground" >> ~/.tel/configs/theme.conf # add color to value and back into file
 #echo -e "keyboard-selected-color=$cursor" >> ~/.tel/configs/theme.conf # add color to value and back into file
 
-if [ ! -z "$1" ] ; then
-	alpha=$1
+if [ "$1" == "-a" ] ; then
+	alpha=$2
 	backgroundalpha="#$alpha${background:1:6}"
 else
 	backgroundalpha="#99${background:1:6}"
