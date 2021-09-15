@@ -8,7 +8,7 @@
 		"warning:regular":            { "fg": "white", "bg": "brightred", "attrs": ["bold"] },
 		"critical:failure":           { "fg": "white", "bg": "darkestred", "attrs": [] },
 		"critical:success":           { "fg": "white", "bg": "darkestgreen", "attrs": [] },
-		"background":                 { "fg": "tel:base0", "bg": "tel:base0", "attrs": [] },
+		"background":                 { "fg": "tel:base0", "bg": "tel:base1", "attrs": [] },
 		"background:divider":         { "fg": "tel:base0", "bg": "tel:base0", "attrs": [] },
 		"date":                       { "fg": "tel:base15", "bg": "tel:base2", "attrs": [] },
 		"time":                       { "fg": "tel:base15", "bg": "tel:base2", "attrs": [] },
