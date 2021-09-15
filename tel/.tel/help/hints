@@ -17,4 +17,3 @@ Key combo: "[TEL] + [l]" = switch tmux layout
 Key combo: "[TEL] + [Return]" = new pane
 Key combo: "[TEL] + [q]" = quit current pane
 Key combo: "[TEL] + [CTRL] + [ALT] + [r]" = Restart TEL
-
