@@ -11,6 +11,12 @@ source ~/.tel/theme/active/colors.sh # source theme cols
 #echo -e "keyboard-text-color=$foreground" >> ~/.tel/configs/theme.conf # add color to value and back into file
 #echo -e "keyboard-selected-color=$cursor" >> ~/.tel/configs/theme.conf # add color to value and back into file
 
+if [ ! -z "$1" ] ; then
+	alpha=$1
+	backgroundalpha="#$alpha${background:1:6}"
+else
+	backgroundalpha="#99${background:1:6}"
+fi
 
 # tel status modules colors
 sed -i '/status-text-color/d' ~/.tel/configs/theme.conf #remove existing line from config
@@ -18,7 +24,6 @@ echo -e "status-text-color=$foreground" >> ~/.tel/configs/theme.conf # add color
 
 # tel bg color - requires alpha channel for transparency
 sed -i '/background-color/d' ~/.tel/configs/theme.conf #remove existing line from config
-backgroundalpha="#99${background:1:6}"
 echo -e "background-color=$backgroundalpha" >> ~/.tel/configs/theme.conf # add color to value and back into file
 
 # tel statusbar + termux bar bg color - requires alpha channel for transparency
