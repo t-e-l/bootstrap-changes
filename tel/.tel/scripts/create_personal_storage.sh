@@ -19,7 +19,7 @@ fi
 if [ -f $alias_path ] ; then 
 	echo "user alias file already exists at: $alias_path"
 else
-	echo 'created a personal alias file for you at: $alias_path'
+	echo "created a personal alias file for you at: $alias_path"
 	echo -ne "#!/usr/bin/env bash\n#this file is intended for users to add their own aliases, which persists across reinstallations of the tel app\n#alias example1='open .jpg'\nalias reddit='tel-search !reddit'" > $alias_path
-	$EDITOR $alias_path
+	#$EDITOR $alias_path
 fi

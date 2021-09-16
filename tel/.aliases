@@ -6,8 +6,8 @@
 alias tel-wiki="tel-open -u https://github.com/t-e-l/tel/wiki/FAQ"
 
 # HELPFUL
-alias tel-personal-aliases="$EDITOR ~/storage/shared/tel/tel_personal.sh"
-alias tel-personal-startup="$EDITOR ~/storage/shared/tel/tel_startup.sh"
+alias personal-aliases="$EDITOR ~/storage/shared/tel/tel_personal.sh"
+alias personal-startup="$EDITOR ~/storage/shared/tel/tel_startup.sh"
 
 # SHELL
 alias l="exa -alm@h --grid --sort=changed --group-directories-first --icons --classify --git --color=auto --color-scale"
