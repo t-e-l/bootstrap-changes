@@ -1,0 +1,15 @@
+#compdef tel-backup
+
+__tel-backup() {
+    # Give completions using the `_arguments` utility function with
+    # `-s` for option stacking  
+    # `-S` for delimiting options with `--` like in `exa -- -a`.
+    _arguments -S \
+        {-v,--version}"[Show version of tel-backup]" \
+        "(- *)"{-h,--help}"[Show list of command-line options]" \
+        {-r,--restore}"[Select backup archives to restore]" \
+        {-b,--backup}"[Create a new backup]" \
+	{--remove}"[Delete all backup archives]" 
+}
+
+__tel-backup
