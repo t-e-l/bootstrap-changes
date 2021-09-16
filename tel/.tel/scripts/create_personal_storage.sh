@@ -5,7 +5,7 @@ alias_path=~/storage/shared/tel/tel_personal.sh
 if [ ! -d ~/storage ] ; then
 	echo '~/storage does not exist, you must run termux-setup-storage first'
 	sleep 1
-	while [ ! -d ~/storage ] do; 
+	while [ ! -d ~/storage ]; do 
 	termux-setup-storage
 	done
 fi
@@ -21,5 +21,7 @@ if [ -f $alias_path ] ; then
 else
 	echo "created a personal alias file for you at: $alias_path"
 	echo -ne "#!/usr/bin/env bash\n#this file is intended for users to add their own aliases, which persists across reinstallations of the tel app\n#alias example1='open .jpg'\nalias reddit='tel-search !reddit'" > $alias_path
+	echo "edit this file immediately with the command personal-al"
+	
 	#$EDITOR $alias_path
 fi
