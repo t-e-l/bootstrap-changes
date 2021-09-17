@@ -71,5 +71,5 @@ if [ "$STATUS_WINDOW_ENABLED" == "true" ] ; then
 	fi
 fi
 
-log_replace_last "Ready! ${CHECK_MARK}"
+log_replace_last "Ready! ${CHECK_MARK}\n"
 exit 0
