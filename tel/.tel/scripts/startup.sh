@@ -9,7 +9,6 @@ log_no_newline "starting up..."
 echo
 if [ -f "$updated_flag" ]; then
 	log_no_newline "first startup detected"
-	rm -f $updated_flag
 fi
 
 # Handle motd hints system if user changes config option
