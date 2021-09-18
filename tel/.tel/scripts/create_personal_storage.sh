@@ -5,16 +5,17 @@ alias_path=~/storage/shared/tel/tel_personal.sh
 if [ ! -d ~/storage ] ; then
 	echo '~/storage does not exist, you must run termux-setup-storage first'
 	sleep 1
-	while [ ! -d ~/storage ]; do 
-	termux-setup-storage
+	while [ ! -d ~/storage ]
+       	do 
+		termux-setup-storage
 	done
 fi
 
 if [ -f ~/storage/shared/tel/tel_startup.sh ] ; then 
 	echo "personal startup file already exists at: $startup_path"
 else
-	echo 'created personal startup file at: $startup_path'
-	echo -ne "#!/usr/bin/env bash\n#this file is intended for users to add their own startup scripts to, which persists across wipes of the tel app\n# try uncommenting the lines below and restarting with tel-restart...\nanisay -x fortune -t 2" > $startup_path
+	echo "created personal startup file at: $startup_path"
+	echo -ne "#!/usr/bin/env bash\n#this file is intended for users to add their own startup scripts to, which persists across wipes of the tel app\n# try uncommenting the lines below and restarting with tel-restart...\nanisay --execute tel-hints --auto --pause 1" > $startup_path
 fi
 if [ -f $alias_path ] ; then 
 	echo "user alias file already exists at: $alias_path"
