@@ -3,7 +3,7 @@
 
 # Websites
 #alias router="tel-open -u http://192.168.1.1" # example router address
-alias tel-wiki="tel-open -u https://github.com/t-e-l/tel/wiki/FAQ"
+alias tel-wiki="tel-open -u https://t-e-l.github.io/wiki"
 
 # HELPFUL
 alias personal-aliases="$EDITOR ~/storage/shared/tel/tel_personal.sh"
