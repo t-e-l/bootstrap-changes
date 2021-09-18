@@ -10,10 +10,19 @@ Key combo: "[TEL] + [s]" = spawn search
 Key combo: "[TEL] + [w]" = toggle wifi (experimental)
 Key combo: "[TEL] + [i]" = toggle status manager visable
 Key combo: "[TEL] + [|]" = split current window vertically
-Key combo: "[TEL] + [-]" = split current wind ow horizontally
+Key combo: "[TEL] + [-]" = split current window horizontally
 Key combo: "[TEL] + [z]" = zoom / fullscreen toggle pane
 Key combo: "[TEL] + [ALT] + [arrow key]" = resize pane
 Key combo: "[TEL] + [l]" = switch tmux layout
 Key combo: "[TEL] + [Return]" = new pane
 Key combo: "[TEL] + [q]" = quit current pane
 Key combo: "[TEL] + [CTRL] + [ALT] + [r]" = Restart TEL
+command 'personal-aliases' jumps to editing your persistant alias file
+command 'personal-startup' jumps to editing your persistant startup file
+you can search quickly with bangs eg ('s !w tel')
+tel applets like 'tel-phone' and 'tel-app' etc generally have shorter aliases by default, eg 'p' and 'a' 
+'update --full' may lose some of you data, don't forget to 'backup' first
+you can mouse/scroll with touch input on nano, vim, tmux and fzf
+'update' only updates the tel-* applet files
+find out more about anisay with command 'anisay --github'
+

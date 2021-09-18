@@ -1,6 +1,6 @@
-manage your todo list: try the command 'todo -h'
-install "TEL: API" & grant android permissions to API
-install TEL Keyboard (highly recommended)
+next steps availible on todo list: try the command 'todo -h'
+install "TEL: API" 
+install "TEL: Keyboard" (highly recommended)
 try swiping on the [delete] and [spacebar] keys using the tel keyboard
 run command 'personal-setup'
 run command 'anisay -x tel-help'
