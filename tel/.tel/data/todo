@@ -1,14 +1,13 @@
 next steps availible on todo list: try the command 'todo -h'
 install "TEL: API" 
-install "TEL: Keyboard" (highly recommended)
+install "TEL: Keyboard" and try setting a 'theme'
 try swiping on the [delete] and [spacebar] keys using the tel keyboard
 run command 'personal-setup'
 run command 'anisay -x tel-help'
 use the tab key to autocomplete 
 try swiping the [CTRL] and surrounding button upwards...
-edit your config files at: ~/.tel/configs
+customise your config files at: ~/.tel/configs
 customise your status bar scripts from inactive to ~/.tel/status
 vim for tel? 'update --extras'
-make a 'tel-backup' when you're happy
-'tel-theme' package replaces the old TEL style app addon
-try SSH into your TEL device (more info check bookmarks)
+make a 'backup' when you're happy
+try SSH into your TEL device 
