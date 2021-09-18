@@ -77,9 +77,10 @@ if [ "$STATUS_WINDOW_ENABLED" == "true" ] ; then
 fi
 
 if [ -f "$updated_flag" ]; then
+	
 	rm -f $updated_flag
 	sleep 7
-	anisay -i "TEL has been updated :D" -a -p 1
+	anisay -i "TEL has been updated :D" -a -p 1 -s 0.02
 fi
 log_replace_last "Ready! ${CHECK_MARK}\n"
 exit 0
