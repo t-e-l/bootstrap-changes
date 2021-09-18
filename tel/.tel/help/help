@@ -1,31 +1,26 @@
 -> Intro:
 TEL is derived of the linux terminal environment app Termux.
-The main difference is: TEL is designed and configured as a launcher / homescreen replacement and is bundled with custom applets and scripts to make it more useful as such.
+The main difference is: TEL is intended as a launcher replacement and is bundled with custom applets and scripts to make it more useful as such.
 
 Use of TEL is not recommended for those without prior knowledge of the linux terminal or termux app.
 More information can be found at the TEL github / Wiki page @ https://t-e-l.github.io
 
 For further discussion, help and questions; join the TEL Telegram community page @ https://t.me/termux_expert_launcher/4649
 
--> Useful info:
-termux-setup-storage command should be ran to link your phones memory with TEL's storage. It is not required but is used by several features.
+personal-setup command should be ran to link your phones memory with TEL's storage. It is not required but is used by several features.
+you can then run 'personal-alias' and 'personal-startup' to add your own aliases / startup files.
 
-If you want to hide the status bar, use key combo 'TEL + i' to toggle it on/off.
+If you want to hide the status bar, use key combo '[TEL] + [i]' to toggle it on/off.
 
-You can read the existing alias file at: ~/.aliases
+Read existing aliases, with 'alias'
 
-
--> Customisation:
 TEL user settings are availible in ~/.tel/configs/
 
-With the TEL : styling addon you can longpress the screen, select more > Style to change fonts and colorschemes easily
+You can customise your status bar by swapping around the scripts in ~/.tel/status
+as well as behaviour by editing the config file ~/.tel/configs/status.sh
 
-You can customise your status bar by adding / removing / editing the scripts in ~/.tel/status
-Change status bar behaviour by editing the config file ~/.tel/configs/status.sh
+You can edit or remove motd (startup message) at ~/../usr/etc/motd
 
-You can edit motd (startup message) at ~/../usr/etc/motd
-
-add your own aliases and functions into ~/storage/shared/tel/tel_personal.sh, this file will persist across updates / wipes of tel app.
 
 add your own startup script calls into ~/storage/shared/tel/tel_startup.sh, this file will persist across updates / wipes of tel app.
 
@@ -48,9 +43,10 @@ TEL + i  		= Toggle the status manager
 TEL + a 		= tel-app
 TEL + b			= Open bookmarks list
 TEL + t		        = tel-todo - open todo notes in $EDITOR
-TEL + e			= tel-edit
+TEL + e			= $EDITOR
 TEL + f			= tel-find (insert a path)
 TEL + o			= tel-open
+TEL + u			= tel-update
 TEL + p			= tel-dialer
 TEL + s 		= tel-search
 TEL + w			= tel-wifi
@@ -75,12 +71,12 @@ o	  = tel-open - file in external app
 td        = tel-todo - notes / todo list
 share	  = tel-share - share a file to external app
 u	  = open a url in browser
-w	  = toggle wifi
+w	  = toggle wifi (experimental)
 y	  = open or search the youtube app
 x	  = exit
 pg	  = ping google
-ton	  = torch on
 tof	  = torch off
+w on	  = wifi on
 weather	  = get a detailed forecast for your location
 
 
