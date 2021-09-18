@@ -8,6 +8,7 @@ if [ ! -d ~/storage ] ; then
 	while [ ! -d ~/storage ]
        	do 
 		termux-setup-storage
+		sleep 2 # fingers crossed 
 	done
 fi
 
