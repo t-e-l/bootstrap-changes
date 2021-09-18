@@ -1,7 +1,13 @@
 #!/usr/bin/env bash
 # ~ TEL setup file ~ #
-
+tel_version=0.1
 source ~/../usr/bin/tel-helpers 
+# cp self to tmpdir
+#run update here
+#~/../usr/bin/tel-update > /dev/null
+# run diff agaisnt old tel-setup
+
+
 
 if [ -z "$1" ]; then
 	update_args="--setup"
@@ -11,7 +17,6 @@ fi
 
 # SHOULD CHECK HERE IF UPDATE IS NEEDED if so update then re run setup
 UPDATE=false
-
 
 if [ -f ~/.tel/.installed ]; then #set update var if finished installation was detected
 	logf ".installed exists"
@@ -35,8 +40,8 @@ apt-get update -y && apt-get upgrade -y && logf "finished updating Termux packag
 log "Installing required packages"
 log "This may take a while..."
 logf "pkg install"
-catch "$(pkg install git make curl wget nano tmux zsh termux-api sed cronie figlet util-linux fzf fd bat w3m imagemagick openssh tree bc sl cowsay neofetch ncurses-utils tsu -y 2>&1)"
-
+catch "$(pkg install git make curl wget nano tmux zsh termux-api sed figlet util-linux fzf fd bat links imagemagick openssh bc sl jq pup exa termimage ncurses-utils tsu man -y 2>&1)"
+# maybe add: neofetch cronie moreutils, rmed tree cowsay
 log "Installing python"
 logf "python install"
 catch "$(pkg install python -y 2>&1)" 
@@ -88,9 +93,16 @@ catch "$(git clone --depth=1 https://github.com/Aloxaf/fzf-tab ~/.oh-my-zsh/plug
 #catch "$(git clone --depth=1 https://github.com/zsh-users/zsh-history-substring-search ~/.tel/shell/plugins/zsh-history-substring-search 2>&1)"
 #sed -i 's/robbyrussell/avit/g' ~/.zshrc
 sed -i 's/robbyrussell/powerlevel10k\/powerlevel10k/g' ~/.zshrc
-sed -i 's/plugins=(git)/plugins=(magic-enter common-aliases zsh-navigation-tools fzf-tab fancy-ctrl-z zsh-autosuggestions fast-syntax-highlighting)/g' ~/.zshrc 
+sed -i 's/plugins=(git)/plugins=(zsh-navigation-tools fzf-tab fancy-ctrl-z zsh-autosuggestions fast-syntax-highlighting)/g' ~/.zshrc 
+#removed magic-enter common-aliases 
 
-
+## Anisay ##
+if [ ! -d ~/.tel/anisay ]; then
+log "Installing anisay"
+catch "$(git clone --depth=1 https://github.com/sealedjoy/anisay ~/.tel/anisay 2>&1)"
+catch "$(cd ~/.tel/anisay && ~/.tel/anisay/install.sh 2>&1)"
+fi
+#
 # # # insert TEL loading file into .zshrc # # # 
 echo -e "	\n#|||||||||||||||#\n. ~/.tel/.telrc\n#|||||||||||||||#\n	" >> ~/.zshrc
 
@@ -103,7 +115,7 @@ fix_permissions
 logf "fixing permissions"
 
 if [ "$UPDATE" = false ]; then
-	touch ~/.tel/.installed #mark setup finished
+	echo -ne "$tel_version" > ~/.tel/.installed #mark setup finished
         log "Installation Complete"
 else
         log "Update Complete"
@@ -113,5 +125,8 @@ log "app will restart in 3 seconds!"
 sleep 3
 tel-restart
 error 'Restart cannot be performed when app is not active'
+log "press RETURN to retry"
+read 
+tel-restart
 error 'Please run the command "tel-restart" manually'
 exit 0
