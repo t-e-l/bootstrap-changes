@@ -19,7 +19,7 @@ export THEME_COLS=true # Terminal colors are supplied from tel-theme [true/false
 # Powersaving #
 # see status.sh and notifications.sh for further options
 export WEATHER_CHECK=60 # weather status script, check the weather forcast [minutes]
-export POWER_SAVER_ACTIVE=false #prevents various processes using battery whilst tel is inactive [true/false]
+export POWER_SAVER_ACTIVE=false # experimental! prevents various processes using battery whilst tel is inactive [true/false]
 export POWER_SAVER_TIMEOUT=57 #seconds of inactivity required to start power saver, ideally set to your screen timeout minus 3 seconds [seconds]
 export POWER_SAVER_DISPLAY_COMMAND='' #examples: "uptime, neofetch --stdout"
 
