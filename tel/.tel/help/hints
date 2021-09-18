@@ -25,4 +25,3 @@ tel applets like 'tel-phone' and 'tel-app' etc generally have shorter aliases by
 you can mouse/scroll with touch input on nano, vim, tmux and fzf
 'update' only updates the tel-* applet files
 find out more about anisay with command 'anisay --github'
-
