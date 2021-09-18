@@ -75,12 +75,13 @@ if [ "$STATUS_WINDOW_ENABLED" == "true" ] ; then
 	fi
 fi
 
+log_replace_last "Ready! ${CHECK_MARK}\n"
+
 if [ -f "$updated_flag" ]; then
-	am broadcast --user 0 --es theme 4 --es color "FF1f1f1f" -a com.tel.keyboard.inputmethod.THEME com.tel.keyboard.inputmethod > /dev/null 2>&1	
+	am broadcast --user 0 --es theme 4 --es color "#1f1f1f" -a com.tel.keyboard.inputmethod.THEME com.tel.keyboard.inputmethod > /dev/null 2>&1	
 	sleep 5
 	anisay -c octelpus -i "$(cat $updated_flag)"  --auto --pause 1 --speed 0.02 # display update message
 	rm -f $updated_flag
-	tel-todo
 fi
-log_replace_last "Ready! ${CHECK_MARK}\n"
+
 exit 0
