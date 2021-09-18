@@ -3,9 +3,14 @@
 # these commands are ran only once when a session starts
 # this file will be replaced with each update so modifications are not recommended here
 #trap '' INT # prevent ctrl + c exits
+updated_flag=~/.tel/.updated
 source tel-helpers
 log_no_newline "starting up..."
 echo
+if [ -f "$updated_flag" ]; then
+	log_no_newline "first startup detected"
+	rm -f $updated_flag
+fi
 
 # Handle motd hints system if user changes config option
 #if  [ $MOTD_HINTS == "true" ] ; then # backup user motd and restore if hints disabled
@@ -71,5 +76,10 @@ if [ "$STATUS_WINDOW_ENABLED" == "true" ] ; then
 	fi
 fi
 
+if [ -f "$updated_flag" ]; then
+	rm -f $updated_flag
+	sleep 5
+	anisay -x tel-hint -a -p 1
+fi
 log_replace_last "Ready! ${CHECK_MARK}\n"
 exit 0
