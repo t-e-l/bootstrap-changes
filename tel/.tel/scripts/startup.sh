@@ -78,7 +78,7 @@ fi
 
 if [ -f "$updated_flag" ]; then
 	rm -f $updated_flag
-	sleep 5
+	sleep 7
 	anisay -i "TEL has been updated :D" -a -p 1
 fi
 log_replace_last "Ready! ${CHECK_MARK}\n"
