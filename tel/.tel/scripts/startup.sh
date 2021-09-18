@@ -79,7 +79,7 @@ if [ -f "$updated_flag" ]; then
 	# TEL keyboard #color10 also works but may require brightness reduction
 	am broadcast --user 0 --es theme 4 --es color "$background" -a com.tel.keyboard.inputmethod.THEME com.tel.keyboard.inputmethod > /dev/null 2>&1	
 	rm -f $updated_flag
-	sleep 7
+	sleep 5
 	anisay -i "TEL has been updated :D" -a -p 1 -s 0.02
 fi
 log_replace_last "Ready! ${CHECK_MARK}\n"
