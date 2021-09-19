@@ -1,10 +1,10 @@
-next steps availible on todo list: try the command 'todo -h'
+🐙run 'todo' to see starting steps🐙
 install "TEL: API" 
-install "TEL: Keyboard" and try setting a 'theme'
-run command 'personal-setup'
-run command 'anisay -x "cat ~/.tel/help/help'
-use the tab key to autocomplete 
-try swiping the [CTRL] and surrounding button upwards...
+install "TEL: Keyboard" 
+run command 'cat ~/.tel/help/help | anisay -a'
+as said by anisay - you should run command 'personal-setup' to link your storage
+use the tab key to autocomplete :D
+try swiping the [CTRL] and surrounding button upwards, swipe on [TEL] to toggle keyboard...
 customise your config files at: ~/.tel/configs
 customise your status bar scripts from inactive to ~/.tel/status
 vim for tel? 'update --extras'
