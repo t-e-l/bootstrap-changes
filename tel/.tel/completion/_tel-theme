@@ -11,8 +11,8 @@ __tel-theme() {
         {-f,--file}"[Generate theme files based upon colors in an image file]" \
         {-c,--create}"[Package theme files into a ready-to-apply theme file]" \
         {-w,--wallpaper}"[Select and apply a wallpaper image]" \
-        {--alpha}"[Specify a 2-digit hexidecimal code to use as background alpha transparency]" \
 	{-t,--theme}"[apply a preconfigured color palette (run without args for list)]" \
+        --alpha"[Specify a 2-digit hexidecimal code to use as background alpha transparency]" \
 }
 
 __tel-theme
