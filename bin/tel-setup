@@ -85,7 +85,7 @@ logf "cloning plugins"
 catch "$(git clone --depth=1 https://github.com/romkatv/powerlevel10k.git ~/.oh-my-zsh/custom/themes/powerlevel10k 2>&1)"
 #run p10k installer now
 catch "$(sh ~/.oh-my-zsh/custom/themes/powerlevel10k/gitstatus/install 2>&1)"
-catch "$(git clone --depth=1 https://github.com/zdharma/fast-syntax-highlighting.git ~/.oh-my-zsh/plugins/fast-syntax-highlighting 2>&1)"
+catch "$(git clone --depth=1 https://github.com/securisec/fast-syntax-highlighting.git ~/.oh-my-zsh/plugins/fast-syntax-highlighting 2>&1)"
 #catch "$(git clone --depth=1 https://github.com/zsh-users/zsh-completions ~/.oh-my-zsh/plugins/zsh-completions 2>&1)"
 catch "$(git clone --depth=1 https://github.com/zsh-users/zsh-autosuggestions ~/.oh-my-zsh/plugins/zsh-autosuggestions 2>&1)"
 catch "$(git clone --depth=1 https://github.com/marlonrichert/zsh-autocomplete ~/.oh-my-zsh/plugins/zsh-autocomplete 2>&1)"
@@ -93,7 +93,7 @@ catch "$(git clone --depth=1 https://github.com/Aloxaf/fzf-tab ~/.oh-my-zsh/plug
 #catch "$(git clone --depth=1 https://github.com/zsh-users/zsh-history-substring-search ~/.tel/shell/plugins/zsh-history-substring-search 2>&1)"
 #sed -i 's/robbyrussell/avit/g' ~/.zshrc
 sed -i 's/robbyrussell/powerlevel10k\/powerlevel10k/g' ~/.zshrc
-sed -i 's/plugins=(git)/plugins=(zsh-navigation-tools fzf-tab fancy-ctrl-z zsh-autosuggestions fast-syntax-highlighting)/g' ~/.zshrc 
+sed -i 's/plugins=(git)/plugins=(fzf-tab fancy-ctrl-z zsh-autosuggestions fast-syntax-highlighting)/g' ~/.zshrc 
 #removed magic-enter common-aliases 
 
 ## Anisay ##
@@ -120,6 +120,7 @@ if [ "$UPDATE" = false ]; then
 else
         log "Update Complete"
 fi
+theme --alpha 99 > /dev/null 2>&1
 logf "complete"
 log "app will restart in 3 seconds!"
 sleep 3
