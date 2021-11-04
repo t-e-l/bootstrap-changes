@@ -14,7 +14,8 @@ show_help(){
             "__________________________"\
             "OPTIONS"\
             "  -h   display this help message"\
-            "  -u   update app cache"
+            "  -u   update app cache"\
+            "  -r   uninstall an app"
 }
 
 update_cache(){
@@ -23,6 +24,37 @@ update_cache(){
     am broadcast --user 0 \
          --es com.termux.app.reload_style apps-cache \
          -a com.termux.app.reload_style com.termux > /dev/null
+}
+
+find_app(){
+    # fuzzy search in $app_namefile to get the app code and app 
+    # name in this format 
+    # app_code | app_name
+    app_data=$(fzf -e --cycle --prompt=" Select app: " --query="$*" --color=16 --select-1 -0 < "$app_namefile")
+    case "$?" in
+        # No app found
+        "1"  )
+    		printf  "\e[38;5;2m Finder\e[m: \e[38;5;1mApp not found%s\n\e[m"
+		exit 1
+        ;;
+        # If Ctrl+C is used 
+        "130")
+            printf  "\e[38;5;2m Exiting...\e[m%s\n"
+            exit 1
+        ;;
+esac
+    # get the app code
+    app_code=$( echo "$app_data" | cut -d "|" -f1)
+    # get the app name
+    app_name=$( echo "$app_data" | cut -d "|" -f2) 
+    
+    # No app name recieved
+    [[ -z "$app_code" ]] && exit 1
+
+    # get the activity name
+    activity=$( grep "$app_code" "$cachefile" | cut -d "|" -f2 )
+    
+    return 0
 }
 
 main(){
@@ -40,39 +72,25 @@ main(){
             show_help
             exit 0
         ;;
+        # Uninstall an app using the built-in android packageinstaller
+        -r)
+            find_app $2
+            package=$(echo "$activity" | cut -d "/" -f1)
+            printf  "\e[38;5;9m Uninstalling\e[m %s\n"\
+            "$app_name - $package"
+            am start -n com.android.packageinstaller/.UninstallerActivity -d $package --user 0 > /dev/null 2>&1
+            exit 0
+        ;;
     esac
+    
     if [ ! -f $cachefile ] || [ ! -f $app_namefile ] ; then
 	    update_cache
     fi
-    # fuzzy search in $app_namefile to get the app code and app 
-    # name in this format 
-    # app_code | app_name
-    app_data=$(fzf -e --cycle --prompt=" Launch app: " --query="$*" --color=16 --select-1 -0 < "$app_namefile")
-    case "$?" in
-        # No app found
-        "1"  )
-    		printf  "\e[38;5;2m Launcher\e[m: \e[38;5;1mApp not found%s\n\e[m"
-		exit 1
-        ;;
-        # If Ctrl+C is used 
-        "130")
-            return 1
-        ;;
-esac
-    # get the app code
-    app_code=$( echo "$app_data" | cut -d "|" -f1) 
-    # get the app name
-    app_name=$( echo "$app_data" | cut -d "|" -f2) 
     
-    # No app name recieved
-    [[ -z "$app_code" ]] && exit 1
-
-    # get the activity name
-    activity=$( grep "$app_code" "$cachefile" | cut -d "|" -f2 )
+    # Launch the app
+    find_app $1
     printf  "\e[38;5;2m Launching\e[m %s\n"\
             "$app_name - $activity"
-
-    # Laucnh the app
     am start -n "$activity" --user 0 > /dev/null 2>&1
 }
 main "$@"
